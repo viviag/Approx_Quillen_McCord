@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: hubbitus/latex
+    steps:
+      - checkout
+      - run:
+          name: 
+          command: pdflatex almost_coursework.tex
+      - store_artifacts:
+          path: almost_coursework.pdf

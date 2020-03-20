@@ -1,0 +1,140 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{wrapfig}
+\usepackage{amsfonts, amsmath, amssymb, mathtools, faktor, amsthm}
+\usepackage{fancybox,fancyhdr}
+\usepackage{lastpage, hyperref}
+%\geometry{a5paper,width=120mm,height=190mm,heightrounded,footskip=39pt,marginratio={1:1},includeheadfoot}
+
+\usepackage{mdwtab}\arrayextrasep0pt % êîìàíäà \hlx
+%\usepackage{mytab} % ìàêðîñû \settab è \starttab
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{enumerate}
+\usepackage{tikz-cd}
+
+%\renewcommand{\baselinestretch}{0.8}
+
+\medskipamount7.8pt %plus 3pt
+
+\leftskip15mm
+\parskip0pt
+
+\emergencystretch2.5em
+
+\relpenalty10000
+\binoppenalty10000
+\postdisplaypenalty10000
+\sloppy
+
+\setlength{\topmargin}{-1cm}
+\setlength{\textheight}{237mm}
+\setlength{\textwidth}{162mm}
+\setlength{\oddsidemargin}{-0.9cm}
+%\topmargin, \oddsidemargin, \evensidemargin, \textwidth. \textheight
+
+\parindent=1cm
+
+\hyphenpenalty10000
+
+\medmuskip3mu minus 1mu
+\thickmuskip3mu minus 1mu
+\thinmuskip 5mu minus2mu
+
+\everydisplay{\thickmuskip5mu}
+
+\def\hm#1{#1\nobreak\discretionary{}{\hbox{$#1$}}{}}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\theenumi)}
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{definition}{Определение}
+
+\begin{document}
+
+	\section*{Черновик курсовой: Приближённая гомологическая версия теоремы Квиллена-МакКорда.}
+  \textit{Виталий Гузеев, 2019-2020, Москва}
+
+  \hrulefill
+
+\subsection*{1. Необходимые определения}
+В этом техническом разделе помещён некоторый список определений, далее в тексте по секциям предполагаемых известными. При чтении его можно пропустить. Курсивом помечены ремарки, полезные для формирования общей картины, но не используемые в работе как таковой, и требуемые для них определения. Предполагается, что читатель знаком с базовыми понятиями топологии и геометрии, а также с теорией множеств.\\
+\paragraph*{2:}
+
+\begin{definition}
+Класс $\operatorname{Ob}(\mathcal{C})$ --- множество объектов такое, что для каждой пары $A,B \in \operatorname{Ob}(\mathcal{C})$ определено множество $\operatorname{Hom}(A,B)$ морфизмов из $A$ в $B$, называется предкатегорией.
+\end{definition}
+
+\begin{definition}
+Предкатегория, в которой для каждой пары морфизмов определена композиция ($\phi \in \operatorname{Hom}(A,B),\; \psi \in \operatorname{Hom}(B,C) \implies \psi \circ \phi \in \operatorname{Hom}(A,C)$) и для каждого объекта определён тождественный морфизм
+($id \in \operatorname{Hom}(A,A):\; \phi \in \operatorname{Hom}(B,A) \implies id \circ \phi = \phi,\; \psi \in \operatorname{Hom}(A,B) \implies \psi \circ id = \psi$ для любых $B$ и морфизмов $\phi$, $\psi$) называется категорией.\\
+\end{definition}
+
+\begin{definition}
+Отображение $\mathcal{F} :: \mathcal{A} \to \mathcal{B}$ между категориями такое, что $\forall A:\;\mathcal{F}(Id_A) = Id_{\mathcal{F}(A)}$,
+$\mathcal{F}(\phi \circ \psi) = \mathcal{F}(\phi) \circ \mathcal{F}(\psi)$ называется функтором.
+\end{definition}
+
+\begin{definition}
+Симплициальным комплексом называется топологическое пространство, представленное как объединение множеств, гомеоморфных стандартным симплексам.
+\end{definition}
+
+\begin{itshape}
+  \begin{definition}
+  Категория, класс объектов которой является множеством, называется малой.
+  \end{definition}
+
+  \begin{definition}
+  Нервом малой категории будем называть частично упорядоченное множество, элементы которого соотвествуют объектам категории ($\mathcal{N}(A)$), а пара ($\mathcal{N}(A),\mathcal{N}(B)$) входит в отношение порядка тогда и только тогда, когда $\operatorname{Hom}(A,B) \neq \emptyset$.
+  \end{definition}
+\end{itshape}
+
+\subsection*{2. Постановка задачи}
+Классическая теорема Квиллена-МакКорда для частично упорядоченных множеств формулируется следующим образом:\\
+
+Пусть $PSet$ --- категория, объектами в которой являются классы изоморфизмов частично упорядоченных множеств (чумов), а морфизмами --- отображения, сохраняющие порядок, то есть такие $f :: X \to Y$, что $x_1 \leq x_2 \implies f(x_1) \leq f(x_2)$. Несложно убедиться, что это категория, это следует из рефлексивности и транзитивности частичного порядка.\\
+Определён функтор $\mathcal{K} :: PSet \to Top$ --- функтор геометрической реализации, отображающий чум в его порядковый комплекс, то есть в симплициальный комплекс, каждый симплекс которого является линейной оболочкой векторов, формально сопоставленных элементам непустой цепи чума, а морфизм чумов в индуцированное им непрерывное отображение, совпадающее с ним на вершинах.\\
+Пример действия функтора на объекте --- линейный порядок $a \leq b \leq c \leq d$ отображается в правильный тетраэдр $abcd$, при этом подпорядок $a \leq b \leq d$ отображается в грань $abd$ и так далее.\\
+Обозначим через $U_x$ конус элемента $x \in X$, то есть $U_{x_0} = {x \in X | x \leq x_0}$.\\
+
+\begin{theorem}
+  Пусть $X, Y \in \operatorname{Ob}(PSet)$, $f \in \operatorname{Hom}(X,Y)$.\\
+  Если $\forall y \in Y\;\mathcal{K}(f^{-1}(U_y))$ стягиваем, $\mathcal{K}f$ является гомотопической эквивалентностью.\\
+\end{theorem}
+
+\begin{itshape}
+Эта теорема является наиболее естественным частным случаем теорема Квиллена $А$, устанавливающей условия, при которых морфизм геометрических реализаций нервов категорий $\mathcal{A}$ и $\mathcal{B}$ (т.н. классифицирующих пространств категорий), индуцированный функтором $\mathcal{F} :: \mathcal{A} \to \mathcal{B}$, является гомотопической эквивалентностью.\\
+В рассматриваемом случае $\mathcal{A}, \mathcal{B}$ --- чумы со структурой категории, в которой каждому элементу сопоставлен объект, а множество морфизмов между двумя объектами пусто, если соответствущая пара элементов не входи в порядок, и состоит из одного элемента иначе.\\ \\ $\mathcal{F}$ --- функтор, индуцируемый отображением $f$.\\
+Общий случай расматриваться и доказываться в рамках этой работы не будет.
+\end{itshape}
+
+Верна также гомологическая версия теоремы:
+\begin{theorem}
+  Пусть $X, Y \in \operatorname{Ob}(PSet)$, $f \in \operatorname{Hom}(X,Y)$.\\
+  Если $\forall y \in Y\;\mathcal{K}(f^{-1}(U_y))$ ацикличен, $\mathcal{K}f$ является гомологической эквивалентностью.\\
+\end{theorem}
+
+Доказательство теорем 1 и 2 будет в необходимом для формулировки результатов объёме дано согласно [1] в разделе 5.\\
+
+В недавних исследованиях в области топологического анализа данных формулируется <<динамический>> вариант теории гомологий, гомологии модулей устойчивости. Цель этой работы --- сформулировать и доказать версию теоремы Квиллена-МакКорда для гомологий модулей устойчивости (обычно называемых устойчивыми гомологиями). Этот результат имеет также потенциальное практическое применение --- понижение размерности нервов покрытий, полученных экспериментально или в результате работы алгоритма, для уменьшения их вычислительной сложности.
+
+\subsection*{3. Модули устойчивости и формулировка теоремы}
+
+\subsection*{4. Устойчивость в спектральных последовательностях}
+
+\subsection*{5. Доказательство теоремы Квиллена-МакКорда по Бармаку}
+
+\subsection*{6. Основные результаты}
+
+\subsection*{7. Использованная литература}
+\begin{enumerate}
+  \item Jonathan Ariel Barmak. 2011. On Quillen’s Theorem A for posets. J. Comb. Theory Ser. A 118, 8 (November 2011), 2445–2453. DOI:https://doi.org/10.1016/j.jcta.2011.06.008
+\end{enumerate}
+
+\end{document}
