@@ -30,38 +30,144 @@
 
 \section{Abstract}
 
-Combinatorial topology has recently been successfully applied to data analysis. One approach is to compute persistent homology groups of some filtered simplicial complex constructed by experimental data and try to classify some objects by them. However complexity of computation of persistent homology is high enough to limit practical usage of the approach.\\
+Combinatorial topology has recently been successfully applied to data analysis. One approach is to compute homology groups of some persistence complex constructed by experimental data and try to classify some objects by them. However complexity of computation of persistent homology is high enough to limit practical usage of the approach.\\
 
-There is a question of how to algorithmically construct simplicial complex with same persistent homology as initially given with smaller dimension. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology of simplicial complexes. We give constructive argument which can be used to algorithmically reduce simplicial complex to smaller one.
+There is a question of how to algorithmically construct persistent complex with same homology as initially given with smaller dimension. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology. It can possibly be used to algorithmically reduce persistence complex to smaller one if given complex is equivalent to a nerve of some partially ordered set.
 
 \section{Preliminaries}
 
-\subsection{Definitions}
+We expect reader to be familiar with several notions which frequently appear in introductory courses in homological and commutative algebra: chain complex, chain map, filtration, category, functor, graded ring.\\
 
-\subsubsection{Quillen-McCord theorem}
+\subsection{Persistence modules and $\varepsilon$-interleavings}
 
-We start with a formulation of classical theorem and definitions used for it and then descend from general case to specific. General case is not necessary for understanding of the paper.\\
+Basic definition is the following:
 
 \begin{definition}
-  Simplex category $\Delta$ is the category with objects --- nonempty linearly ordered sets of the form $[n] = \{0,1,\ldots,n\}$ with $n \geq 0$ and morphisms --- order-preserving functions.
+  \define{Persistence complex} is a family of chain complexes $C_{\star}^{i_0} \xrightarrow{f_{i_0}} C_{\star}^{i_1} \xrightarrow{f_{i_1}} C_{\star}^{i_2} \xrightarrow{f_{i_2}} \ldots$ with $I$ --- some indexing set and $f_i$ being chain maps.
+\end{definition}
+
+These objects naturally arise in experiments. If we consider $I$ as time, this is a structure we obtain while observing some dynamic structure which can at any time be represented by a chain complex.\\
+
+\begin{definition}
+  Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorpisms $\phi_i :: M^i \to M^{i+1}$.
+\end{definition}
+
+Example of a persistent module is given by homology of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{\star{j}})$, maps $\phi_j$ are induced by $f_i$.\\
+
+\begin{definition}
+  Persistence complex (module) is of \define{finite type} over $R$ if all component complexes (modules) are finitely-generated as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
+\end{definition}
+
+Since experiments usually take finite time and operate finite amount of data, we can safely consider only complexes of finite type. Note that by construction homology of complex of finite type is a module of finite type.\\
+
+\begin{definition}
+  \define{Graded module} over $I$-graded ring $R$ with graded components $R_i$ is an $R$-module $M$ together with a decomposition $M = \bigoplus_{j \in I} M^j:\; \forall i \in I\, R_i \cdot M^j \subset M^{j+i}$. For correctness of the definition it's enough for $I$ to be a semigroup.
+\end{definition}
+
+% Why only linear?
+\begin{definition}
+  Assume $I$ is a monoid with linear order. Then \define{non-negatively graded module} over $I$-graded ring $R$ is an $R$-module $M$ together with a decomposition $M = \bigoplus_{j \in I} M^j:\; \forall i \in I_{\geq 0}\, R_i \cdot M^j \subset M^{j+i}$
+\end{definition}
+
+\begin{proposition}. The following hold:
+  \begin{enumerate}
+    \item Graded modules over $R$ form a category.
+    \item Non-negatively graded modules over $R$ form a category.
+  \end{enumerate}
+\end{proposition}
+
+Morphisms in both these categories are morphisms $\phi$ between modules $M$ and $N$ such that $\phi(M^j) \subset N^j$ for all $j$ in indexing set.\\
+
+\begin{theorem} {\cite[Theorem 3.1]{Zomorodian05}}\\
+  Category of persistence modules of finite type over $R$ is equivalent to category of non-negatively graded finitely generated $R[t]$-modules.
+\end{theorem}
+
+\begin{remark}
+  If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in I_{\geq 0}$.
+\end{remark}
+
+% Continuous time?
+
+We have introduced a setting to work with persistence complexes as with graded modules. However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed in {\cite{Skraba16}}, we will recall it without proofs.
+
+\begin{definition} {\cite[Definition 2.7]{Skraba16}}\\
+  Let $M$ and $N$ be persistent modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
+\end{definition}
+
+\begin{remark}
+  Note that $0$-morphism is a morphism in category of non-negatively graded modules over $R[t]$.
+\end{remark}
+
+\begin{remark}
+  Let $R$ be a field. Then for every persistence module $M$ and any $\varepsilon$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+\end{remark}
+
+\begin{remark}
+  Restriction on $R$ to be a field is crucial for construction. It is a strong restriction, however, it is acceptable.
+\end{remark}
+
+\begin{definition}
+  Persistence modules $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exist pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.
+\end{definition}
+
+\begin{remark}
+There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alpha}{\sim} N$ for any $\alpha > \varepsilon$ since for $\varepsilon$-interleaving $(\phi, \psi)$ we have $\alpha$-interleaving $(Id_{\alpha - \varepsilon} \circ \phi, Id_{\alpha - \varepsilon} \circ \psi)$.
+\end{remark}
+
+\begin{definition}
+  We denote as \define{$\varepsilon$-equivalence} relation with the following properties:\\
+  For any $M$, $N$, $L$, $\varepsilon$, $\varepsilon_1$, $\varepsilon_2$
+  \begin{itemize}
+    \item $M \stackrel{0}{\sim} M$.
+    \item $M \stackrel{\varepsilon}{\sim} N$ is equivalent to $N \stackrel{\varepsilon}{\sim} M$.
+    \item if $M \stackrel{\varepsilon_1}{\sim} N$ and $N \stackrel{\varepsilon_2}{\sim} L$ then $M \stackrel{\varepsilon_1 + \varepsilon_2}{\sim} L$.
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  $\varepsilon$-interleaved persistence modules are $\varepsilon$-equivalent.
+\end{proposition}
+
+\begin{definition}
+  Persistent module $M$ is called \define{$\varepsilon$-trivial} if $M \stackrel{\varepsilon}{\sim} 0$. It is equivalent to $t^{2\varepsilon}M = 0$.
+\end{definition}
+
+\begin{lemma}
+  Let $0 \to M \to L \to N \to 0$ be a short exact sequence. Then the following properties hold:
+  \begin{itemize}
+    \item If $M \stackrel{\varepsilon_1}{\sim} 0$ and $N \stackrel{\varepsilon_2}{\sim} 0$ then $L \stackrel{\varepsilon_1 + \varepsilon_2}{\sim} 0$.
+    \item If $L \stackrel{\varepsilon}{\sim} 0$ then $M \stackrel{\varepsilon}{\sim} 0$ and $N \stackrel{\varepsilon}{\sim} 0$.
+  \end{itemize}
+\end{lemma}
+
+\subsection{Quillen-McCord theorem}
+
+We give a formulation of classical theorem and then descend from general categorical case to specific. General case is not necessary for understanding of the paper. However, it is interesting to follow.\\
+
+\begin{definition}
+  \define{Simplex category} $\Delta$ is the category with objects --- nonempty linearly ordered sets of the form $[n] = \{0,1,\ldots,n\}$ with $n \geq 0$ and morphisms --- order-preserving functions.
 \end{definition}
 
 All morphisms in the simplex category are compositions of injective maps $\delta_i^n : \{0,1,\ldots,i-1,i+1\ldots,n\} \mapsto \{0,1,\ldots,i-1,i,i+1,\ldots,n\}$ and surjective maps $\sigma^n_i : \{0,1,\ldots,i,i+1,i+2\ldots,n\} \mapsto \{0,1,\ldots,i,i+1,\ldots,n\}$.
 
 \begin{definition}
-  Simplicial set $S$ is a contravariant functor $\Delta \to Set$. Objects of image of $S$ are called simplices, cardinality of a simplex is called a dimension of a simplex. We will identify $s$ with set of its simplices while keeping in mind general structure.
+  \define{Simplicial set} $S$ is a contravariant functor $\Delta \to Set$. Objects of image of $S$ are called simplices, cardinality of a simplex is called a dimension of a simplex. We will identify $s$ with set of its simplices while keeping in mind general structure.
 \end{definition}
 
 Simplicial sets form a category under natural transformations (category of presheaves on $\Delta$).\\
 
 \begin{definition}
-  Simplicial set $S$ is called a simplicial complex if for any $s \in S$ s.t. $v \subset s$  $v \in s$ and $S$ is faithful.
+  Simplicial set $S$ is called a \define{simplicial complex} if for any $s \in S$ s.t. $v \subset s$  $v \in s$ and $S$ is faithful.
 \end{definition}
 
-We will also use the following definition:
+We will also use the following definitions:
 
 \begin{definition}
-  Join $A \star B$ of simplicial complexes $A$ and $B$ is the simplicial complex with simplices --- all possible unions of simplices $a \in A$ and $b \in B$.
+  \define{Join} $A \star B$ of simplicial complexes $A$ and $B$ is the simplicial complex with simplices --- all possible unions of simplices $a \in A$ and $b \in B$.
+\end{definition}
+
+\begin{definition}
+  \define{Star} $\operatorname{st}(x)$ of simplex $x \in A$ ($A$ simplicial complex) is the simplicial complex with simplices --- all simplices $a \in A$ such that there exists inclusion $x \hookrightarrow a$.
 \end{definition}
 
 \begin{definition}
@@ -72,18 +178,19 @@ Let $C$ denote a category. We can construct the simplicial set called \define{ne
 Let objects of $C$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on.
 
 \begin{definition}
-  Geometric realization $BC$ of nerve of the category $C$ is called classifying space of $C$.
+  Geometric realization $BC$ of nerve of the category $C$ is called \define{classifying space} of $C$.
 \end{definition}
 
 \begin{definition}
-  Let $f: C \to D$ be a functor and $d$ --- object in $D$. Then comma category $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $С$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $C$ such that $f(g)$ commutes with $i_s$. \textit{This is not the most general form of the definition.}
+  Let $f: C \to D$ be a functor and $d$ --- object in $D$. Then \define{comma category} $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $C$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $C$ such that $f(g)$ commutes with $i_s$ and $i_{g(s)}$.
 \end{definition}
 
-\begin{theorem} \textbf{Quillen A theorem}\\
+\begin{theorem} {\cite[Theorem A]{Quillen72}}\\
   If $f: C \to D$ is a functor such that the classifying space $B(d \downarrow f)$ of the comma category $d \downarrow f$ is contractible for any object $d \in D$, then $f$ induces a homotopy equivalence $BC \to BD$.
 \end{theorem}
 
-Every poset can be viewed as a category in an obvious way with morphisms --- order-preserving maps. Nerve construction on a poset yields a simplicial complex called \define{order complex}. Application of Quillen A theorem to posets yields the following theorem:
+Every poset $X$ with order relation $R$ can be seen as a category if we set $\operatorname{Ob}(X) = X$ and $Hom_X(a,b) = \{\phi\}$ if $(a,b) \in R$ and $\emptyset$ otherwise. Note that map between posets is functorial if and only if it preserves order.\\
+Nerve construction on a poset yields a simplicial complex called \define{order complex}. Application of Quillen A theorem to posets yields the following theorem:
 
 \begin{theorem} \textbf{Quillen-McCord theorem}\\
   Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map.\\
@@ -102,9 +209,7 @@ There holds simple {\cite[Theorem 1.2]{Bar11}} and homological {\cite[Corollary 
   If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is acyclic, $\mathcal{K}f$ induces isomorphisms of all homology groups.\\
 \end{theorem}
 
-Proofs of both theorems are necessary for construction of a desired result and will be recalled in section 2.3.
-
-\subsubsection{Graded $\Bbbk[t]$-modules}
+Proofs of both theorems are necessary for construction of a desired result and will be recalled in section 2.4 with a constructive proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
 
 \subsection{Statement of the theorem}
 
@@ -124,10 +229,19 @@ Proofs of both theorems are necessary for construction of a desired result and w
   \newblock On Quillen’s Theorem A for posets.
   \newblock J. Comb. Theory Ser. A 118, 8 (November 2011), 2445–2453.
   \newblock DOI:https://doi.org/10.1016/j.jcta.2011.06.008
-  \bibitem[GS16]{GS16}
+  \bibitem[Zomorodian05]{Zomorodian05}
+  A. Zomorodian and G. Carlsson.
+  \newblock Computing persistent homology.
+  \newblock In: Discrete and Computational Geometry 33.2 (2005), pp. 249–274.
+  \bibitem[Skraba16]{Skraba16}
   Govc, Dejan \& Skraba, Primoz. (2016).
-  \newblock An Approximate Nerve Theorem. Foundations of Computational Mathematics.
+  \newblock An Approximate Nerve Theorem.
+  \newblock Foundations of Computational Mathematics.
   \newblock 10.1007/s10208-017-9368-6.
+  \bibitem[Quillen72]{Quillen72}
+  Daniel Quillen,
+  \newblock Higher algebraic K-theory, I: Higher K-theories Lect.
+  \newblock Notes in Math. 341 (1972), 85-1
   \bibitem[Milnor56]{Milnor56}
   Milnor, J. (1956).
   \newblock Construction of Universal Bundles, II.
@@ -136,53 +250,6 @@ Proofs of both theorems are necessary for construction of a desired result and w
 \end{enumerate}
 
 \subsection*{3. Модули устойчивости и формулировка теоремы}
-Рассмотрим кольцо многочленов $\mathbb{K}[t]$. При перемножении многочленов их степени складываются, значит, на этом кольце существует градуировка степенями, то есть моноидом неотрицательных целых чисел по сложению. $\mathbb{K}[t] = \bigoplus_{i \in \mathbb{Z}_{\geq 0}} \{f \in \mathbb{K}[t] | deg(f) = i\} = \mathbb{K}[t]_i$. В дальшейшем при упоминании кольца многочленов мы будет предполагать наличие такой градуировки.\\
-\begin{definition}
-  Модуль устойчивости --- градуированный модуль над градуированным кольцом многочленов $\mathbb{K}[t]$.\\
-  Градуировка целыми числами задана следующим образом: $M = \bigoplus_{j \in \mathbb{Z}} M^j:\; \forall i \in \mathbb{Z}_{\geq 0}\, \mathbb{K}[t]_i \cdot M^j \in M^{j+i}$.
-\end{definition}
-\begin{definition}
-  Пусть $M$, $N$ --- модули устойчивости, $f :: M \to N$ --- отображение такое, что $\forall j\, f(M^j) \in f(N^{j+m})$ для некоторого $m \in \mathbb{Z}_{\geq 0}$. Такое отображение будем называть $m$-морфизмом, в частности, 0-морфизм --- морфизм в категории градуированных $\mathbb{K}$-модулей.
-\end{definition}
-Пусть $M$ --- модуль устойчивости. Обозначим как $Id_m :: M \to M$ существующий для любого модуля $m$-морфизм $f(a) = t^ma$.\\
-\begin{definition}
-  Пусть $M$ и $N$ --- модули устойчивости, $m \in \mathbb{Z}_{\geq 0}$, $f :: M \to N$, $g :: N \to M$ --- $m$-морфизмы. Если $f \circ g = Id_{2m}$ и $g \circ f = Id_{2m}$, модули $M$ и $N$ называются $m$-перемежёнными, $f$ и $g$ называются $m$-перемежениями. Стоит отметить, что $0$-перемежение --- синоним слова <<изоморфизм>>.
-\end{definition}
-\begin{definition}
-  Приближённым отношением эквивалентности будем называть бинарное отношение со следующими свойствами:
-  \begin{itemize}
-    \item $\forall M,m:\; M \stackrel{m}{\sim} M$ --- рефлексивность;\\
-    \item $\forall M,N,m:\; M \stackrel{m}{\sim} N \iff N \stackrel{m}{\sim} M$ --- симметричность;\\
-    \item $\forall M,N,K,m_1,m_2:\; M \stackrel{m_1}{\sim} N \land N \stackrel{m_2}{\sim} K \implies M \stackrel{m_1 + m_2}{\sim} K$ --- приближённая транзитивность.\\
-  \end{itemize}
-\end{definition}
-\begin{proposition}
-  $m$-перемежённость --- приближённое отношение эквивалентности.
-\end{proposition}
-\begin{proof}
-  Рефлексивность и симметричность очевидны из определения.\\
-  Приближённая транзитивность реализуется композицией реализующих отношение морфизмов $f_i, g_i$:\\
-  $(f_2 \circ f_1) \circ (g_1 \circ g_2) = f_2 \circ (Id_{m_1}) \circ g_2 = Id_{m_1} \circ (Id_{m_2}) = Id_{m_1 + m_2}$, рассуждение в другую сторону симметрично.
-\end{proof}
-\begin{definition}
-  Назовём $m$-тривиальным модуль, $m$-перемежённый с тривиальным модулем.
-\end{definition}
-В частности, из определения следует, что $\forall a\; t^{2m}a = 0$.
-\begin{lemma}
-  Пусть $0 \to M \xrightarrow{i} N \xrightarrow{p} P \to 0$ --- короткая точная последовательность, то есть $\operatorname{Ker}p = \operatorname{Im}i$.\\
-  Тогда если $M$ $m_1$-тривиален и $P$ $m_2$-тривиален, $N$ $m_1 + m_2$-тривиален.
-\end{lemma}
-\begin{proof}
-  Рассмотрим произвольный $b \in N$. $p(t^{2m_2} \cdot b) = t^{2m_2} \cdot c = 0$, следовательно, $t^{2m_2} \cdot b \in \operatorname{Im}i$. $i$ --- вложение, в частности из этого следует, что $\operatorname{Im}i \simeq M$, то есть $t^{2m_1} \cdot t^{2m_2} \cdot b = 0$, что и означает в силу произвольности $b$ $m_1+m_2$-тривиальность $N$.
-\end{proof}
-\begin{lemma}
-  Пусть $0 \to M \xrightarrow{i} N \xrightarrow{p} P \to 0$ --- короткая точная последовательность.\\
-  Тогда если $N$ $m$-тривиален, $M$ и $P$ $m$-тривиальны.
-\end{lemma}
-\begin{proof}
-  $M$ изоморфен подмодулю $N$, а любой подмодуль $N$ $m$-тривиален, так как для любого его элемента $a$ выполнено $t^{2m} \cdot a = 0$ как для элемента $N$.\\
-  В то же время пусть $p(a) = b$, тогда $p(t^{2m} \cdot a) = p(0) = 0 = t^{2m} \cdot b$. Из сюръективности $p$ следует $m$-тривиальность $P$.
-\end{proof}
 Пусть $X$ --- триангулированное топологическое пространство, на котором задана функция $X \to \mathbb{R}$ и фильтрация прообразами открытых лучей $[-\infty,a)$. Эта фильтрация строго монотонна. Очевидно, что умножение в образе сдвигает индекс фильтрации в пространстве. Следовательно, гомологии $H_n(X)$ образуют модуль устойчивости с градуированными факторами --- гомологиями членов фильтрации.
 \begin{definition}
   Топологическое пространство (симплициальный комплекс) $X$ называется $m$-ацикличным, если $n \in \mathbb{Z}_{\geq 0} H_n(X,\mathbb{K})$ $m$-тривиален.
