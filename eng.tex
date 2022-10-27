@@ -52,7 +52,7 @@ These objects naturally arise in experiments. If we consider $I$ as time, this i
   Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorpisms $\phi_i :: M^i \to M^{i+1}$.
 \end{definition}
 
-Example of a persistent module is given by homology of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{\star{j}})$, maps $\phi_j$ are induced by $f_i$.\\
+Example of a persistent module is given by homology modules of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{\star{j}})$, maps $\phi_j$ are induced by $f_i$.\\
 
 \begin{definition}
   Persistence complex (module) is of \define{finite type} over $R$ if all component complexes (modules) are finitely-generated as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
@@ -213,13 +213,45 @@ Proofs of both theorems are necessary for construction of a desired result and w
 
 \subsection{Statement of the theorem}
 
+Assume we conduct an experiment and observe dynamics of a simplicial complex $S^{i_0} \xrightarrow{f_{i_0}} S^{i_1} \xrightarrow{f_{i_1}} S^{i_2} \xrightarrow{f_{i_2}} \ldots$. Denote the whole sequence as $S$. For each simplicial complex $S^{i}$ we can assign chain complex $C_{\star}^{i}$ via standard construction of simplicial chain complex used in the definition of simplicial homology. We will sometimes identify simplicial complex with corresponding chain complex.\\
+
+I.e. we observe persistence chain complex $C_{\star}^{i_0} \xrightarrow{f'_{i_0}} C_{\star}^{i_1} \xrightarrow{f'_{i_1}} C_{\star}^{i_2} \xrightarrow{f'_{i_2}} \ldots$. Each simplicial complex in a series has geometric realization with the same homology as its chain complex.
+
+\begin{definition}
+  We will denote as \define{persistence topological space} $X$ sequence of topological spaces $X^{i_0} \xrightarrow{f_{i_0}} X^{i_1} \xrightarrow{f_{i_1}} X^{i_2} \xrightarrow{f_{i_2}} \ldots$ with compatible triangulations (chain complexes formed by simplicial complexes) $C_{\star}^{i}$ such that $C_{\star}$ is a persistence complex with structure maps induced by $f_i$. Homology of $X$ is a persistence module with components --- homology modules of $X^i$.\\
+
+  We will denote as morphism $g$ between persistence topological spaces $X$ and $Y$ collection of maps $g_i : X^i \to Y^i$ between components such that all $g_i$ commute with $f_i$.
+\end{definition}
+
+Apparently $\mathcal{K}S$ is a persistence topological space.\\
+
+\begin{definition}
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} if for all indices $H_i(X,R) \stackrel{\varepsilon}{\sim} 0$.
+\end{definition}
+
+\begin{definition}
+  Consider pair of morphisms $(f : X \to Y, g : Y \to X)$ between persistence topological spaces. It is called homological $\varepsilon$-equivalence if induced maps on graded homology modules form $\varepsilon$-interleaving.
+\end{definition}
+
+To formulate a theorem we have to move to terms of posets. Define \define{persistence poset} as series of posets with structure maps analogously to persistence complexes and map of persistence posets as collection of maps between posets commuting with structure maps. It induces map on persistence order complexes. We also analogously define persistence poset of finite type --- it is a finite sequence of finite posets. Easy to see that nerve (as a functor) of persistence poset of finite type is a persistence complex of finite type.\\
+We also need some restricting technical conditions on structure maps of persistent order complex. We will specify them during the proof since they are the major limiting factor in applications of the theorem.
+
+\begin{theorem} \textbf{Approximate Quillen-McCord theorem}\\
+  Assume $X, Y$ are persistent posets of finite type with structure maps satisfying additional conditions, $f : X \to Y$ is order-preserving map.\\
+  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic, $\mathcal{K}f$ induces $e$-interleavings of all homology modules with coefficients in a field or integers.\\
+\end{theorem}
+
+Value of $e$ will also be specified during the proof and is critical to applications being measure of error of approximation.
+
 \subsection{Prerequisite results}
 
+\subsubsection{Simple Quillen-McCord theorem}
+
+\subsubsection{Homological Quillen-McCord theorem}
+
+\subsubsection{Error propagation in Mayer-Vietoris spectral sequence}
+
 \section{Results}
-
-\subsection{Proof of the theorem}
-
-\subsection{Optimizing complexity of the proof: approximate spectral sequences}
 
 \section{References}
 
