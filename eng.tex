@@ -32,7 +32,7 @@
 
 Combinatorial topology has recently been successfully applied to data analysis. One approach is to compute homology groups of some persistence complex constructed by experimental data and try to classify some objects by them. However complexity of computation of persistent homology is high enough to limit practical usage of the approach.\\
 
-There is a question of how to algorithmically construct persistent complex with same homology as initially given with smaller dimension. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology. It can possibly be used to algorithmically reduce persistence complex to smaller one if given complex is equivalent to a nerve of some partially ordered set.
+There is a question of how to construct persistent complex with same homology as initially given with smaller dimension. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology. It can possibly be used to reduce persistence complex to smaller one if given complex is equivalent to a nerve of some partially ordered set.
 
 \section{Preliminaries}
 
@@ -88,9 +88,9 @@ Morphisms in both these categories are morphisms $\phi$ between modules $M$ and 
 
 % Continuous time?
 
-We have introduced a setting to work with persistence complexes as with graded modules. However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed in {\cite{Skraba16}}, we will recall it without proofs.
+We have introduced a setting to work with persistence complexes as with graded modules. However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed in {\cite{GS16}}, we will recall it without proofs.
 
-\begin{definition} {\cite[Definition 2.7]{Skraba16}}\\
+\begin{definition} {\cite[Definition 2.7]{GS16}}\\
   Let $M$ and $N$ be persistent modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
 \end{definition}
 
@@ -167,12 +167,20 @@ We will also use the following definitions:
 \end{definition}
 
 \begin{definition}
+  \define{Join} of topological spaces $A$ and $B$ is defined as follows: $A \star B\ := A \sqcup_{p_0} (A \times B \times [0,1]) \sqcup_{p_1} B$, where $p$ are projections of the cylinder $A \times B \times [0,1]$ onto faces.
+\end{definition}
+
+\begin{definition}
   \define{Star} $\operatorname{st}(x)$ of simplex $x \in A$ ($A$ simplicial complex) is the simplicial complex with simplices --- all simplices $a \in A$ such that there exists inclusion $x \hookrightarrow a$.
 \end{definition}
 
 \begin{definition}
-  Functor $K : \Delta \to Top$ which maps simplices to geometric simplices of corresponding dimension and morphisms to inclusions of faces and restrictions to subcomplexes is called \define{geometric realization}.
+  Functor $\mathcal{K} : \Delta \to Top$ which maps simplices to geometric simplices of corresponding dimension and morphisms to inclusions of faces and restrictions to subcomplexes is called \define{geometric realization}.
 \end{definition}
+
+\begin{proposition}
+  $\mathcal{K}(A \star B) = \mathcal{K}(A) \star \mathcal{K}(B)$
+\end{proposition}
 
 Let $C$ denote a category. We can construct the simplicial set called \define{nerve of category $C$} as follows:\\
 Let objects of $C$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on.
@@ -226,7 +234,7 @@ I.e. we observe persistence chain complex $C_{\star}^{i_0} \xrightarrow{f'_{i_0}
 Apparently $\mathcal{K}S$ is a persistence topological space.\\
 
 \begin{definition}
-  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} if for all indices $H_i(X,R) \stackrel{\varepsilon}{\sim} 0$.
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} 0$.
 \end{definition}
 
 \begin{definition}
@@ -238,7 +246,7 @@ We also need some restricting technical conditions on structure maps of persiste
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
   Assume $X, Y$ are persistent posets of finite type with structure maps satisfying additional conditions, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic, $\mathcal{K}f$ induces $e$-interleavings of all homology modules with coefficients in a field or integers.\\
+  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic, $\mathcal{K}f$ induces $e$-interleavings of all homology modules with coefficients in a field or $\mathbb{Z}$.\\
 \end{theorem}
 
 Value of $e$ will also be specified during the proof and is critical to applications being measure of error of approximation.
@@ -265,7 +273,7 @@ Value of $e$ will also be specified during the proof and is critical to applicat
   A. Zomorodian and G. Carlsson.
   \newblock Computing persistent homology.
   \newblock In: Discrete and Computational Geometry 33.2 (2005), pp. 249–274.
-  \bibitem[Skraba16]{Skraba16}
+  \bibitem[GS16]{GS16}
   Govc, Dejan \& Skraba, Primoz. (2016).
   \newblock An Approximate Nerve Theorem.
   \newblock Foundations of Computational Mathematics.
@@ -274,39 +282,11 @@ Value of $e$ will also be specified during the proof and is critical to applicat
   Daniel Quillen,
   \newblock Higher algebraic K-theory, I: Higher K-theories Lect.
   \newblock Notes in Math. 341 (1972), 85-1
-  \bibitem[Milnor56]{Milnor56}
-  Milnor, J. (1956).
-  \newblock Construction of Universal Bundles, II.
-  \newblock Annals of Mathematics, 63(3), second series, 430-436.
-  \newblock doi:10.2307/1970012
 \end{enumerate}
-
-\subsection*{3. Модули устойчивости и формулировка теоремы}
-Пусть $X$ --- триангулированное топологическое пространство, на котором задана функция $X \to \mathbb{R}$ и фильтрация прообразами открытых лучей $[-\infty,a)$. Эта фильтрация строго монотонна. Очевидно, что умножение в образе сдвигает индекс фильтрации в пространстве. Следовательно, гомологии $H_n(X)$ образуют модуль устойчивости с градуированными факторами --- гомологиями членов фильтрации.
-\begin{definition}
-  Топологическое пространство (симплициальный комплекс) $X$ называется $m$-ацикличным, если $n \in \mathbb{Z}_{\geq 0} H_n(X,\mathbb{K})$ $m$-тривиален.
-\end{definition}
-\begin{definition}
-  Если отображение топологических пространств $f :: X \to Y$ индуцирует $m$-перемежения на всех устойчивых модулях гомологий с коэффициентами в $\mathbb{K}$, $f$ называется гомологической $m$-эквивалентностью.
-\end{definition}
-Чтобы сформулировать целевую теорему, нужно ввести некоторую строго монотонную фильтрацию на порядковом комплексе частично упорядоченного множества.\\
-Как минимум одна такая фильтрация уровнями функции существует --- функция на порядковом комплексе сопоставляет симплексу его размерность.\\
-Улучшение этой фильтрации существенно для получения более содержательной формулировки теоремы.
-\begin{theorem}
-  \textbf{Приближённая версия теоремы 2.}\\
-  Пусть $X, Y \in \operatorname{Ob}(PSet)$, $f \in \operatorname{Hom}(X,Y)$, на $X$ существует строго монотонная фильтрация.\\
-  Если $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ $m$-ацикличен, $\mathcal{K}f$ является гомологической $2m$-эквивалентностью.\\
-\end{theorem}
 
 \subsection*{4. Доказательство теорем 1 и 2}
 
 Авторство излагаемых в этой разделе доказательств принадлежит [1], но без их подробного изложения здесь не представляется возможным понятно изложить доказательство основной теоремы.\\
-
-\begin{proposition}
-  Джойн абстрактных симплициальных комплексов согласован с джойном их геометрических реализаций как топологических пространств, то есть $|K * L| = |K| * |L|$.\\
-  В частности, на уровне геометрических реализаций джойн комплекса со стягиваемым комплексом стягиваем и, более общо, гомотопическая эквивалентность $K \simeq M$ влечёт $K * L \simeq M * L$.
-\end{proposition}
-Утверждение привожу без доказательства.\\
 
 \begin{lemma}
   Пусть $f,g :: X \to Y$ --- морфизмы конечных чумов такие, что $f \leqslant g$ на всех симплексах. Тогда $\mathcal{K}(f)$ гомотопно $\mathcal{K}(g)$.
