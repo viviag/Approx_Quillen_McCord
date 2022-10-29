@@ -23,6 +23,9 @@
 \newenvironment{pf}{\noindent\textbf{Proof.} ~ \par}{\qed}
 \newcommand{\define}[1]{{\textit{#1}}}
 
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
 \title{Approximate Homological Version of Quillen-McCord Theorem}
 \author{Vitalii Guzeev, Anton Ayzenberg}
 
@@ -35,8 +38,6 @@ Combinatorial topology has recently been successfully applied to data analysis. 
 There is a question of how to construct persistent complex with same homology as initially given with smaller dimension. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology. It can possibly be used to reduce persistence complex to smaller one if given complex is equivalent to a nerve of some partially ordered set.
 
 \section{Preliminaries}
-
-We expect reader to be familiar with several notions which frequently appear in introductory courses in homological and commutative algebra or topology: chain complex, chain map, homology of a chain complex, homotopy equivalence, filtration, category, functor, graded ring etc.\\
 
 \subsection{Persistence modules and $\varepsilon$-interleavings}
 
@@ -142,7 +143,7 @@ There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alph
 
 \subsection{Quillen-McCord theorem}
 
-We give a formulation of classical theorem and then descend from general categorical case to specific. General case is not necessary for understanding of the paper. However, it is interesting to follow.\\
+We give a formulation of classical theorem and then descend from general categorical case to specific.\\
 
 \begin{definition}
   \define{Simplex category} $\Delta$ is the category with objects --- nonempty linearly ordered sets of the form $[n] = \{0,1,\ldots,n\}$ with $n \geq 0$ and morphisms --- order-preserving functions.
@@ -175,53 +176,59 @@ We will also use the following definitions:
 \end{definition}
 
 \begin{definition}
+  \define{Link} $\operatorname{lk}(x)$ of simplex $x \in A$ is defined as follows: $\operatorname{lk}(x) = \{v \in \operatorname{st}(x)|\; x \not\in v\}$.
+\end{definition}
+
+\begin{definition}
   Functor $\mathcal{K} : \Delta \to Top$ which maps simplices to geometric simplices of corresponding dimension and morphisms to inclusions of faces and restrictions to subcomplexes is called \define{geometric realization}.
 \end{definition}
+
+\begin{proposition}
+  $\operatorname{st}(x) = \operatorname{lk}(x) \star x$. Hence $\mathcal{K}(\operatorname{st}(x))$ is a cone over $\mathcal{K}(x)$.
+\end{proposition}
 
 \begin{proposition}
   $\mathcal{K}(A \star B) = \mathcal{K}(A) \star \mathcal{K}(B)$
 \end{proposition}
 
 Let $C$ denote a category. We can construct the simplicial set called \define{nerve of category $C$} as follows:\\
-Let objects of $C$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on.
+Let objects of $C$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on.\\
+This construction is functorial, we denote nerve functor as $\mathcal(N)$.
 
 \begin{definition}
-  Geometric realization $BC$ of nerve of the category $C$ is called \define{classifying space} of $C$.
+  Geometric realization $BC$ of $\mathcal{N}(C)$ is called \define{classifying space} of $C$.\\
+
+  We will denote composition of nerve and geometric realization as $\mathcal{B}$. It is obviously a functor and we only need this construction to avoid confusing notation $Bf$ for induced morphism of classifying spaces. By definition $\mathcal{B}(C) = BC$.
 \end{definition}
 
 \begin{definition}
-  Let $f: C \to D$ be a functor and $d$ --- object in $D$. Then \define{comma category} $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $C$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $C$ such that $f(g)$ commutes with $i_s$ and $i_{g(s)}$.
+  Let $f: C \to D$ be a functor and $d$ --- object in $D$. Then \define{comma category} $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $C$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $C$ such that triangle $i_s, i_{g(s)}, f(g)$ commutes.
 \end{definition}
 
 \begin{theorem} {\cite[Theorem A]{Quillen72}}\\
   If $f: C \to D$ is a functor such that the classifying space $B(d \downarrow f)$ of the comma category $d \downarrow f$ is contractible for any object $d \in D$, then $f$ induces a homotopy equivalence $BC \to BD$.
 \end{theorem}
 
-Every poset $X$ with order relation $R$ can be seen as a category if we set $\operatorname{Ob}(X) = X$ and $Hom_X(a,b) = \{\phi\}$ if $(a,b) \in R$ and $\emptyset$ otherwise. Note that map between posets is functorial if and only if it preserves order.\\
+Every poset $X$ with order relation $R$ can be seen as a category if we set $\operatorname{Ob}(X) = X$ and $Hom_X(a,b) = \{r_{ab}\}$ if $(a,b) \in R$ and $\emptyset$ otherwise. Note that map between posets is functorial if and only if it preserves order.\\
 Nerve construction on a poset yields a simplicial complex called \define{order complex}. Application of Quillen A theorem to posets yields the following theorem:
 
 \begin{theorem} \textbf{Quillen-McCord theorem}\\
   Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is contractible, then $\mathcal{K}f$ is a homotopy equivalence.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is contractible, then $\mathcal{B}f$ is a homotopy equivalence between $BX$ and $BY$.\\
 \end{theorem}
 
-There holds simple {\cite[Theorem 1.2]{Bar11}} and homological {\cite[Corollary 5.5]{Bar11}} versions of this theorem:
-
-\begin{theorem} \textbf{Simple Quillen-McCord theorem}\\
-  Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is contractible, then $\mathcal{K}f$ is a simple homotopy equivalence.\\
-\end{theorem}
+There holds homological {\cite[Corollary 5.5]{Bar11}} versions of this theorem:
 
 \begin{theorem} \textbf{Homological Quillen-McCord theorem}\\
   Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is acyclic, $\mathcal{K}f$ induces isomorphisms of all homology groups.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is acyclic, $\mathcal{B}f$ induces isomorphisms of all homology groups on $BX$ and $BY$.\\
 \end{theorem}
 
-Proofs of both theorems are necessary for construction of a desired result and will be recalled in section 2.4 with a constructive proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
+Proofs of both theorems are necessary for construction of a desired result and will be recalled in section 2.4 as well as a specific proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
 
 \subsection{Statement of the theorem}
 
-Assume we conduct an experiment and observe dynamics of a simplicial complex $S^{i_0} \xrightarrow{f_{i_0}} S^{i_1} \xrightarrow{f_{i_1}} S^{i_2} \xrightarrow{f_{i_2}} \ldots$. Denote the whole sequence as $S$. For each simplicial complex $S^{i}$ we can assign chain complex $C_{\star}^{i}$ via standard construction of simplicial chain complex used in the definition of simplicial homology. We will sometimes identify simplicial complex with corresponding chain complex.\\
+Assume we conduct an experiment and observe dynamics of a simplicial complex $S^{i_0} \xrightarrow{f_{i_0}} S^{i_1} \xrightarrow{f_{i_1}} S^{i_2} \xrightarrow{f_{i_2}} \ldots$. Denote the whole sequence as $S$. For each simplicial complex $S^{i}$ we can assign chain complex $C_{\star}^{i}$ via standard construction of simplicial chain complex used in the definition of simplicial homology.\\
 
 I.e. we observe persistence chain complex $C_{\star}^{i_0} \xrightarrow{f'_{i_0}} C_{\star}^{i_1} \xrightarrow{f'_{i_1}} C_{\star}^{i_2} \xrightarrow{f'_{i_2}} \ldots$. Each simplicial complex in a series has geometric realization with the same homology as its chain complex.
 
@@ -246,18 +253,72 @@ We also need some restricting technical conditions on structure maps of persiste
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
   Assume $X, Y$ are persistent posets of finite type with structure maps satisfying additional conditions, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{K}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic, $\mathcal{K}f$ induces $e$-interleavings of all homology modules with coefficients in a field or $\mathbb{Z}$.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic, $\mathcal{B}f$ induces $e$-interleavings of all homology modules on $BX$ and $BY$ with coefficients in a field or $\mathbb{Z}$.\\
 \end{theorem}
 
 Value of $e$ will also be specified during the proof and is critical to applications being measure of error of approximation.
 
 \subsection{Prerequisite results}
 
-\subsubsection{Simple Quillen-McCord theorem}
+\subsubsection{Quillen-McCord theorem}
+
+This section contains the proof of Quillen-McCord theorem given by Barmak.
+
+\begin{proposition} {\cite[Proposition 2.1]{Bar11}}
+  Let $K_1$ and $K_2$ be two geometric simplicial complexes and geometric simplicial complex $K = K_1 \cup K_2$ (as space and simplicial complex). Then if $K_1 \cup K_2 \hookrightarrow K_1$ is a homotopy equivalence, then so is $K_2 \hookrightarrow K$.
+\end{proposition}
+
+\begin{proposition} {\cite[Proposition 2.2]{Bar11}}
+  Let $f,g : X \to Y$ be order-preserving maps between finite posets such that $\forall x\;f(x) \leq g(x)$. Then $\mathcal{B}(f)$ is homotopy-equivalent to $\mathcal{B}(g)$.
+\end{proposition}
+
+% \begin{pf}
+%   $X$ has a finite set $M$ of maximal elements. Take any of them ($m_1$) and define $h_1 : X \to Y$ such that $h_1(m_1) = g(m_1)$ and $h_1 = f$ on all other elements of $X$. This is an order-preserving map due to maximality of $m_1$. Take $M \setminus \{m_1\}$ and build $h_2$ which is equal to $h_1$ on complement to $m_2$ and to $g$ on $m_2$ and so on. We have built a finite sequence of maps $h_0 = f \leq h_1 \leq h_1 \leq \ldots \leq g = h_n$.\\
+%
+%   Elements $h_i(m_i)$ and $h_{i-1}(m_i)$ are comparable. Hence there exists simplex $\{h_i(m_i); h_{i-1}(m_i)\}$ in $\mathcal{N}(Y)$. Since $mathcal{N}(Y)$ is a simplicial complex, for other elements between selected where exist no holes and thus where is a linear homotopy between $h_{i-1}$ and $h_{i}$ which contracts simplex $\{h_i(m_i); h_{i-1}(m_i)\}$.\\
+%
+%   Hence there is a homotopy between $f$ and $g$.
+% \end{pf}
+
+\begin{proposition}
+  Note that $\operatorname{lk}(\mathcal{N}(x)) = \mathcal{N}(X_{>x}) \star \mathcal{N}(X_{<x})$. Therefore $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x))) = \mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x})$.
+\end{proposition}
+
+\begin{remark}
+  $\mathcal{B}(X) = \mathcal{B}(X \setminus \{x\}) \cap \mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ for any $x \in X$.\\
+\end{remark}
+
+\begin{lemma}
+  Let $X$ be a finite poset and for $x \in X$ either $\mathcal{B}(X_{>x})$ or $\mathcal{B}(X_{<x})$ is contractible. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ is a homotopy equivalence.
+\end{lemma}
+
+\begin{pf}
+  By proposition $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is contractible. Hence its embedding to its cone $\mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ is homotopy equivalence. Lemma follows by Proposition 5.
+\end{pf}
+
+\begin{definition}
+  Let $f : X \to Y$ be an order preserving map between posets. Denote orders ($\leq$) on $X$ and $Y$ as $R_X$ and $R_Y$. Then we define poset $M(f) = X \cup Y$ with $R = R_X \cup R_Y \cup R_{f}$ where $(x,y) \in R_f$ if and only if $(f(x),y) \in R_Y$.\\
+
+  We will by analogy denote this poset a \define{mapping cylinder} of $f$. There are also defined canonical inslusions $i : X \to M(f)$ and $j : Y \to M(f)$.
+\end{definition}
+
+\begin{pf} \textbf{Quillen-McCord theorem}\\
+  Let $X, Y$ be finite posets with order-preserving map $f : X \to Y$.\\
+
+  Every poset has linear extension. Let $x_1, x_2, \ldots, x_n$ be enumeration of $X$ in such linear order and $Y^r = \{x_1,\ldots,x_r\} \cup Y \subset M(f)$ for any $r$.\\
+
+  Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is homotopy equivalence by lemma. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is homotopy equivalence between $BY$ and $M(f)$.\\
+
+  Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y})$. Latter is contractible by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is homotopy equivalence and $\mathcal{B}(i)$ is a homotopy equivalence between $X$ and $M(f)$.\\
+
+  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
+\end{pf}
 
 \subsubsection{Homological Quillen-McCord theorem}
 
-\subsubsection{Error propagation in Mayer-Vietoris spectral sequence}
+This section contains the proof of homological Quillen-McCord theorem again given by Barmak. However construction is given in more detail.
+
+\subsubsection{Error propagation in spectral sequences}
 
 \section{Results}
 
