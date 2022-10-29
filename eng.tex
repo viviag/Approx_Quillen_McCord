@@ -20,7 +20,8 @@
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
 
-\newenvironment{pf}{\noindent\textbf{Proof.} ~ \par}{\qed}
+% \newenvironment{pf}{\noindent\textbf{Proof.} ~ \par}{\qed}
+\newenvironment{pf}{\noindent\textbf{Proof.}}{\qed}
 \newcommand{\define}[1]{{\textit{#1}}}
 
 \renewcommand{\leq}{\leqslant}
@@ -220,8 +221,8 @@ Nerve construction on a poset yields a simplicial complex called \define{order c
 There holds homological {\cite[Corollary 5.5]{Bar11}} versions of this theorem:
 
 \begin{theorem} \textbf{Homological Quillen-McCord theorem}\\
-  Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is acyclic, $\mathcal{B}f$ induces isomorphisms of all homology groups on $BX$ and $BY$.\\
+  Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map, $R$ is a PID.\\
+  If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
 Proofs of both theorems are necessary for construction of a desired result and will be recalled in section 2.4 as well as a specific proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
@@ -241,7 +242,7 @@ I.e. we observe persistence chain complex $C_{\star}^{i_0} \xrightarrow{f'_{i_0}
 Apparently $\mathcal{K}S$ is a persistence topological space.\\
 
 \begin{definition}
-  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} 0$.
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} 0$.
 \end{definition}
 
 \begin{definition}
@@ -252,8 +253,8 @@ To formulate a theorem we have to move to terms of posets. Define \define{persis
 We also need some restricting technical conditions on structure maps of persistent order complex. We will specify them during the proof since they are the major limiting factor in applications of the theorem.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
-  Assume $X, Y$ are persistent posets of finite type with structure maps satisfying additional conditions, $f : X \to Y$ is order-preserving map.\\
-  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic, $\mathcal{B}f$ induces $e$-interleavings of all homology modules on $BX$ and $BY$ with coefficients in a field or $\mathbb{Z}$.\\
+  Assume $X, Y$ are persistent posets of finite type with structure maps satisfying additional conditions, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
 Value of $e$ will also be specified during the proof and is critical to applications being measure of error of approximation.
@@ -272,20 +273,20 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
   Let $f,g : X \to Y$ be order-preserving maps between finite posets such that $\forall x\;f(x) \leq g(x)$. Then $\mathcal{B}(f)$ is homotopy-equivalent to $\mathcal{B}(g)$.
 \end{proposition}
 
-% \begin{pf}
-%   $X$ has a finite set $M$ of maximal elements. Take any of them ($m_1$) and define $h_1 : X \to Y$ such that $h_1(m_1) = g(m_1)$ and $h_1 = f$ on all other elements of $X$. This is an order-preserving map due to maximality of $m_1$. Take $M \setminus \{m_1\}$ and build $h_2$ which is equal to $h_1$ on complement to $m_2$ and to $g$ on $m_2$ and so on. We have built a finite sequence of maps $h_0 = f \leq h_1 \leq h_1 \leq \ldots \leq g = h_n$.\\
-%
-%   Elements $h_i(m_i)$ and $h_{i-1}(m_i)$ are comparable. Hence there exists simplex $\{h_i(m_i); h_{i-1}(m_i)\}$ in $\mathcal{N}(Y)$. Since $mathcal{N}(Y)$ is a simplicial complex, for other elements between selected where exist no holes and thus where is a linear homotopy between $h_{i-1}$ and $h_{i}$ which contracts simplex $\{h_i(m_i); h_{i-1}(m_i)\}$.\\
-%
-%   Hence there is a homotopy between $f$ and $g$.
-% \end{pf}
+\begin{pf}
+  $X$ has a finite set $M$ of maximal elements. Take any of them ($m_1$) and define $h_1 : X \to Y$ such that $h_1(m_1) = g(m_1)$ and $h_1 = f$ on all other elements of $X$. This is an order-preserving map due to maximality of $m_1$. Take $M \setminus \{m_1\}$ and build $h_2$ which is equal to $h_1$ on complement to $m_2$ and to $g$ on $m_2$ and so on. We have built a finite sequence of maps $h_0 = f \leq h_1 \leq h_1 \leq \ldots \leq g = h_n$.\\
+
+  Elements $h_i(m_i)$ and $h_{i-1}(m_i)$ are comparable. Hence there exists simplex $\{h_i(m_i); h_{i-1}(m_i)\}$ in $\mathcal{N}(Y)$. Since $mathcal{N}(Y)$ is a simplicial complex, for other elements between selected where exist no holes and thus where is a linear homotopy between $h_{i-1}$ and $h_{i}$ which contracts simplex $\{h_i(m_i); h_{i-1}(m_i)\}$.\\
+
+  Hence there is a homotopy between $f$ and $g$.
+\end{pf}
 
 \begin{proposition}
   Note that $\operatorname{lk}(\mathcal{N}(x)) = \mathcal{N}(X_{>x}) \star \mathcal{N}(X_{<x})$. Therefore $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x))) = \mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x})$.
 \end{proposition}
 
 \begin{remark}
-  $\mathcal{B}(X) = \mathcal{B}(X \setminus \{x\}) \cap \mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ for any $x \in X$.\\
+  $\mathcal{B}(X) = \mathcal{B}(X \setminus \{x\}) \cup \mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ for any $x \in X$.\\
 \end{remark}
 
 \begin{lemma}
@@ -316,7 +317,35 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 
 \subsubsection{Homological Quillen-McCord theorem}
 
-This section contains the proof of homological Quillen-McCord theorem again given by Barmak. However construction is given in more detail.
+To derive homological version of the theorem we can variate the proof of standard version in the following manner:\\
+
+\begin{proposition} {\cite[Lemma 2.1]{Milnor56}}
+  Reduced homology groups with coefficients in a principal ideal domain of a join satisfy the relation
+  $H_{r+1}(A \star B, R) \simeq \bigoplus_{i+j=r}(H_i(A,R) \otimes_R H_j(B,R)) \oplus \bigoplus_{i+j=r-1} \operatorname{Tor_1^R}(H_i(A,R),H_j(B,R))$.
+\end{proposition}
+
+\begin{lemma}
+  Let $X$ be a finite poset and for $x \in X$ either $H_i(\mathcal{B}(X_{< x}))$ or $H_i(\mathcal{B}(X_{> x}))$ with coefficients in a PID are trivial for any $i$. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces isomorphisms of all homology groups.
+\end{lemma}
+
+\begin{pf} ~ \par
+  By Proposition 8 $H_i(\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$ --- $Tor$-functors vanish if any of their arguments is trivial.
+  Application of Mayer-Vietoris long exact sequence to covering from Remark 6 yields the lemma.
+\end{pf}\\
+
+Proof of the theorem is similar to proof finishing previous section. However, we write it here in detail in order to be able to highlight differences. Changed parts are written in italic.\\
+
+\begin{pf} \textbf{Homological Quillen-McCord theorem}\\
+Let $X, Y$ be finite posets with order-preserving map $f : X \to Y$.\\
+
+Every poset has linear extension. Let $x_1, x_2, \ldots, x_n$ be enumeration of $X$ in such linear order and $Y^r = \{x_1,\ldots,x_r\} \cup Y \subset M(f)$ for any $r$.\\
+
+Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is homotopy equivalence by lemma 2. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is homotopy equivalence between $BY$ and $M(f)$.\\
+
+Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y})$. \textit{Latter is acyclic over $R$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
+
+Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce isomorphisms. Hence $\mathcal{B}(f)$ induce isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
+\end{pf}
 
 \subsubsection{Error propagation in spectral sequences}
 
@@ -343,6 +372,11 @@ This section contains the proof of homological Quillen-McCord theorem again give
   Daniel Quillen,
   \newblock Higher algebraic K-theory, I: Higher K-theories Lect.
   \newblock Notes in Math. 341 (1972), 85-1
+  \bibitem[Milnor56]{Milnor56}
+  Milnor, J. (1956).
+  \newblock Construction of Universal Bundles, II.
+  \newblock Annals of Mathematics, 63(3), second series, 430-436.
+  \newblock doi:10.2307/1970012
 \end{enumerate}
 
 \subsection*{4. Доказательство теорем 1 и 2}
