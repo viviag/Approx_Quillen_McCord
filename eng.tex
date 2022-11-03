@@ -116,6 +116,10 @@ We have introduced a setting to work with persistence complexes as with graded m
 There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alpha}{\sim} N$ for any $\alpha > \varepsilon$ since for $\varepsilon$-interleaving $(\phi, \psi)$ we have $\alpha$-interleaving $(Id_{\alpha - \varepsilon} \circ \phi, Id_{\alpha - \varepsilon} \circ \psi)$.
 \end{remark}
 
+\begin{remark}
+  Note that due to Theorem 1 notion of $\varepsilon$-interleavings applies to persistence complexes.
+\end{remark}
+
 \begin{definition}
   We denote as \define{$\varepsilon$-equivalence} relation with the following properties:\\
   For any $M$, $N$, $L$, $\varepsilon$, $\varepsilon_1$, $\varepsilon_2$
@@ -242,22 +246,23 @@ I.e. we observe persistence chain complex $C_{\star}^{i_0} \xrightarrow{f'_{i_0}
 Apparently $\mathcal{K}S$ is a persistence topological space.\\
 
 \begin{definition}
-  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} 0$.
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
 \end{definition}
 
 \begin{definition}
-  Consider pair of morphisms $(f : X \to Y, g : Y \to X)$ between persistence topological spaces. It is called homological $\varepsilon$-equivalence if induced maps on graded homology modules form $\varepsilon$-interleaving.
+  We say that morphism $f : X \to Y$ between persistence topological spaces induces $\varepsilon$-interleaving if there exists $g : Y \to X$ such that induced maps of pair $(f,g)$ on graded homology modules form $\varepsilon$-interleaving.
 \end{definition}
 
 To formulate a theorem we have to move to terms of posets. Define \define{persistence poset} as series of posets with structure maps analogously to persistence complexes and map of persistence posets as collection of maps between posets commuting with structure maps. It induces map on persistence order complexes. We also analogously define persistence poset of finite type --- it is a finite sequence of finite posets. Easy to see that nerve (as a functor) of persistence poset of finite type is a persistence complex of finite type.\\
-We also need some restricting technical conditions on structure maps of persistent order complex. We will specify them during the proof since they are the major limiting factor in applications of the theorem.
+
+In a final statement of the theorem there will also appear some technical conditions which we omit for now.\\
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
-  Assume $X, Y$ are persistent posets of finite type with structure maps satisfying additional conditions, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
+  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
   If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
-Value of $e$ will also be specified during the proof and is critical to applications being measure of error of approximation.
+Value of $e$ will be specified during the proof and is critical to applications being measure of error of approximation.
 
 \subsection{Prerequisite results}
 
@@ -325,12 +330,12 @@ To derive homological version of the theorem we can variate the proof of standar
 \end{proposition}
 
 \begin{lemma}
-  Let $X$ be a finite poset and for $x \in X$ either $H_i(\mathcal{B}(X_{< x}))$ or $H_i(\mathcal{B}(X_{> x}))$ with coefficients in a PID are trivial for any $i$. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces isomorphisms of all homology groups.
+  Let $X$ be a finite poset and for $x \in X$ either $H_i(\mathcal{B}(X_{< x}))$ or $H_i(\mathcal{B}(X_{> x}))$ with coefficients in a PID are equal to homology of a point. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces isomorphisms of all homology groups.
 \end{lemma}
 
 \begin{pf} ~ \par
   By Proposition 8 $H_i(\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$ --- $Tor$-functors vanish if any of their arguments is trivial.
-  Application of Mayer-Vietoris long exact sequence to covering from Remark 6 yields the lemma.
+  Application of Mayer-Vietoris long exact sequence to covering from Remark 7 yields the lemma.
 \end{pf}\\
 
 Proof of the theorem is similar to proof finishing previous section. However, we write it here in detail in order to be able to highlight differences. Changed parts are written in italic.\\
@@ -349,9 +354,25 @@ Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is 
 
 We see two updates. First one is essential, it requires Lemma 3 and operates some equivalence propagating in a chain of length equal to cardinality of $Y$. Second follows automatically from functoriality of all used constructions, but contains statement about composition of functions. We expect these two parts to be changed while constructing a proof for approximate version of the theorem.
 
-\subsubsection{Error propagation in spectral sequences}
+\subsection{Error propagation in Mayer-Vietoris spectral sequence}
+
+Assume persistence simplicial complex $S$ is a filtered complex (assuming either ascending or descending filtration with any compatible structure maps) and there exists open covering $\mathcal{U}$ compatible with filtration. Then there exists a spectral sequence called Mayer-Vietoris spectral sequence which converges to $H_{\star}(S)$. {\cite[Theorem 2.30]{GS16}}\\
+
+Let all sets in $\mathcal{U}$ be $\varepsilon$-acyclic.\\
+TODO: cite convergence approximation results: we need convergence on second page and duplication of $\varepsilon$ in trivial modules. This will require serious adaptation.
 
 \section{Results}
+
+\begin{lemma}
+  Let $X$ be a persistence poset of finite type such that $\mathcal{N}$ is a filtered simplicial complex and for $x \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology modules.
+\end{lemma}
+
+TODO: proof, construction of persistence cylinder, conditions and proof of the theorem.\\
+
+\begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
+  Assume $X, Y$ are persistent posets of finite type such that \ldots, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
+\end{theorem}
 
 \section{References}
 
