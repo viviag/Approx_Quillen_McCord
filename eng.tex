@@ -354,18 +354,15 @@ Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is 
 
 We see two updates. First one is essential, it requires Lemma 3 and operates some equivalence propagating in a chain of length equal to cardinality of $Y$. Second follows automatically from functoriality of all used constructions, but contains statement about composition of functions. We expect these two parts to be changed while constructing a proof for approximate version of the theorem.
 
-\subsection{Error propagation in Mayer-Vietoris spectral sequence}
-
-Assume persistence simplicial complex $S$ is a filtered complex (assuming either ascending or descending filtration with any compatible structure maps) and there exists open covering $\mathcal{U}$ compatible with filtration. Then there exists a spectral sequence called Mayer-Vietoris spectral sequence which converges to $H_{\star}(S)$. {\cite[Theorem 2.30]{GS16}}\\
-
-Let all sets in $\mathcal{U}$ be $\varepsilon$-acyclic.\\
-TODO: cite convergence approximation results: we need convergence on second page and duplication of $\varepsilon$ in trivial modules. This will require serious adaptation.
-
 \section{Results}
 
 \begin{lemma}
-  Let $X$ be a persistence poset of finite type such that $\mathcal{N}$ is a filtered simplicial complex and for $x \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology modules.
+  Let $X$ be a persistence poset of finite type such that $\mathcal{N}(X)$ is a filtered simplicial complex and for $x \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $12\varepsilon$-interleavings of all homology modules.
 \end{lemma}
+
+\begin{pf}
+
+\end{pf}
 
 TODO: proof, construction of persistence cylinder, conditions and proof of the theorem.\\
 
@@ -373,6 +370,28 @@ TODO: proof, construction of persistence cylinder, conditions and proof of the t
   Assume $X, Y$ are persistent posets of finite type such that \ldots, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
   If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
 \end{theorem}
+
+\section{Error propagation in Mayer-Vietoris spectral sequence}
+
+Value of error propagation multiple in the result may probably be decreased with alternative proof using spectral sequences. He we outline results of Govc and Scraba on error propagation in one specific spectral sequence associated to cover.
+
+Assume persistence simplicial complex $S$ is a filtered complex (assuming either ascending or descending filtration with any compatible structure maps) and there exists open covering $\mathcal{U}$ compatible with filtration. Then there exists a spectral sequence called Mayer-Vietoris spectral sequence which converges to $H_{\star}(S)$. {\cite[Theorem 2.30]{GS16}}\\
+
+Let all sets in filtered cover $\mathcal{U}$ be $\varepsilon$-acyclic with all intersections between them be $\varepsilon$-acyclic. This is a representation of the definition of $\varepsilon$-acyclic cover. {\cite[Definition 3.2]{GS16}}\\
+
+Sets and all their nonempty intersections in any covering form a poset with inclusion being an order relation. Nerve of this poset is called \define{nerve of a covering} and we shall denote it as $\mathcal{N}(\mathcal{U})$.\\
+
+There hold the following propositions ($R$ is a field):
+
+\begin{proposition} {\cite[Corollary 5.2]{GS16}}\\
+  If $\mathcal{U}$ is an $\varepsilon$-acyclic cover of $X$, then for all $i$ $E^2_{i,0}$ of Mayer-Vietoris spectral sequence and $H_{i}(\mathcal{N}(\mathcal{U}),R)$ are $2\varepsilon$-interleaved as graded modules.
+\end{proposition}
+
+\begin{proposition} {\cite[Theorem 7.1]{GS16}}\\
+  Let $D$ be dimension of $\mathcal{N}(\mathcal{U})$. Then for all $i$ $H_i(X,R) \stackrel{(4D+2)\varepsilon}{\sim} H_i(\mathcal{N}(\mathcal{U}),R)$.
+\end{proposition}
+
+These results in composition give (by approximate transitivity of $\varepsilon$-equivalence) error propagation multiple $4(D+1)$.
 
 \section{References}
 
@@ -442,42 +461,5 @@ TODO: proof, construction of persistence cylinder, conditions and proof of the t
 \end{proof}
 
 Доказанных утверждений достаточно для построения доказательства теоремы 3.
-
-\subsection*{6. Приложение: устойчивость в спектральных последовательностях}
-Мы будем рассматривать ограниченные в каком-то направлении гомологические спектральные последовательности, расположенные в первом квадранте.\\
-Расположение в первом квадранте: $p < 0 \lor q < 0 \implies E_r^{p,q} = 0$.\\
-Ограниченность: $\exists p_0:\;\forall p>p_0,\,\forall q\; E_r^{p,q} = 0$ или $\exists q_0:\;\forall q>q_0,\,\forall p\; E_r^{p,q} = 0$.\\
-Эти ограничения означают, что на какой-то странице все дифференциалы становятся нулевыми, поскольку их образы лежат за пределами квадранта, то есть нулевые. Значит, c некоторой страницы $n$ спектральная последовательность стабилизируется, т.е. $E_n = E_{\infty}$.\\
-Гомологичность в этом контексте означает, что дифференциалы уменьшают сумму индексов.\\
-
-\begin{lemma}
-  Пусть все модули на $r$-й странице спектральной последовательности $m$-тривиальны. Тогда на $r+1$-й странице все модули $m$-тривиальны.
-\end{lemma}
-\begin{proof}
-  Каждый модуль на $r+1$-й странице является модулем гомологий некоторого модуля с $r$-й страницы относительно дифференциалов $r$-й страницы. То есть он является фактор-модулем подмодуля $m$-тривиального модуля. Применяя дважды лемму 2, получаем, что он является фактор-модулем $m$-тривиального модуля, то есть $m$-тривиален.
-\end{proof}
-
-\begin{definition}
-  Будем говорить, что спектральная последовательность сходится к набору модулей $A_{\bullet}$,
-  если для любого $n$ на $A_n$ определена убывающая фильтрация $\ldots \hookrightarrow  F^pA \hookrightarrow F^{p-1}A \hookrightarrow \ldots \hookrightarrow F^0A = A$ и для каждого $n$ $E^{p,n-p} = F^{p-1}A/F^pA$.
-\end{definition}
-
-Заметим, что по определению ограниченная спектральная последовательность в первом квадранте может сходится только к набору модулей, на каждом из которых определена фильтрация с конечным числом ненулевых членов, что будем записывать как $0 = F^nA \hookrightarrow F^{n-1}A \hookrightarrow \ldots \hookrightarrow F^0A = A$.
-
-\begin{lemma}
-  Пусть $0 = F^nA \hookrightarrow F^{n-1}A \hookrightarrow \ldots \hookrightarrow F^0A = A$ --- фильтрация, при этом $\forall p\; F^pA/F^{p+1}A$ $m$-тривиален.\\
-  Тогда $A$ $nm$-тривиален.
-\end{lemma}
-
-\begin{proof}
-  $F^{n-1}A = F^{n-1}A/F^nA$, следовательно, $m$-тривиален.\\
-  Далее индукция по номеру члена фильтрации.\\
-  Пусть $F^{n-p}A$ $pm$-тривиален. $F^{n-(p+1)}A/F^{n-p}A$ $m$-тривиален по условию. Рассмотрим точную тройку $0 \to F^{n-p} \hookrightarrow F^{n-(p+1)} \rightarrow F^{n-(p+1)}A/F^{n-p}A \to 0$. По лемме 1 $F^{n-(p+1)}$ $pm+m=(p+1)m$-тривиален, что доказывает шаг индукции.\\
-\end{proof}
-
-Следствием Леммы 4 является следующее общее утверждение:
-\begin{corollary}
-  Если все модули на первой странице спектральной последовательности $m$-тривиальны и последовательность стабилизируется на $n$-й странице, последовательность сходится к набору $nm$-тривиальных модулей.
-\end{corollary}
 
 \end{document}
