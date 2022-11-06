@@ -84,6 +84,8 @@ Morphisms in both these categories are morphisms $\phi$ between modules $M$ and 
   Category of persistence modules of finite type over Noetherian ring with unity $R$ is equivalent to category of non-negatively graded finitely generated $R[t]$-modules.
 \end{theorem}
 
+For clarification of the reference see {\cite{Corbet18}}
+
 \begin{remark}
   If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in I_{\geq 0}$.
 \end{remark}
@@ -255,8 +257,6 @@ Apparently $\mathcal{K}S$ is a persistence topological space.\\
 
 To formulate a theorem we have to move to terms of posets. Define \define{persistence poset} as series of posets with structure maps analogously to persistence complexes and map of persistence posets as collection of maps between posets commuting with structure maps. It induces map on persistence order complexes. We also analogously define persistence poset of finite type --- it is a finite sequence of finite posets. Easy to see that nerve (as a functor) of persistence poset of finite type is a persistence complex of finite type.\\
 
-In a final statement of the theorem there will also appear some technical conditions which we omit for now.\\
-
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
   Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
   If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
@@ -325,7 +325,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 To derive homological version of the theorem we can variate the proof of standard version in the following manner:\\
 
 \begin{proposition} {\cite[Lemma 2.1]{Milnor56}}
-  Reduced homology groups with coefficients in a principal ideal domain of a join satisfy the relation
+  Reduced homology modules with coefficients in a principal ideal domain of a join satisfy the relation
   $H_{r+1}(A \star B, R) \simeq \bigoplus_{i+j=r}(H_i(A,R) \otimes_R H_j(B,R)) \oplus \bigoplus_{i+j=r-1} \operatorname{Tor_1^R}(H_i(A,R),H_j(B,R))$.
 \end{proposition}
 
@@ -356,19 +356,49 @@ We see two updates. First one is essential, it requires Lemma 3 and operates som
 
 \section{Results}
 
-\begin{lemma}
-  Let $X$ be a persistence poset of finite type such that $\mathcal{N}(X)$ is a filtered simplicial complex and for $x \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $12\varepsilon$-interleavings of all homology modules.
-\end{lemma}
+We start with two obvious observations ($R$ is always a field):
+
+\begin{proposition}
+  \begin{enumerate}
+    \item Let $A$, $B$ be two $\varepsilon$-acyclic graded $R$-modules. Then $A \oplus B$ is $\varepsilon$-trivial.
+    \item Let $A$ and $B$ be two graded $R$-modules with at least one of them being $\varepsilon$-trivial. Then $A \otimes_{R_{\bullet}} B$ is $\varepsilon$-trivial ($\bullet$ points that this is a tensor product of graded modules).
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+  Let $A$ and $B$ be two persistence topological spaces with at least one of them being $\varepsilon$-acyclic over $R$. Then $A \star B$ is $\varepsilon$-acyclic over $R$.
+\end{proposition}
 
 \begin{pf}
-
+  Over a field all $Tor$-functors vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition 8 is $\varepsilon$-trivial by Proposition 9.
 \end{pf}
 
-TODO: proof, construction of persistence cylinder, conditions and proof of the theorem.\\
+\begin{proposition}
+  Let $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D \to \operatorname{coker}g -> 0$ be exact sequence. Then if $A$ and $D$ are $\varepsilon$-trivial, then $B \stackrel{2\varepsilon}{\sim} C$ with $f$ being left morphism in interleaving pair.
+\end{proposition}
+
+\begin{pf}
+  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{Im}f \to 0$ $\operatorname{Im}f$ is $\varepsilon$-trivial. By exactness it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \rightarrow \operatorname{coker}f \to 0$ there follows that $I = \operatorname{im} \phi$ is $\varepsilon$-trivial. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
+
+  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$ with $K$ and $I$ $\varepsilon$-trivial. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 9 proposition follows.
+\end{pf}
+
+\begin{lemma}
+  Let $X$ be a persistence poset and for $x \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology modules.
+\end{lemma}
+
+Given propositions above the proof is similar to proof of Lemma 3:
+
+\begin{pf} ~ \par
+ By Proposition 10 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.
+ Application of Mayer-Vietoris long exact sequence to covering from Remark 7 and Proposition 11 yield the lemma.
+\end{pf}
+
+TODO: construction of persistence cylinder, conditions and proof of the theorem.\\
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
-  Assume $X, Y$ are persistent posets of finite type such that \ldots, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
-  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
+  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $2\#Y\varepsilon$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
 \section{Error propagation in Mayer-Vietoris spectral sequence}
@@ -391,7 +421,7 @@ There hold the following propositions ($R$ is a field):
   Let $D$ be dimension of $\mathcal{N}(\mathcal{U})$. Then for all $i$ $H_i(X,R) \stackrel{(4D+2)\varepsilon}{\sim} H_i(\mathcal{N}(\mathcal{U}),R)$.
 \end{proposition}
 
-These results in composition give (by approximate transitivity of $\varepsilon$-equivalence) error propagation multiple $4(D+1)$.
+These results given a good $\varepsilon$-acyclic cover may be useful to provide proof of approximate Quillen-McCord theorem with better error multiple but with additional restrictions on structure maps.
 
 \section{References}
 
@@ -406,6 +436,11 @@ These results in composition give (by approximate transitivity of $\varepsilon$-
   \newblock Computing persistent homology.
   \newblock In: Discrete and Computational Geometry 33.2 (2005), pp. 249–274.
   \bibitem[GS16]{GS16}
+  \bibitem[Corbet18]{Corbet18}
+  Corbet, R., Kerber, M.
+  \newblock The representation theorem of persistence revisited and generalized.
+  \newblock J Appl. and Comput. Topology 2, 1–31 (2018).
+  \newblock https://doi.org/10.1007/s41468-018-0015-3
   Govc, Dejan \& Skraba, Primoz. (2016).
   \newblock An Approximate Nerve Theorem.
   \newblock Foundations of Computational Mathematics.
@@ -422,43 +457,6 @@ These results in composition give (by approximate transitivity of $\varepsilon$-
 \end{enumerate}
 
 \subsection*{5. Доказательство теоремы 3}
-
-Приведём здесь утверждение леммы 2.1 из [5]:\\
-\begin{lemma}
-  $H_{r+1}(A * B) \simeq \bigoplus_{i+j=r}(H_i(A) \otimes H_j(B)) \oplus \bigoplus_{i+j=r-1} \operatorname{Tor}(H_i(A),H_j(B))$.\\
-  Гомологии здесь рассматриваются приведённые с коэффициентами в области главных идеалов.
-\end{lemma}
-
-Аналог леммы 4 разбивается на два независимо доказываемых утверждения.\\
-
-\begin{lemma}
-  Пусть $X$ --- конечное частично упорядоченное множество, $x \in X$ --- элемент такой, что или $\mathcal{K}(X_{>x})$, или $\mathcal{K}(X_{<x})$ $m$-ацикличен.\\
-  Тогда $lk(x) = \mathcal{K}(X_{>x}) * \mathcal{K}(X_{<x})$ $m$-ацикличен.
-\end{lemma}
-\begin{proof}
-  Пусть для определённости в лемме 7 $B$ выбран $m$-ацикличным. Этот выбор произволен в силу коммутативности операции джойна.\\
-  По линейности тензорного произведения из $m$-ацикличности $B$ следует $m$-тривиальность $H_i(A) \otimes H_j(B)$ для любых индексов.\\
-  Из леммы 2 подмодули и фактормодули $m$-тривиальных модулей $m$-тривиальны.\\
-  В комплексе $\ldots \to P_n \otimes B \to \ldots \to P_1 \otimes B \to 0$ все модули $m$-тривиальны, следовательно, все его гомологии, то есть $Tor_{\bullet}(A,B)$ $m$-тривиальны.\\
-  Прямая сумма $m$-тривиальных модулей $m$-тривиальна, $m$-перемежения строятся покомпонентно. Следовательно, правая сторона выражения леммы 7 $m$-тривиальна, а значит, $m$-тривиальная и левая сторона, что и требовалось.
-\end{proof}
-
-\begin{lemma}
-  Пусть $A \to B \xrightarrow{f} C \to D$ --- подпоследовательность точной последовательности, $A$ и $D$ $m$-тривиальны. Тогда $B$ и $C$ $2m$-перемежены.
-\end{lemma}
-\begin{proof}
-  Из точности следует, что $\operatorname{Ker}(f)$ и $\operatorname{coKer}(f)$ $m$-тривиальны, следовательно, по приближённой транзитивности $2m$-перемежены. При этом $\operatorname{coIm}(f) \stackrel{f}{\simeq} \operatorname{Im}(f)$.\\
-  $B = \operatorname{Ker}(f) \oplus \operatorname{coIm}(f)$; $C = \operatorname{coKer}(f) \oplus \operatorname{Im}(f)$.\\
-  $2m$-перемежение $B$ и $C$ строится покомпонентно.
-\end{proof}
-
-\begin{lemma}
-  \textit{Приближённый вариант леммы 4}\\
-  Пусть $X$ --- конечное частично упорядоченное множество, $x \in X$ --- элемент такой, что или $\mathcal{K}(X_{>x})$, или $\mathcal{K}(X_{<x})$ $m$-ацикличен. Тогда вложение $\mathcal{K}(X\setminus \{x\}) \hookrightarrow \mathcal{K}(X)$ является гомологической $2m$-эквивалентностью.
-\end{lemma}
-\begin{proof}
-  Лемма следует из лемм 8 и 9, в качестве точной последовательности в лемме 9 можно взять точную последовательность Майера-Вьеториса для того же разбиения, что и в лемме 6.
-\end{proof}
 
 Доказанных утверждений достаточно для построения доказательства теоремы 3.
 
