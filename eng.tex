@@ -72,7 +72,7 @@ Since experiments usually take finite time and operate finite amount of data, we
   Assume $I$ is a monoid with linear order. Then \define{non-negatively graded module} over $I$-graded ring $R$ is an $R$-module $M$ together with a decomposition $M = \bigoplus_{j \in I} M^j:\; \forall i \in I_{\geq 0}\, R_i \cdot M^j \subset M^{j+i}$
 \end{definition}
 
-\begin{proposition}. The following hold:
+\begin{proposition} ~ \par
   \begin{enumerate}
     \item Graded modules over $R$ form a category.
     \item Non-negatively graded modules over $R$ form a category.
@@ -91,8 +91,6 @@ For clarification of the reference see {\cite{Corbet18}}
   If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in I_{\geq 0}$.
 \end{remark}
 
-% Continuous time?
-
 We have introduced a setting to work with persistence complexes as with graded modules. However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed in {\cite{GS16}}, we will recall it without proofs.
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
@@ -105,10 +103,6 @@ We have introduced a setting to work with persistence complexes as with graded m
 
 \begin{remark}
   Let $R$ be a field. Then for every persistence module $M$ and any $\varepsilon$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
-\end{remark}
-
-\begin{remark}
-  Restriction on $R$ to be a field is crucial for construction. It is a strong restriction, however, it is acceptable.
 \end{remark}
 
 \begin{definition}
@@ -259,7 +253,7 @@ Apparently $\mathcal{K}S$ is a persistence topological space.\\
 To formulate a theorem we have to move to terms of posets. Define \define{persistence poset} as possibly infinite in both directions series of posets with order-preserving structure maps analogously to persistence complexes and map of persistence posets as collection of maps between posets commuting with structure maps. It induces map on persistence order complexes. We also analogously define persistence poset of finite type --- it is a finite sequence of finite posets. Easy to see that nerve (as a functor) of persistence poset of finite type is a persistence complex of finite type.\\
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
-  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field or $\mathbb{Z}$.\\
+  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field.\\
   If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
@@ -336,7 +330,7 @@ To derive homological version of the theorem we can variate the proof of standar
 
 \begin{pf} ~ \par
   By Proposition 8 $H_i(\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$ --- $Tor$-functors vanish if any of their arguments is trivial.
-  Application of Mayer-Vietoris long exact sequence to covering from Remark 7 yields the lemma.
+  Application of Mayer-Vietoris long exact sequence to covering from Remark 6 yields the lemma.
 \end{pf}\\
 
 Proof of the theorem is similar to proof finishing previous section. However, we write it here in detail in order to be able to highlight differences. Changed parts are written in italic.\\
@@ -359,7 +353,7 @@ We see two updates. First one is essential, it requires Lemma 3 and operates som
 
 We start with two obvious observations ($R$ is always a field):
 
-\begin{proposition}
+\begin{proposition} ~ \par
   \begin{enumerate}
     \item Let $A$, $B$ be two $\varepsilon$-acyclic graded $R$-modules. Then $A \oplus B$ is $\varepsilon$-trivial.
     \item Let $A$ and $B$ be two graded $R$-modules with at least one of them being $\varepsilon$-trivial. Then $A \otimes_{R_{\bullet}} B$ is $\varepsilon$-trivial ($\bullet$ points that this is a tensor product of graded modules).
@@ -371,7 +365,7 @@ We start with two obvious observations ($R$ is always a field):
 \end{proposition}
 
 \begin{pf}
-  Over a field all $Tor$-functors vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition 8 is $\varepsilon$-trivial by Proposition 9.
+  Over a field all $Tor$-functors from Proposition 8 vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition 8 is $\varepsilon$-trivial by Proposition 9.
 \end{pf}
 
 \begin{proposition}
@@ -392,7 +386,7 @@ Given propositions above the proof is similar to proof of Lemma 3:
 
 \begin{pf} ~ \par
  By Proposition 10 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.
- Application of Mayer-Vietoris long exact sequence to covering from Remark 7 and Proposition 11 yield the lemma.
+ Application of Mayer-Vietoris long exact sequence to covering from Remark 6 and Proposition 11 yields the lemma.
 \end{pf}
 
 \begin{definition}
@@ -401,7 +395,7 @@ Given propositions above the proof is similar to proof of Lemma 3:
   To be explicit consider the following diagram in $Cat$ with $i$, $j$ being series of canonical inclusions:\\
   \begin{tikzcd}
   X_{i}\arrow{r}{i_i}\arrow{d}{\phi_{i}} & X_i \coprod Y_i\arrow{d}{\zeta_i} & Y_{i}\arrow{l}{j_i}\arrow{d}{\psi_{i}} \\
-  X_{i+1}\arrow{r}{i_i} & X_{i+1} \coprod Y_{i+1} & X^{} & Y_{i+1}\arrow{l}{j_i} \\
+  X_{i+1}\arrow{r}{i_{i+1}} & X_{i+1} \coprod Y_{i+1} & Y_{i+1}\arrow{l}{j_{i+1}} \\
   \end{tikzcd}\\
   Notation $i$ for inclusion is kept for consistency with definition of mapping cylinder of posets.
 
@@ -421,7 +415,7 @@ Given propositions above the proof is similar to proof of Lemma 3:
 \begin{pf}
   Let $X$ be persistence poset with structure maps $\phi$. We will denote map from $X_i$ as $\phi_i$ and refer to composition of $k$ structure maps as to $\phi^k$ to simplify notation.\\
 
-  Any incomparable pair $a,b$ in $X_i$ one of the following hold:\\
+  For any incomparable pair $a,b$ in $X_i$ one of the following hold:
   \begin{enumerate}
     \item $a \in \operatorname{im}(\phi_{i-1})$, $b \in \operatorname{im}(\phi_{i-1})$. Then we know that preimages are incomparable since $\phi_{i-1}$ is order preserving.
     \item $a \in \operatorname{im}(\phi_{i-1})$, $b \not\in \operatorname{im}(\phi_{i-1})$ or vice versa.
@@ -439,9 +433,10 @@ Given propositions above the proof is similar to proof of Lemma 3:
 \end{remark}
 
 Assume $X$ is a persistence linearly ordered set and $Y_i \subset X_i$. Then we can induce structure of persistence linear ordered set on $Y = (\ldots, Y_i, \ldots)$.\\
-Let $\phi$ be structure maps of $X$. There is one case there construction is nontrivial: image of $\phi_{i-1}$ of some $a \in Y_{i-1}$ is outside of $Y_{i}$. Then we set $\psi(a)$ to be maximal element of $Y_{i}$ such that it is not greater than $\phi(a)$.\\
+Let $\phi$ be structure maps of $X$. There is one case there construction of structure maps $\psi$ of $Y$ is nontrivial: image of $\phi_{i-1}$ of some $a \in Y_{i-1}$ is outside of $Y_{i}$. Then we set $\psi(a)$ to be maximal element of $Y_{i}$ such that it is not greater than $\phi(a)$.\\
 
-We are now ready to adapt known proof to Quillen-McCord theorem for persistence poset. Case of coefficients in $\mathbb{Z}$ is better to be considered separately.
+We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
+%Case of coefficients in $\mathbb{Z}$ is better to be considered separately.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
   Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field. Let $m = \max_{i}(|Y_i|)$ --- maximal cardinality of components of $Y$.\\
@@ -462,6 +457,16 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
   Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $2m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
 \end{pf}
 
+%\begin{proposition}
+%  Assume conditions of Theorem 6 and let $R = \mathbb{Z}$. Then $\mathcal{B}f$ induces $2m\varepsilon$-interleavings of all homology modules.
+%\end{proposition}
+%
+%\begin{pf} % stackexchange link.
+%  Consider short exact sequence $0 \to \mathbb{Z} \to \mathbb{Q} \to \bigoplus_{p}\mathbb{Z}/p^{\infty}$. It gives rise to long exact sequence $\ldots \to H_{i+1}(X, \bigoplus_{p}\mathbb{Z}/p^{\infty}) \to H_i(X,\mathbb{Z}) \to H_i(X,\mathbb{Q}) \to H_{i}(X, \bigoplus_{p}\mathbb{Z}/p^{\infty})$.\\
+%
+%
+%\end{pf}
+
 \section{Error propagation in Mayer-Vietoris spectral sequence}
 
 Value of error propagation multiple in the result may probably be decreased with alternative proof using spectral sequences. He we outline results of Govc and Scraba on error propagation in one specific spectral sequence associated to cover.
@@ -481,8 +486,6 @@ There hold the following propositions ($R$ is a field):
 \begin{proposition} {\cite[Theorem 7.1]{GS16}}\\
   Let $D$ be dimension of $\mathcal{N}(\mathcal{U})$. Then for all $i$ $H_i(X,R) \stackrel{(4D+2)\varepsilon}{\sim} H_i(\mathcal{N}(\mathcal{U}),R)$.
 \end{proposition}
-
-These results given a good $\varepsilon$-acyclic cover may be useful to provide proof of approximate Quillen-McCord theorem with better error multiple but with additional restrictions on structure maps. However it must essentially differ from the proof given here.
 
 \section{References}
 
