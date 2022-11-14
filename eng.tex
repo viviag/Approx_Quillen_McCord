@@ -37,7 +37,7 @@
 
 Combinatorial topology has recently been successfully applied to data analysis. One approach is to compute homology groups of some persistence complex constructed by experimental data and try to classify some objects by them. However complexity of computation of persistent homology is high enough to limit practical usage of the approach.\\
 
-There is a question of how to construct persistent complex with same homology as initially given with smaller dimension. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology. It can possibly be used to reduce persistence complex to smaller one if given complex is equivalent to a nerve of some partially ordered set.
+There is a question of how to construct persistence complex with same homology as initially given with smaller dimension. Some of complexes arise from dynamics of some partially ordered set by nerve construction. In this paper we prove Quillen-McCord theorem (Quillen fiber lemma) in the setting of persistent homology. It can possibly be used to reduce persistence complex built from poset to smaller one.
 
 \section{Preliminaries}
 
@@ -46,19 +46,19 @@ There is a question of how to construct persistent complex with same homology as
 Basic definition is the following:
 
 \begin{definition}
-  \define{Persistence complex} is a family of chain complexes $C_{\star}^{i_0} \xrightarrow{f_{i_0}} C_{\star}^{i_1} \xrightarrow{f_{i_1}} C_{\star}^{i_2} \xrightarrow{f_{i_2}} \ldots$ with $I$ --- some indexing set and $f_i$ being chain maps.
+  \define{Persistence complex} is a family of chain complexes $C_{\star}^{i_0} \xrightarrow{f_{i_0}} C_{\star}^{i_1} \xrightarrow{f_{i_1}} C_{\star}^{i_2} \xrightarrow{f_{i_2}} \ldots$ where $I$ is the set of indices and $f_i$ are chain maps. We will call $f=(\ldots,f_i,\ldots)$ \define{the structure maps} of a persistence complex.
 \end{definition}
 
-These objects naturally arise in experiments. If we consider $I$ as time, this is a structure we obtain while observing some dynamic structure which can at any time be represented by a chain complex.\\
+These objects naturally arise in experiments. If we consider $I$ as a measure of time, this is a structure we obtain while observing some dynamic structure which can at any time be represented by a chain complex.\\
 
 \begin{definition}
-  Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorpisms $\phi_i :: M^i \to M^{i+1}$.
+  Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorpisms $\phi_i :: M^i \to M^{i+1}$ as the structure maps. If $R$ is a field it is natural to use notion of \define{persistence vector space}.
 \end{definition}
 
-Example of a persistent module is given by homology modules of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{\star{j}})$, maps $\phi_j$ are induced by $f_i$.\\
+Example of a persistence module is given by homology modules of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{j})$, maps $\phi_j$ are induced by $f_i$.\\
 
 \begin{definition}
-  Persistence complex (module) is of \define{finite type} over $R$ if all component complexes (modules) are finitely-generated as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
+  Persistence complex (module) is of \define{finite type} over $R$ if all components of complexes (modules) are finitely-generated as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
 Since experiments usually take finite time and operate finite amount of data, we can safely consider only complexes of finite type. Note that by construction homology of complex of finite type is a module of finite type.\\
@@ -91,10 +91,10 @@ For clarification of the reference see {\cite{Corbet18}}
   If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in I_{\geq 0}$.
 \end{remark}
 
-We have introduced a setting to work with persistence complexes as with graded modules. However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed in {\cite{GS16}}, we will recall it without proofs.
+We have introduced a setting to work with persistence complexes as with graded modules. However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed in {\cite{GS16}}, we recall it without proofs.\\
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
-  Let $M$ and $N$ be persistent modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
+  Let $M$ and $N$ be persistence modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
 \end{definition}
 
 \begin{remark}
@@ -102,11 +102,11 @@ We have introduced a setting to work with persistence complexes as with graded m
 \end{remark}
 
 \begin{remark}
-  Let $R$ be a field. Then for every persistence module $M$ and any $\varepsilon$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+  Let $\mathbb{F}$ be a field. Then for every persistence vector space $V$ over $\mathbb{F}$ and any $\varepsilon$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
 \end{remark}
 
 \begin{definition}
-  Persistence modules $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exist pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.
+  Persistence vector spaces $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exists pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.
 \end{definition}
 
 \begin{remark}
@@ -128,15 +128,15 @@ There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alph
 \end{definition}
 
 \begin{proposition}
-  $\varepsilon$-interleaved persistence modules are $\varepsilon$-equivalent.
+  $\varepsilon$-interleaved persistence vector spaces are $\varepsilon$-equivalent.
 \end{proposition}
 
 \begin{definition}
-  Persistent module $M$ is called \define{$\varepsilon$-trivial} if $M \stackrel{\varepsilon}{\sim} 0$. It is equivalent to $t^{2\varepsilon}M = 0$.
+  Persistence vector space $M$ is called \define{$\varepsilon$-trivial} if $M \stackrel{\varepsilon}{\sim} 0$. This is equivalent to condition $t^{2\varepsilon}M = 0$.
 \end{definition}
 
 \begin{lemma}
-  Let $0 \to M \to L \to N \to 0$ be a short exact sequence. Then the following properties hold:
+  Let $0 \to M \to L \to N \to 0$ be a short exact sequence of persistence vector spaces. Then the following properties hold:
   \begin{itemize}
     \item If $M \stackrel{\varepsilon_1}{\sim} 0$ and $N \stackrel{\varepsilon_2}{\sim} 0$ then $L \stackrel{\varepsilon_1 + \varepsilon_2}{\sim} 0$.
     \item If $L \stackrel{\varepsilon}{\sim} 0$ then $M \stackrel{\varepsilon}{\sim} 0$ and $N \stackrel{\varepsilon}{\sim} 0$.
@@ -145,7 +145,7 @@ There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alph
 
 \subsection{Quillen-McCord theorem}
 
-We give a formulation of classical theorem and then descend from general categorical case to specific.\\
+In order to give a general context we formulate general theorem and deduce Quillen-McCord theorem as a special case.\\
 
 \begin{definition}
   \define{Simplex category} $\Delta$ is the category with objects --- nonempty linearly ordered sets of the form $[n] = \{0,1,\ldots,n\}$ with $n \geq 0$ and morphisms --- order-preserving functions.
@@ -157,10 +157,10 @@ All morphisms in the simplex category are compositions of injective maps $\delta
   \define{Simplicial set} $S$ is a contravariant functor $\Delta \to Set$. Objects of image of $S$ are called simplices, cardinality of a simplex is called a dimension of a simplex. We will identify $s$ with set of its simplices while keeping in mind general structure.
 \end{definition}
 
-Simplicial sets form a category under natural transformations (category of presheaves on $\Delta$).\\
+Simplicial sets form a category under natural transformations (category $Psh(\Delta)$ of presheaves on $\Delta$).\\
 
 \begin{definition}
-  Simplicial set $S$ is called a \define{simplicial complex} if for any $s \in S$ s.t. $v \subset s$  $v \in s$ and $S$ is faithful.
+  Simplicial set $S$ is called a \define{simplicial complex} if for any $s \in S$ s.t. $v \subset s$  $v \in s$ and $S$ is faithful as a functor.
 \end{definition}
 
 We will also use the following definitions:
@@ -186,25 +186,25 @@ We will also use the following definitions:
 \end{definition}
 
 \begin{proposition}
-  $\operatorname{st}(x) = \operatorname{lk}(x) \star x$. Hence $\mathcal{K}(\operatorname{st}(x))$ is a cone over $\mathcal{K}(x)$.
+  $\operatorname{st}(x) = \operatorname{lk}(x) \star x$.
 \end{proposition}
 
 \begin{proposition}
-  $\mathcal{K}(A \star B) = \mathcal{K}(A) \star \mathcal{K}(B)$
+  $\mathcal{K}(A \star B) = \mathcal{K}(A) \star \mathcal{K}(B)$. Hence $\mathcal{K}(\operatorname{st}(x))$ is a cone over $\mathcal{K}(x)$.
 \end{proposition}
 
-Let $C$ denote a category. We can construct the simplicial set called \define{nerve of category $C$} as follows:\\
-Let objects of $C$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on.\\
-This construction is functorial, we denote nerve functor (from category $Cat$ of small categories) as $\mathcal(N)$.
+Let $\mathcal{C}$ denote a small category. We can construct the simplicial set called \define{nerve of category $\mathcal{C}$} as follows:\\
+Let objects of $\mathcal{C}$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on with morphisms ----- inclusions of compositions into longer ones and replacements of compositions $i \circ j$ with $f = i \circ j$.\\
+This construction is functorial over category of small categories $Cat$, we denote nerve functor from $Cat$ to $Psh(\Delta)$ as $\mathcal{N}$.
 
 \begin{definition}
-  Geometric realization $BC$ of $\mathcal{N}(C)$ is called \define{classifying space} of $C$.\\
+  Geometric realization $B\mathcal{C}$ of $\mathcal{N}(\mathcal{C})$ is called \define{classifying space} of $\mathcal{C}$.\\
 
-  We will denote composition of nerve and geometric realization as $\mathcal{B}$. It is obviously a functor and we only need this construction to avoid confusing notation $Bf$ for induced morphism of classifying spaces. By definition $\mathcal{B}(C) = BC$.
+  We denote composition of nerve and geometric realization as $\mathcal{B}$. It is obviously a functor and we only need this construction to avoid confusing notation $Bf$ for induced morphism of classifying spaces. By definition $\mathcal{B}(\mathcal{C}) = B\mathcal{C}$.
 \end{definition}
 
 \begin{definition}
-  Let $f: C \to D$ be a functor and $d$ --- object in $D$. Then \define{comma category} $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $C$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $C$ such that triangle $i_s, i_{g(s)}, f(g)$ commutes.
+  Let $f: \mathcal{C} \to \mathcal{D}$ be a functor and $d$ --- object in $\mathcal{D}$. Then \define{comma category} $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $\mathcal{C}$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $\mathcal{C}$ such that triangle $i_s, i_{g(s)}, f(g)$ is commutative.
 \end{definition}
 
 \begin{theorem} {\cite[Theorem A]{Quillen72}}\\
@@ -226,7 +226,7 @@ There holds homological {\cite[Corollary 5.5]{Bar11}} versions of this theorem:
   If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
-Proofs of both theorems are necessary for construction of a desired result and will be recalled in section 2.4 as well as a specific proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
+Proofs of the theorem is necessary for construction of a desired result and will be recalled in section 2.4 as well as a specific proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
 
 \subsection{Statement of the theorem}
 
@@ -243,18 +243,26 @@ I.e. we observe persistence chain complex $C_{\star}^{i_0} \xrightarrow{f'_{i_0}
 Apparently $\mathcal{K}S$ is a persistence topological space.\\
 
 \begin{definition}
-  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $\mathbb{F}$ if for all indices\\ $H_i(X,\mathbb{F}) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
 \end{definition}
 
 \begin{definition}
   We say that morphism $f : X \to Y$ between persistence topological spaces induces $\varepsilon$-interleaving if there exists $g : Y \to X$ such that induced maps of pair $(f,g)$ on graded homology modules form $\varepsilon$-interleaving.
 \end{definition}
 
-To formulate a theorem we have to move to terms of posets. Define \define{persistence poset} as possibly infinite in both directions series of posets with order-preserving structure maps analogously to persistence complexes and map of persistence posets as collection of maps between posets commuting with structure maps. It induces map on persistence order complexes. We also analogously define persistence poset of finite type --- it is a finite sequence of finite posets. Easy to see that nerve (as a functor) of persistence poset of finite type is a persistence complex of finite type.\\
+\begin{definition}
+  We define \define{persistence poset} $P$ as possibly infinite in both directions series of posets $P_i$ with order-preserving structure maps.\\
+
+  Map of persistence posets $X$, $Y$ is defined as collection of component-wise order-preserving maps commuting with structure maps.\\
+
+  \define{Persistence poset of finite type} is a finite sequence of finite posets.
+\end{definition}
+
+  It's easy to see that nerve (as a functor) of persistence poset of finite type is a persistence complex of finite type.\\
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
-  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field.\\
-  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
+  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $\mathbb{F}$ is a field.\\
+  If $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $\mathbb{F}$, $\mathcal{B}f$ induces $e$-interleavings of all homology spaces over $\mathbb{F}$ on $BX$ and $BY$.\\
 \end{theorem}
 
 Value of $e$ will be specified during the proof and is critical to applications being measure of error of approximation.
@@ -266,7 +274,7 @@ Value of $e$ will be specified during the proof and is critical to applications 
 This section contains the proof of Quillen-McCord theorem given by Barmak.
 
 \begin{proposition} {\cite[Proposition 2.1]{Bar11}}
-  Let $K_1$ and $K_2$ be two geometric simplicial complexes and geometric simplicial complex $K = K_1 \cup K_2$ (as space and simplicial complex). Then if $K_1 \cup K_2 \hookrightarrow K_1$ is a homotopy equivalence, then so is $K_2 \hookrightarrow K$.
+  Let $X$ and $Y$ be two simplicial complexes. Then if $\mathcal{K}(X) \cup \mathcal{K}(Y) \hookrightarrow \mathcal{K}(X)$ is a homotopy equivalence, then so is $\mathcal{K}(Y) \hookrightarrow \mathcal{K}(X \cup Y)$.
 \end{proposition}
 
 \begin{proposition} {\cite[Proposition 2.2]{Bar11}}
@@ -276,7 +284,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 \begin{pf}
   $X$ has a finite set $M$ of maximal elements. Take any of them ($m_1$) and define $h_1 : X \to Y$ such that $h_1(m_1) = g(m_1)$ and $h_1 = f$ on all other elements of $X$. This is an order-preserving map due to maximality of $m_1$. Take $M \setminus \{m_1\}$ and build $h_2$ which is equal to $h_1$ on complement to $m_2$ and to $g$ on $m_2$ and so on. We have built a finite sequence of maps $h_0 = f \leq h_1 \leq h_1 \leq \ldots \leq g = h_n$.\\
 
-  Elements $h_i(m_i)$ and $h_{i-1}(m_i)$ are comparable. Hence there exists simplex $\{h_i(m_i); h_{i-1}(m_i)\}$ in $\mathcal{N}(Y)$. Since $mathcal{N}(Y)$ is a simplicial complex, for other elements between selected where exist no holes and thus where is a linear homotopy between $h_{i-1}$ and $h_{i}$ which contracts simplex $\{h_i(m_i); h_{i-1}(m_i)\}$.\\
+  Elements $h_i(m_i)$ and $h_{i-1}(m_i)$ are comparable. Hence there exists simplex $\{h_i(m_i); h_{i-1}(m_i)\}$ in $\mathcal{N}(Y)$. Since $\mathcal{N}(Y)$ is a simplicial complex, for other elements between selected where exist no holes and thus where is a linear homotopy between $h_{i-1}$ and $h_{i}$ which contracts simplex $\{h_i(m_i); h_{i-1}(m_i)\}$.\\
 
   Hence there is a homotopy between $f$ and $g$.
 \end{pf}
@@ -294,7 +302,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 \end{lemma}
 
 \begin{pf}
-  By proposition $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is contractible. Hence its embedding to its cone $\mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ is homotopy equivalence. Lemma follows by Proposition 5.
+  By proposition $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is contractible. Hence its embedding to its cone $\mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ is homotopy equivalence by Whitehead theorem. Lemma follows by Proposition 5.
 \end{pf}
 
 \begin{definition}
@@ -310,7 +318,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is homotopy equivalence by lemma. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is homotopy equivalence between $BY$ and $M(f)$.\\
 
-  Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is contractible by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is homotopy equivalence and $\mathcal{B}(i)$ is a homotopy equivalence between $X$ and $M(f)$.\\
+  Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is contractible by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is homotopy equivalence and by transitivity $\mathcal{B}(i)$ is a homotopy equivalence between $X$ and $M(f)$.\\
 
   Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}
@@ -347,21 +355,21 @@ Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r
 Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 6 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce isomorphisms. Hence $\mathcal{B}(f)$ induce isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
 \end{pf}\\
 
-We see two updates. First one is essential, it requires Lemma 3 and operates some equivalence propagating in a chain of length equal to cardinality of $Y$. Second follows automatically from functoriality of all used constructions, but contains statement about composition of functions. We expect these two parts to be changed while constructing a proof for approximate version of the theorem.
+We see two updates. First one is essential, it requires Lemma 3 and operates some equivalence propagating in a chain of length equal to cardinality of $Y$. Second follows automatically from functoriality of all used constructions.
 
 \section{Results}
 
-We start with two obvious observations ($R$ is always a field):
+We start with two obvious observations:
 
 \begin{proposition} ~ \par
   \begin{enumerate}
-    \item Let $A$, $B$ be two $\varepsilon$-acyclic graded $R$-modules. Then $A \oplus B$ is $\varepsilon$-trivial.
-    \item Let $A$ and $B$ be two graded $R$-modules with at least one of them being $\varepsilon$-trivial. Then $A \otimes_{R_{\bullet}} B$ is $\varepsilon$-trivial ($\bullet$ points that this is a tensor product of graded modules).
+    \item Let $A$, $B$ be two $\varepsilon$-trivial graded vector spaces. Then $A \oplus B$ is $\varepsilon$-trivial.
+    \item Let $A$ and $B$ be two graded vector spaces with at least one of them being $\varepsilon$-trivial. Then $A \otimes_{R_{\bullet}} B$ is $\varepsilon$-trivial ($\bullet$ points that this is a tensor product of graded spaces).
   \end{enumerate}
 \end{proposition}
 
 \begin{proposition}
-  Let $A$ and $B$ be two persistence topological spaces with at least one of them being $\varepsilon$-acyclic over $R$. Then $A \star B$ is $\varepsilon$-acyclic over $R$.
+  Let $A$ and $B$ be two persistence topological spaces with at least one of them being $\varepsilon$-acyclic over $\mathbb{F}$. Then $A \star B$ is $\varepsilon$-acyclic over $\mathbb{F}$.
 \end{proposition}
 
 \begin{pf}
@@ -369,24 +377,24 @@ We start with two obvious observations ($R$ is always a field):
 \end{pf}
 
 \begin{proposition}
-  Let $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D \to \operatorname{coker}g -> 0$ be exact sequence. Then if $A$ and $D$ are $\varepsilon$-trivial, then $B \stackrel{2\varepsilon}{\sim} C$ with $f$ being left morphism in interleaving pair.
+  Let $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D \to \operatorname{coker}g \to 0$ be exact sequence. Then if $A$ and $D$ are $\varepsilon$-trivial, then $B \stackrel{2\varepsilon}{\sim} C$ with $\phi$ being left morphism in interleaving pair.
 \end{proposition}
 
 \begin{pf}
-  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{Im}f \to 0$ $\operatorname{Im}f$ is $\varepsilon$-trivial. By exactness it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \rightarrow \operatorname{coker}f \to 0$ there follows that $I = \operatorname{im} \phi$ is $\varepsilon$-trivial. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
+  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{im}f \to 0$ $\operatorname{im}f$ is $\varepsilon$-trivial. By exactness it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \to D \to 0$ there follows that $I = \operatorname{im} \phi$ is $\varepsilon$-trivial. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
 
-  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$ with $K$ and $I$ $\varepsilon$-trivial. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 9 proposition follows.
+  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 9 proposition follows.
 \end{pf}
 
 \begin{lemma}
-  Let $X$ be a persistence poset and for $x \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology modules.
+  Let $X$ be a persistence poset and for $x=(\ldots,x_i,\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ are $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology modules.
 \end{lemma}
 
 Given propositions above the proof is similar to proof of Lemma 3:
 
 \begin{pf} ~ \par
  By Proposition 10 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.
- Application of Mayer-Vietoris long exact sequence to covering from Remark 6 and Proposition 11 yields the lemma.
+ Application of Mayer-Vietoris long exact sequence to covering from Remark 6 and Proposition 11 yield the lemma.
 \end{pf}
 
 \begin{definition}
@@ -405,7 +413,7 @@ Given propositions above the proof is similar to proof of Lemma 3:
 \end{definition}
 
 \begin{definition}
-  We will denote as \define{linear extension of persistence poset} $X$ series of linear extensions of $X_i$ such that structure maps are still order preserving.
+  We will denote as \define{linear extension of persistence poset} $X$ series of linear extensions of $X_i$ such with the same structure maps as $X$.
 \end{definition}
 
 \begin{proposition}
@@ -429,28 +437,28 @@ Given propositions above the proof is similar to proof of Lemma 3:
 \end{pf}
 
 \begin{remark}
-  While working with persistence topological spaces we sometimes see properties which hold componentwise. If for persistence space $X$ or map $f_i$ there is a property which holds for any $X_i$ or $f_i$ we call it componentwise property of $X$. For instance, if map $f$ is componentwise homotopy equivalence, it induces $0$-interleaving of homology modules.
+  While working with persistence topological spaces we sometimes see properties which hold component-wise. If for persistence space $X$ or map $f_i$ there is a property which holds for any $X_i$ or $f_i$ we call it component-wise property of $X$. For instance, if map $f$ is component-wise homotopy equivalence, it induces $0$-interleaving of homology modules.
 \end{remark}
 
 Assume $X$ is a persistence linearly ordered set and $Y_i \subset X_i$. Then we can induce structure of persistence linear ordered set on $Y = (\ldots, Y_i, \ldots)$.\\
-Let $\phi$ be structure maps of $X$. There is one case there construction of structure maps $\psi$ of $Y$ is nontrivial: image of $\phi_{i-1}$ of some $a \in Y_{i-1}$ is outside of $Y_{i}$. Then we set $\psi(a)$ to be maximal element of $Y_{i}$ such that it is not greater than $\phi(a)$.\\
+Let $\phi$ be structure maps of $X$. There is one case there construction of structure maps $\psi$ of $Y$ is nontrivial: image of $\phi_{i-1}$ of some $a \in Y_{i-1}$ is outside of $Y_{i}$. Then we set $\psi(a)$ to be maximal element of $Y_{i}$ such that it is less or equal to $\phi(a)$.\\
 
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
 %Case of coefficients in $\mathbb{Z}$ is better to be considered separately.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
-  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $R$ is a field. Let $m = \max_{i}(|Y_i|)$ --- maximal cardinality of components of $Y$.\\
-  If $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $2m\varepsilon$-interleavings of all homology modules over $R$ on $BX$ and $BY$.\\
+  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $\mathbb{F}$ is a field. Let $m = \max_{i}(|Y_i|)$ --- maximal cardinality of components of $Y$.\\
+  If $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $\mathbb{F}$, $\mathcal{B}f$ induces $2m\varepsilon$-interleavings of all homology spaces over $\mathbb{F}$ on $BX$ and $BY$.\\
 \end{theorem}
 
 \begin{pf} \textbf{Approximate Quillen-McCord theorem}\\
   Let $X, Y$ be persistence posets of finite type with order-preserving map $f : X \to Y$.\\
 
-  Let $\overline{X}$ be linear extension of $X$. Let $x^i_1, x^i_2, \ldots, x^i_{n_i}$ be enumeration of $X_i$ in its linear order and $Y_i^r = \{x^i_1,\ldots,x^i_r\} \cup Y_i \subset M(f_i)$ for any $r$ up to $\max_{i}(n_i)$ and $i$. $Y^r = (\ldots, Y_i^r, \ldots)$ is a persistence poset with structure maps induced by structure maps of $M(f)$.\\
+  Let $\overline{X}$ be linear extension of $X$. Let $x^i_1, x^i_2, \ldots, x^i_{n_i}$ be enumeration of $\overline{X}_i$ in its linear order and $Y_i^r = \{x^i_1,\ldots,x^i_r\} \cup Y_i \subset M(f_i)$ for any $r$ up to $\max_{i}(n_i)$ and $i$. $Y^r = (\ldots, Y_i^r, \ldots)$ is a persistence poset with structure maps induced by structure maps of $M(f)$.\\
 
   There are posets such that $n_i < r$. In these cases notation $x_r$ means that on positions with $n_i < r$ we take $x_{n_i}$.\\
 
-  Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a componentwise cone over $\mathcal{B}(f(x_r))$. It is componentwise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is componentwise homotopy equivalence by lemma 2. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is componentwise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
+  Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone over $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is component-wise homotopy equivalence by lemma 2. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
 
   Then consider linear extension of $Y$ with enumerations $y^i_1,\ldots,y^i_{m_i}$ and $X_i^r = X \cup \{y^i_{r+1},\ldots,y^i_{m_i}\} \subset M_i(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $R$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $2\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i)$ induces $2m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
 
@@ -477,14 +485,14 @@ Let all sets in filtered cover $\mathcal{U}$ be $\varepsilon$-acyclic with all i
 
 Sets and all their nonempty intersections in any covering form a poset with inclusion being an order relation. Nerve of this poset is called \define{nerve of a covering} and we shall denote it as $\mathcal{N}(\mathcal{U})$.\\
 
-There hold the following propositions ($R$ is a field):
+There hold the following propositions:
 
 \begin{proposition} {\cite[Corollary 5.2]{GS16}}\\
-  If $\mathcal{U}$ is an $\varepsilon$-acyclic cover of $X$, then for all $i$ $E^2_{i,0}$ of Mayer-Vietoris spectral sequence and $H_{i}(\mathcal{N}(\mathcal{U}),R)$ are $2\varepsilon$-interleaved as graded modules.
+  If $\mathcal{U}$ is an $\varepsilon$-acyclic cover of $X$, then for all $i$ $E^2_{i,0}$ of Mayer-Vietoris spectral sequence and $H_{i}(\mathcal{N}(\mathcal{U}),\mathbb{F})$ are $2\varepsilon$-interleaved as graded modules.
 \end{proposition}
 
 \begin{proposition} {\cite[Theorem 7.1]{GS16}}\\
-  Let $D$ be dimension of $\mathcal{N}(\mathcal{U})$. Then for all $i$ $H_i(X,R) \stackrel{(4D+2)\varepsilon}{\sim} H_i(\mathcal{N}(\mathcal{U}),R)$.
+  Let $D$ be dimension of $\mathcal{N}(\mathcal{U})$. Then for all $i$ $H_i(X,\mathbb{F}) \stackrel{(4D+2)\varepsilon}{\sim} H_i(\mathcal{N}(\mathcal{U}),\mathbb{F})$.
 \end{proposition}
 
 \section{References}
