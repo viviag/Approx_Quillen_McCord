@@ -264,10 +264,12 @@ Then we have nice series of definitions:\\
   \define{Structure} maps of a persistence object are images of morphisms in $I$.
 \end{definition}
 
-Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to functor between $Fun{I,\mathcal{C}}$ and $Fun{I,\mathcal{S}}$. Let $P$ be persistence poset.  Apparently $\mathcal{B}S$ is a persistence topological space.\\
+Notation remark --- we sometimes use notation $(X,\phi)$ for "Persistence object X with structure maps $\phi$".\\
+
+Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be persistence poset.  Apparently $\mathcal{B}(S)$ is a persistence topological space.\\
 
 \begin{definition}
-  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $\mathbb{F}$ if for all indices\\ $H_i(X,\mathbb{F}) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $\mathbb{F}$ if for all indices\\ $H_i(X,\mathbb{F}) \stackrel{\varepsilon}{\sim} H_i(pt,\mathbb{F})$.
 \end{definition}
 
 \begin{definition}
@@ -288,7 +290,7 @@ Property of being of finite type is preserved by functors which map initial obje
 
 \begin{pf}
   $BX$ is a geometric realization of simplicial complex of finite type (since $\mathcal{N}$ is left-adjoint). This simplicial complex can be used as a triangulation of $X$. Standard construction of chain complex by given simplicial assigns zero complex to empty simplicial complex, therefore preserves property of being finite type. Hence homology modules of $BX$ are of finite type as homology of complex of finite type.
-\end{pf}
+\end{pf}\\
 
 We are now able to rely on Theorem 1 and apparatus of interleavings, hence are ready to establish the target theorem.\\
 
@@ -418,39 +420,46 @@ We start with two obvious observations:
   We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 11 proposition follows.
 \end{pf}\\
 
-Assume $X$ is a persistence poset and $Y_i \subset X_i$. Then we can induce structure of persistence poset on $Y = (\ldots, Y_i, \ldots)$.\\
-Let $\phi$ be structure maps of $X$. There is one case there construction of structure maps $\psi$ of $Y$ is nontrivial: image of $\phi_{i-1}$ of some $a \in Y_{i-1}$ is outside of $Y_{i}$. Then we set $\psi(a)$ to be maximal element of $Y_{i}$ such that it is less or equal to $\phi(a)$.\\
+\begin{definition} ~ \par
+  Consider poset $(X,\phi)$ and sets $Y_i \subset X_i$.\\
 
-\begin{definition}
-  We call $Y$ with this induced structure \define{persistence subposet} of $X$.
+  If there is no element $y$ in any $Y_i$ such that $\phi(y) \not\in Y_{i+1}$ then component-wise inclusion $Y \to X$ commutes with structure maps and form embedding of persistence posets. In this case $Y=(\ldots,Y_i,\ldots)$ is a \define {persistence subposet} of $X$.
 \end{definition}
 
 \begin{definition}
-  Consider persistence poset $X = (\ldots,X_i,\ldots)$ with coverings $\mathcal{U}_i$ on each $\mathcal{B}(X_i)$. We call $\mathcal{U} = (\ldots,\mathcal{U}_i,\ldots)$ persistence covering if there exists collection of persistence subposets $Y^j_i \subset X$ such that $\mathcal{B}Y^j_i$ form the covering $\mathcal{U}_i$.
+  Consider persistence poset $X = (\ldots,X_i,\ldots)$ with coverings $\mathcal{U}_i$ on each $\mathcal{B}(X_i)$. We call $\mathcal{U} = (\ldots,\mathcal{U}_i,\ldots)$ persistence covering if there exists collection of persistence subposets $Y^j_i \subset X$ such that $\mathcal{B}Y^j_i$ form the covering $\mathcal{U}_i$.\\
 \end{definition}
+
+Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ where possible, and special bottom element $x_i = \bot$ for empty $X_i$'s. We call $x = (\ldots, x_i, \ldots)$ element of $X$. Sets of type $X_{<x}$ with different relations to $x$ are all defined component-wise and are all empty in components with $x_i = \bot$.\\
 
 \begin{proposition}
-  Covering from Remark 6 can be extended to persistence covering $\mathcal{U}$ with $Y^1$ --- preimage of $st(\mathcal{N}(X))$ under nerve functor and $Y^2 = X \setminus \{x\}$.
+  For $x = (\ldots,x_i,\phi(x_i),\ldots)$ with all $x_i$ except firsts after bottoms being images of structure maps covering from Remark 6 can be extended to persistence covering $\mathcal{U}$ with $Y^1$ --- preimage of $st(\mathcal{N}(x))$ under nerve functor and $Y^2 = X \setminus \{x\}$.
 \end{proposition}
 
-Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ where possible, and special bottom element $x_i = \bot$ for empty $X_i$'s. We call $x = (\ldots, x_i, \ldots)$ element of $X$. Sets of type $X_{<x}$ with different relations to $x$ are all defined component-wise and are all empty in components with $x_i = \bot$.
+\begin{pf}
+  It suffices to check that $X \setminus \{x\}$ and preimage of $st(\mathcal{N}(x))$ are subposets.\\
+
+  It is evident for $X \setminus \{x\}$. Elements in the preimage of $\operatorname{st}(\mathcal{N}(x_i))$ are exactly elements comparable to $x_i$. Since structure maps preserve order, they do not move comparable elements to incomparable. Hence preimage also forms subposet.
+\end{pf}\\
 
 \begin{lemma}
-  Let $X$ be a persistence poset and for $x=(\ldots,x_i,\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ is $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology spaces.
+  Let $(X,\phi)$ be a persistence poset and for $x=(\ldots,x_i,\phi(x_i),\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ is $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $2\varepsilon$-interleavings of all homology spaces.
 \end{lemma}
 
 \begin{pf} ~ \par
- By Proposition 12 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
+  By Proposition 12 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
 
- Given persistence covering we can define persistence Mayer-Vietoris exact sequence on homology spaces component-wise by gluing sequences for components over structure maps on homology. By equivalence of categories it defines exact sequence $Seq$ of persistence vector spaces.\\
+  Given persistence covering we have persistence embeddings of covering sets into $X$. In homology we have induced maps. Category of persistence modules is abelian with kernels and cokernels computable pointwise --- this is known property of functor categories.\\
 
- $Seq$ construction on $\mathcal{U}$ and Proposition 13 yield the lemma.
+  Hence we can define persistence Mayer-Vietoris exact sequence on homology spaces component-wise by gluing sequences for components over structure maps. This is an exact sequence in $Fun(I,Vect_{\mathbb{F}})$. By equivalence of categories it defines exact sequence $Seq$ of persistence vector spaces.\\
+
+  $Seq$ construction on $\mathcal{U}$ and Proposition 13 yield the lemma.
 \end{pf}
 
 \begin{definition}
   Let $f = (f_1,\ldots,f_n,\ldots)$ be map of persistence posets $X$ with structure maps $\phi$ and $Y$ with structure maps $\psi$. Then mapping cylinders $M(f_i)$ form persistence poset $M(f)$ with structure maps arising from universal property of coproduct and structure maps of $X$ and $Y$.\\
 
-  To be explicit consider the following diagram in $Cat$ with $i$, $j$ being series of canonical inclusions:\\
+  To be explicit consider the following diagram in $Pos$ with $i$, $j$ being series of canonical inclusions:\\
   \begin{tikzcd}
   X_{i}\arrow{r}{i_i}\arrow{d}{\phi_{i}} & X_i \coprod Y_i\arrow{d}{\zeta_i} & Y_{i}\arrow{l}{j_i}\arrow{d}{\psi_{i}} \\
   X_{i+1}\arrow{r}{i_{i+1}} & X_{i+1} \coprod Y_{i+1} & Y_{i+1}\arrow{l}{j_{i+1}} \\
@@ -503,11 +512,11 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
   Let $\overline{X}$ be linear extension of $X$. Let $x^i_1, x^i_2, \ldots, x^i_{n_i}$ be enumeration of $\overline{X}_i$ in its linear order and $Y_i^r = \{x^i_1,\ldots,x^i_r\} \cup Y_i \subset M(f_i)$ for any $r$ up to $\max_{i}(n_i)$ and $i$. $Y^r = (\ldots, Y_i^r, \ldots)$ is a persistence subposet of $M(f)$ with extended order on $X$.\\
 
-  There are posets such that $n_i < r$. In these cases notation $x_r$ means that on positions with $n_i < r$ we take $x_{n_i}$.\\
+  There are posets such that $n_i < r$. In these cases notation $x_r$ means that on positions with $n_i < r$ we take $x_{n_i}$. $n_i$ can be undefined, in this case $x_r = \bot$.\\
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone over $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is component-wise homotopy equivalence by lemma 2. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
 
-  Then consider linear extension of $Y$ with enumerations $y^i_1,\ldots,y^i_{m_i}$ and $X_i^r = X \cup \{y^i_{r+1},\ldots,y^i_{m_i}\} \subset M_i(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $R$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $2\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i)$ induces $2m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
+  Then consider linear extension of $Y$ with enumerations $y^i_1,\ldots,y^i_{m_i}$ and $X_i^r = X \cup \{y^i_{r+1},\ldots,y^i_{m_i}\} \subset M_i(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $\mathbb{F}$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $2\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i)$ induces $2m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
 
   Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 8 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $2m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
 \end{pf}
