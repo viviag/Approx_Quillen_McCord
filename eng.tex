@@ -197,10 +197,6 @@ Let $\mathcal{C}$ denote a small category. We can construct the simplicial set c
 Let objects of $\mathcal{C}$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on with morphisms ----- inclusions of compositions into longer ones and replacements of compositions $i \circ j$ with $f = i \circ j$.\\
 This construction is functorial over category of posets $Pos$, we denote nerve functor from $Pos$ to $Psh(\Delta)$ as $\mathcal{N}$.
 
-\begin{proposition}
-  $(\mathcal{N},\mathcal{K})$ is an adjoint pair of functors.
-\end{proposition}
-
 \begin{definition}
   Geometric realization $B\mathcal{C}$ of $\mathcal{N}(\mathcal{C})$ is called \define{classifying space} of $\mathcal{C}$.\\
 
@@ -282,14 +278,14 @@ Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It natur
   In terms of functors "finite sequence" means that only finite set of indices has nontrivial image. It's convenient to define "trivial object" as initial object where present.
 \end{definition}
 
-Property of being of finite type is preserved by functors which map initial objects to initial. In particular by left-adjoint functors.\\
+Property of being of finite type is preserved by functors which map initial objects to initial.\\
 
 \begin{proposition}
   Let $X$ be a persistence poset of finite type. Then $BX$ has homology modules of finite type.
 \end{proposition}
 
 \begin{pf}
-  $BX$ is a geometric realization of simplicial complex of finite type (since $\mathcal{N}$ is left-adjoint). This simplicial complex can be used as a triangulation of $X$. Standard construction of chain complex by given simplicial assigns zero complex to empty simplicial complex, therefore preserves property of being finite type. Hence homology modules of $BX$ are of finite type as homology of complex of finite type.
+  Nerve of the empty poset is an empty simplicial set, which is an initial object. Hence $BX$ is a geometric realization of simplicial complex of finite type. This simplicial complex can be used as a triangulation of $X$. Standard construction of chain complex by given simplicial assigns zero complex to empty simplicial complex, therefore preserves property of being finite type. Hence homology modules of $BX$ are of finite type as homology of complex of finite type.
 \end{pf}\\
 
 We are now able to rely on Theorem 1 and apparatus of interleavings, hence are ready to establish the target theorem.\\
@@ -336,7 +332,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 \end{lemma}
 
 \begin{pf}
-  By proposition $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is contractible. Hence its embedding to its cone $\mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ is homotopy equivalence by Whitehead theorem. Lemma follows by Proposition 7.
+  By proposition $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is contractible. Hence its embedding to its cone $\mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ is homotopy equivalence by Whitehead theorem. Lemma follows by Proposition 6.
 \end{pf}
 
 \begin{definition}
@@ -354,7 +350,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 
   Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is contractible by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is homotopy equivalence and by transitivity $\mathcal{B}(i)$ is a homotopy equivalence between $X$ and $M(f)$.\\
 
-  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 8 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
+  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 7 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}
 
 \subsubsection{Homological Quillen-McCord theorem}
@@ -371,7 +367,7 @@ To derive homological version of the theorem we can variate the proof of standar
 \end{lemma}
 
 \begin{pf} ~ \par
-  By Proposition 10 $H_i(\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$ --- $Tor$-functors vanish if any of their arguments is trivial.
+  By Proposition 9 $H_i(\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$ --- $Tor$-functors vanish if any of their arguments is trivial.
   Application of Mayer-Vietoris long exact sequence to covering from Remark 6 yields the lemma.
 \end{pf}\\
 
@@ -386,7 +382,7 @@ Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a con
 
 Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. \textit{Latter is acyclic over $R$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
 
-Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 8 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce isomorphisms. Hence $\mathcal{B}(f)$ induce isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
+Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 7 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce isomorphisms. Hence $\mathcal{B}(f)$ induce isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
 \end{pf}\\
 
 We see two updates. First one is essential, it requires Lemma 3 and operates some equivalence propagating in a chain of length equal to cardinality of $Y$. Second follows automatically from functoriality of all used constructions.
@@ -407,7 +403,7 @@ We start with two obvious observations:
 \end{proposition}
 
 \begin{pf}
-  Over a field all $Tor$-functors from Proposition 10 vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition 10 is $\varepsilon$-trivial by Proposition 11.
+  Over a field all $Tor$-functors from Proposition 9 vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition 9 is $\varepsilon$-trivial by Proposition 10.
 \end{pf}
 
 \begin{proposition}
@@ -417,7 +413,7 @@ We start with two obvious observations:
 \begin{pf}
   In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{im}f \to 0$ $\operatorname{im}f$ is $\varepsilon$-trivial. By exactness it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \to D \to 0$ there follows that $I = \operatorname{im} \phi$ is $\varepsilon$-trivial. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
 
-  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 11 proposition follows.
+  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 10 proposition follows.
 \end{pf}\\
 
 \begin{definition} ~ \par
@@ -447,13 +443,13 @@ Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ w
 \end{lemma}
 
 \begin{pf} ~ \par
-  By Proposition 12 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
+  By Proposition 11 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
 
   Given persistence covering we have persistence embeddings of covering sets into $X$. In homology we have induced maps. Category of persistence modules is abelian with kernels and cokernels computable pointwise --- this is known property of functor categories.\\
 
   Hence we can define persistence Mayer-Vietoris exact sequence on homology spaces component-wise by gluing sequences for components over structure maps. This is an exact sequence in $Fun(I,Vect_{\mathbb{F}})$. By equivalence of categories it defines exact sequence $Seq$ of persistence vector spaces.\\
 
-  $Seq$ construction on $\mathcal{U}$ and Proposition 13 yield the lemma.
+  $Seq$ construction on $\mathcal{U}$ and Proposition 12 yield the lemma.
 \end{pf}
 
 \begin{definition}
@@ -518,7 +514,7 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
   Then consider linear extension of $Y$ with enumerations $y^i_1,\ldots,y^i_{m_i}$ and $X_i^r = X \cup \{y^i_{r+1},\ldots,y^i_{m_i}\} \subset M_i(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $\mathbb{F}$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $2\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i)$ induces $2m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
 
-  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 8 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $2m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
+  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 7 $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $2m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
 \end{pf}
 
 %\begin{proposition}
@@ -564,15 +560,15 @@ There hold the following propositions:
   \newblock Computing persistent homology.
   \newblock In: Discrete and Computational Geometry 33.2 (2005), pp. 249–274.
   \bibitem[GS16]{GS16}
+  Govc, Dejan \& Skraba, Primoz. (2016).
+  \newblock An Approximate Nerve Theorem.
+  \newblock Foundations of Computational Mathematics.
+  \newblock 10.1007/s10208-017-9368-6.
   \bibitem[Corbet18]{Corbet18}
   Corbet, R., Kerber, M.
   \newblock The representation theorem of persistence revisited and generalized.
   \newblock J Appl. and Comput. Topology 2, 1–31 (2018).
   \newblock https://doi.org/10.1007/s41468-018-0015-3
-  Govc, Dejan \& Skraba, Primoz. (2016).
-  \newblock An Approximate Nerve Theorem.
-  \newblock Foundations of Computational Mathematics.
-  \newblock 10.1007/s10208-017-9368-6.
   \bibitem[Quillen72]{Quillen72}
   Daniel Quillen,
   \newblock Higher algebraic K-theory, I: Higher K-theories Lect.
