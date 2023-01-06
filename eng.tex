@@ -234,15 +234,15 @@ Proof of the theorem is necessary for construction of a desired result and will 
 At this point we have two types of persistence objects with similar definitions. It is appealing to form general notion of persistence object such that these definitions fall into special cases.\\
 
 \begin{definition}
-  Consider $I$ --- fixed linearly ordered set. There is a functor category $Fun(I, \mathcal{C})$ of functors from $I$ to some category $\mathcal{C}$. We call objects of this category \define{persistence objects over $\mathcal{C}$}
+  Consider $I$ --- fixed linearly ordered set. There is a sequence category $Fun(I, \mathcal{C})$ of functors from $I$ to some category $\mathcal{C}$. We call objects of this category \define{persistence objects over $\mathcal{C}$}
 \end{definition}
 
-\begin{example}
+\begin{example} ~ \par
   \begin{itemize}
-    \item Persistence complex is a persistence object over category of chain complexes.
-    \item Persistence $R$-module is a persistence object over category of $R$-modules.
-    \item Persistence simplicial set is a persistence object over category $Psh(\Delta)$.
-    \item Persistence poset is a persistence object over $Pos$.
+    \item Persistence complex is a persistence object over category of chain complexes;
+    \item Persistence $R$-module is a persistence object over category of $R$-modules;
+    \item Persistence simplicial set is a persistence object over category $Psh(\Delta)$;
+    \item Persistence poset is a persistence object over $Pos$;
     \item Persistence topological space is a persistence object over $Top$.
   \end{itemize}
 \end{example}
@@ -286,14 +286,14 @@ We are now able to rely on apparatus of interleavings, hence are ready to establ
   \begin{enumerate}
     \item $R$ is a field, $I = \mathbb{Z}$
     \item $R = \mathbb{Z}$, $I$ is an infinite additive subgroup in $\mathbb{R}$
-  \end{enumerate}.\\
+  \end{enumerate}.
 
   Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology spaces over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
 Value of $e$ will be specified during the proof and is critical for applications being measure of error of approximation.
 
-\textit{We can also establish several useful component-wise constructions: ...}
+We can also establish several useful component-wise constructions --- if some universal object exists in $C$, it can be constructed component-wise in $Fun(I,C)$. For the case of persistence modules we need component-wise tensor product and direct sum. Note that by theorems 1 and 2 component-wise tensor-product is equivalent to usual tensor product of non-negatively graded modules.
 
 \subsection{Prerequisite results}
 
@@ -497,8 +497,13 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 %Case of coefficients in $\mathbb{Z}$ is better to be considered separately.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
-  Assume $X, Y$ are persistent posets of finite type, $f : X \to Y$ is order-preserving map, $\mathbb{F}$ is a field. Let $m = \max_{i}(|Y_i|)$ --- maximal cardinality of components of $Y$.\\
-  If $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $\mathbb{F}$, $\mathcal{B}f$ induces $2m\varepsilon$-interleavings of all homology spaces over $\mathbb{F}$ on $BX$ and $BY$.\\
+  Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map. Let $m = \max_{i}(|Y_i|)$ --- maximal cardinality of components of $Y$ and one of the following holds:\\
+  \begin{enumerate}
+    \item $R$ is a field, $I = \mathbb{Z}$
+    \item $R = \mathbb{Z}$, $I$ is an infinite additive subgroup in $\mathbb{R}$
+  \end{enumerate}.
+
+  Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $2m\varepsilon$-interleavings of all homology spaces over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
 \begin{pf} \textbf{Approximate Quillen-McCord theorem}\\
