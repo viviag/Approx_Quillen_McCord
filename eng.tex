@@ -87,36 +87,40 @@ It is proved in {\cite{Corbet18}}. Authors provide generalization {\cite[Theorem
 \end{theorem}
 
 \begin{corollary}
-  Category of persistence modules of finite type over $\mathbb{Z}$ indexed by infinite addidive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely generated $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
+  Category of persistence modules of finite type over $\mathbb{Z}$ indexed by infinite additive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely generated $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
+\end{corollary}
+
+\begin{corollary}
+  Category of persistence modules of finite type over Noetherian ring $R$ indexed by $\mathbb{Z}$ is equivalent to category of non-negatively graded finitely generated $R[t^{-1},t]$-modules.
 \end{corollary}
 
 \begin{remark} ~ \par
   If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in Z$.\\
   Rings $Nov(\Gamma)$ are also PIDs with graded ideals $t^{\gamma}$ for $\gamma \in \Gamma$.\\
 
-  The most practically reasonable examples are given by considering corollary with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
+  The most practically reasonable examples are given by considering corollary 1 with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
 \end{remark}
 
-We have introduced a setting to work with persistence complexes as with graded modules and will use term persistence module for objects in both families of categories. Computations in a category of non-negatively graded modules are not fit for applications since we need a measure for similarity of two persistence modules in order to track error. We need technique which allows to construct morphisms of deformed complexes. This technique is developed, we recall it here.\\
+We have introduced a setting to work with persistence complexes as with non-negatively graded modules. Computations in a category of non-negatively graded modules are not fit for applications since we need a measure for similarity of two persistence modules in order to track error. We need technique which allows to construct morphisms of deformed complexes. This technique is developed, we recall it here.\\
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
-  Let $M$ and $N$ be persistence modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
+  Let $M$ and $N$ be non-negatively graded $R[\Gamma]$-modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
 \end{definition}
 
 \begin{remark}
-  Note that $0$-morphism is a morphism in category of non-negatively graded modules over $R[t]$.
+  Note that $0$-morphism is a morphism in category of non-negatively graded modules over $R[\Gamma]$.
 \end{remark}
 
 \begin{remark}
-  Let $\mathbb{F}$ be a field. Then for every $\mathbb{Z}$-graded persistence vector space $V$ over $\mathbb{F}$ and any $\varepsilon \in \mathbb{Z}$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+  Let $\mathbb{F}$ be a field. Then for every $\mathbb{Z}$-graded vector space $V$ over $\mathbb{F}$ and any $\varepsilon \in \mathbb{Z}$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
 \end{remark}
 
 \begin{remark}
-  For every $\Gamma$-graded persistence vector space $V$ over $\mathbb{Z}$ and any $\varepsilon \in \Gamma$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+  For every $\Gamma$-graded module $V$ over $\mathbb{Z}$ and any $\varepsilon \in \Gamma$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
 \end{remark}
 
 \begin{definition}
-  Persistence vector spaces $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exists pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.\\
+  Non-negatively graded modules $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exists pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.\\
 
   This definition depends on existence of distinguished $Id_{\varepsilon}$ morphisms and we shall operate only cases given by remarks above.
 \end{definition}
@@ -136,20 +140,20 @@ There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alph
 \end{definition}
 
 \begin{proposition}
-  $\varepsilon$-interleaved persistence vector spaces are $\varepsilon$-equivalent.
+  $\varepsilon$-interleaved non-negatively graded modules are $\varepsilon$-equivalent.
 \end{proposition}
 
 \begin{definition}
-  Persistence vector space $M$ is called \define{$\varepsilon$-trivial} if $M \stackrel{\varepsilon}{\sim} 0$. This is equivalent to condition $t^{2\varepsilon}M = 0$.
+  Non-negatively graded module $M$ is called \define{$\varepsilon$-trivial} if $M \stackrel{\varepsilon}{\sim} 0$. This is equivalent to condition $t^{2\varepsilon}M = 0$.
 \end{definition}
 
 \begin{definition}
-  Any $\varepsilon$-equivalence induces a metric on its domain. This metric is defined as $d(X,Y) = min\{\varepsilon \in I\;|\;X \stackrel{\varepsilon}{\sim} Y\}$. For non-negatively graded vector spaces this metric is called interleaving distance. {\cite[Definition 2.12]{GS16}}
+  Any $\varepsilon$-equivalence induces a metric on its domain. This metric is defined as $d(X,Y) = min\{\varepsilon \in I\;|\;X \stackrel{\varepsilon}{\sim} Y\}$. For non-negatively graded modules this metric is called interleaving distance. {\cite[Definition 2.12]{GS16}}
 \end{definition}
 
 \textit{FIXME: links. Seems that it is a corollary of one-sided interleaving techniques.}
 \begin{lemma}
-  Let $0 \to M \to L \to N \to 0$ be a short exact sequence of persistence vector spaces. Then the following properties hold:
+  Let $0 \to M \to L \to N \to 0$ be a short exact sequence of non-negatively graded modules. Then the following properties hold:
   \begin{itemize}
     \item If $M \stackrel{\varepsilon_1}{\sim} 0$ and $N \stackrel{\varepsilon_2}{\sim} 0$ then $L \stackrel{\varepsilon_1 + \varepsilon_2}{\sim} 0$. {\cite[Proposition 4.6]{GS16}}
     \item If $L \stackrel{\varepsilon}{\sim} 0$ then $M \stackrel{\varepsilon}{\sim} 0$ and $N \stackrel{\varepsilon}{\sim} 0$.
@@ -223,46 +227,36 @@ There holds homological {\cite[Corollary 5.5]{Bar11}} versions of this theorem:
   If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
-Proofs of the theorem is necessary for construction of a desired result and will be recalled in section 2.4 as well as a specific proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
+Proof of the theorem is necessary for construction of a desired result and will be recalled in section 2.4 as well as a specific proof of Quillen-McCord theorem {\cite[Proof of Theorem 1.1]{Bar11}}.\\
 
 \subsection{Persistence objects and statement of the theorem}
 
 At this point we have two types of persistence objects with similar definitions. It is appealing to form general notion of persistence object such that these definitions fall into special cases.\\
 
-Consider $I$ --- fixed linearly ordered set. It can be viewed as a small category and we can consider category $Fun(I,\mathcal{C})$ of functors from $I$ to some category $\mathcal{C}$. We call objects of this category \define{persistence objects over $\mathcal{C}$}.\\
-
-Then we have nice series of definitions:\\
-
 \begin{definition}
-  Persistence complex is a persistence object over category of chain complexes.
+  Consider $I$ --- fixed linearly ordered set. There is a functor category $Fun(I, \mathcal{C})$ of functors from $I$ to some category $\mathcal{C}$. We call objects of this category \define{persistence objects over $\mathcal{C}$}
 \end{definition}
 
+\begin{example}
+  \begin{itemize}
+    \item Persistence complex is a persistence object over category of chain complexes.
+    \item Persistence $R$-module is a persistence object over category of $R$-modules.
+    \item Persistence simplicial set is a persistence object over category $Psh(\Delta)$.
+    \item Persistence poset is a persistence object over $Pos$.
+    \item Persistence topological space is a persistence object over $Top$.
+  \end{itemize}
+\end{example}
+
 \begin{definition}
-  Persistence module is a persistence object over category of modules.
+  We denote images of morphisms in $I$ as \define{structure} maps of a persistence object over $\mathcal{C}$. It is generally enough to consider generating set of these morphisms, i.e. set of indecomposable morphisms.
 \end{definition}
 
-\begin{definition}
-  Persistence simplicial set is a persistence object over category $Psh(\Delta)$.
-\end{definition}
+Notation remark --- we use notation $(X,\phi)$ for "Persistence object X with generating structure maps $\phi$".\\
+
+Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be persistence poset. Apparently $\mathcal{B}(S)$ is a persistence topological space.\\
 
 \begin{definition}
-  Persistence poset is a persistence object over $Pos$.
-\end{definition}
-
-\begin{definition}
-  Persistence topological space is a persistence object over $Top$.
-\end{definition}
-
-\begin{definition}
-  \define{Structure} maps of a persistence object are images of morphisms in $I$.
-\end{definition}
-
-Notation remark --- we sometimes use notation $(X,\phi)$ for "Persistence object X with structure maps $\phi$".\\
-
-Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be persistence poset.  Apparently $\mathcal{B}(S)$ is a persistence topological space.\\
-
-\begin{definition}
-  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $\mathbb{F}$ if for all indices\\ $H_i(X,\mathbb{F}) \stackrel{\varepsilon}{\sim} H_i(pt,\mathbb{F})$.
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
 \end{definition}
 
 \begin{definition}
@@ -285,14 +279,21 @@ Property of being of finite type is preserved by functors which map initial obje
   Nerve of the empty poset is an empty simplicial set, which is an initial object. Hence $BX$ is a geometric realization of simplicial complex of finite type. This simplicial complex can be used as a triangulation of $X$. Standard construction of chain complex by given simplicial assigns zero complex to empty simplicial complex, therefore preserves property of being finite type. Hence homology modules of $BX$ are of finite type as homology of complex of finite type.
 \end{pf}\\
 
-We are now able to rely on Theorem 1 and apparatus of interleavings, hence are ready to establish the target theorem.\\
+We are now able to rely on apparatus of interleavings, hence are ready to establish the target theorem.\\
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
-  Assume $X, Y$ are persistence posets of finite type, $f : X \to Y$ is order-preserving map, $\mathbb{F}$ is a field.\\
-  If $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $\mathbb{F}$, $\mathcal{B}f$ induces $e$-interleavings of all homology spaces over $\mathbb{F}$ on $BX$ and $BY$.\\
+  Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map, and one of the following holds:\\
+  \begin{enumerate}
+    \item $R$ is a field, $I = \mathbb{Z}$
+    \item $R = \mathbb{Z}$, $I$ is an infinite additive subgroup in $\mathbb{R}$
+  \end{enumerate}.\\
+
+  Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology spaces over $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
-Value of $e$ will be specified during the proof and is critical to applications being measure of error of approximation.
+Value of $e$ will be specified during the proof and is critical for applications being measure of error of approximation.
+
+\textit{We can also establish several useful component-wise constructions: ...}
 
 \subsection{Prerequisite results}
 
@@ -390,8 +391,8 @@ We start with two obvious observations:
 
 \begin{proposition} ~ \par
   \begin{enumerate}
-    \item Let $A$, $B$ be two $\varepsilon$-trivial graded vector spaces. Then $A \oplus B$ is $\varepsilon$-trivial.
-    \item Let $A$ and $B$ be two graded vector spaces with at least one of them being $\varepsilon$-trivial. Then $A \otimes_{R_{\bullet}} B$ is $\varepsilon$-trivial ($\bullet$ points that this is a tensor product of graded spaces).
+    \item Let $A$, $B$ be two $\varepsilon$-trivial graded modules. Then $A \oplus B$ is $\varepsilon$-trivial.
+    \item Let $A$ and $B$ be two graded modules with at least one of them being $\varepsilon$-trivial. Then $A \otimes_{R_{\bullet}} B$ is $\varepsilon$-trivial ($\bullet$ points that this is a tensor product of graded spaces).
   \end{enumerate}
 \end{proposition}
 
