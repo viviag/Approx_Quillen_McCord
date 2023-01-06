@@ -82,22 +82,22 @@ There is a well-known theorem:
 
 It is proved in {\cite{Corbet18}}. Authors provide generalization {\cite[Theorem 2]{Corbet18}} which is more suitable for our needs.\\
 
-\begin{theorem} {\cite[Case of Theorem 2]{Corbet18}}\\
-  Let $R$ be a ring with unity and $G$ be a monoid with linear order. The category of finitely presented graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finitely presented type.
+\begin{theorem} {\cite[Case of Corollary 20 of Theorem 2]{Corbet18}}\\
+  Let $R$ be a Noetherian ring with unity and $G$ be a monoid with linear order such that $R[G]$ is Noetherian. The category of finitely generated graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finite type.
 \end{theorem}
 
 \begin{corollary}
-  Category of persistence modules of finite type over field $\mathbb{R}$ indexed by infinite addidive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely presented $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
+  Category of persistence modules of finite type over $\mathbb{Z}$ indexed by infinite addidive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely generated $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
 \end{corollary}
 
 \begin{remark} ~ \par
   If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in Z$.\\
-  Rings $Nov(\Gamma)$ are also PIDs with graded ideals $t^{\gamma}$ for $\gamma \in \Gamma$.\\ -- FIXME! It may be wrong.\\
+  Rings $Nov(\Gamma)$ are also PIDs with graded ideals $t^{\gamma}$ for $\gamma \in \Gamma$.\\
 
-  The most practically reasonable examples are given by considering corollary with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation. We also believe that case of discrete time in other fields is necessary.
+  The most practically reasonable examples are given by considering corollary with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
 \end{remark}
 
-We have introduced a setting to work with persistence complexes as with graded modules (and will use term persistence module for objects in both categories). However computations in a category of non-negatively graded modules are not fit for applications since experiment always comes with an error and we do not have a measure for similarity of two persistence modules. We need technique which allows to construct morphisms of deformed complexes and track error propagation. This technique is developed, we recall it here.\\
+We have introduced a setting to work with persistence complexes as with graded modules and will use term persistence module for objects in both families of categories. Computations in a category of non-negatively graded modules are not fit for applications since we need a measure for similarity of two persistence modules in order to track error. We need technique which allows to construct morphisms of deformed complexes. This technique is developed, we recall it here.\\
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
   Let $M$ and $N$ be persistence modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
@@ -112,7 +112,7 @@ We have introduced a setting to work with persistence complexes as with graded m
 \end{remark}
 
 \begin{remark}
-  For every $\Gamma$-graded persistence vector space $V$ over $\mathbb{R}$ and any $\varepsilon \in \Gamma$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+  For every $\Gamma$-graded persistence vector space $V$ over $\mathbb{Z}$ and any $\varepsilon \in \Gamma$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
 \end{remark}
 
 \begin{definition}
