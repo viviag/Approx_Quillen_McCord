@@ -421,7 +421,7 @@ We start with two obvious observations:
 \end{definition}
 
 \begin{definition}
-  Consider persistence poset $X = (\ldots,X_i,\ldots)$ with coverings $\mathcal{U}_i$ on each $\mathcal{B}(X_i)$. We call $\mathcal{U} = (\ldots,\mathcal{U}_i,\ldots)$ persistence covering if there exists collection of persistence subposets $Y^j_i \subset X$ such that $\mathcal{B}Y^j_i$ form the covering $\mathcal{U}_i$.\\
+  Assume poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called \define{persistence covering}.
 \end{definition}
 
 Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ where possible, and special bottom element $x_i = \bot$ for empty $X_i$'s. We call $x = (\ldots, x_i, \ldots)$ element of $X$. Sets of type $X_{<x}$ with different relations to $x$ are all defined component-wise and are all empty in components with $x_i = \bot$.\\
@@ -443,9 +443,9 @@ Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ w
 \begin{pf} ~ \par
   By Proposition 11 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
 
-  Given persistence covering we have persistence embeddings of covering sets into $X$. In homology we have induced maps. Category of persistence modules is abelian with kernels and cokernels computable pointwise --- this is known property of functor categories.\\
+  Given persistence covering we have persistence embeddings of covering sets into $X$. In homology we have induced maps. Category of persistence modules is abelian with kernels and cokernels computable pointwise.\\
 
-  Hence we can define persistence Mayer-Vietoris exact sequence on homology spaces component-wise by gluing sequences for components over structure maps. This is an exact sequence in $Fun(I,Vect_{\mathbb{F}})$. By equivalence of categories it defines exact sequence $Seq$ of persistence vector spaces.\\
+  Hence we can define persistence Mayer-Vietoris exact sequence on homology spaces component-wise by gluing sequences for components over structure maps. This is an exact sequence in $Fun(I,R-Mod)$. By equivalence of categories it defines exact sequence $Seq$ of non-negatively graded $R[I]$-modules.\\
 
   $Seq$ construction on $\mathcal{U}$ and Proposition 12 yield the lemma.
 \end{pf}
