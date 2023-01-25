@@ -1,0 +1,67 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,hmargin=2.5cm,vmargin=2.5cm]{geometry}
+\usepackage[english,russian]{babel}
+\usepackage{tikz-cd}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{statement}{Statement}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\newtheorem{property}{Property}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+% \newenvironment{pf}{\noindent\textbf{Proof.} ~ \par}{\qed}
+\newenvironment{pf}{\noindent\textbf{Proof.}}{\qed}
+\newcommand{\define}[1]{{\textit{#1}}}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+\title{Approximate Homological Version of Quillen-McCord Theorem}
+\author{Vitalii Guzeev, A. Ayzenberg}
+
+\begin{document}
+
+\section{Abstract}
+\input{main/abstract.tex}
+
+\section{Preliminaries}
+
+\subsection{Persistence modules and interleaving distance}
+\input{main/interleavings.tex}
+
+\subsection{Quillen-McCord theorem}
+
+\subsubsection{Statement}
+\input{main/prelim/statement.tex}
+
+\subsubsection{Proof}
+\input{main/prelim/proof.tex}
+
+\subsubsection{Proof of homological version}
+\input{main/prelim/homol_proof.tex}
+
+\section{Persistence objects}
+\input{main/fun_c.tex}
+
+\section{Approximate Quillen-McCord theorem}
+\input{main/proof.tex}
+
+\section{Error propagation in Mayer-Vietoris spectral sequence}
+\input{main/spectral_sequences.tex}
+
+\section{References}
+\input{main/refs.tex}
+
+\end{document}

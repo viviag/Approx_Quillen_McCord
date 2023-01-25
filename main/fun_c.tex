@@ -1,0 +1,81 @@
+We strive to provide version of this theorem suitable for usage in the setting of persistence complexes and in computations. New theorem must respect interleaving distances and give an accurate measure of error propagation.\\
+We are not yet ready to give a statement. Let's develop appropriate technique before.
+
+We have two types of persistence objects with similar definitions. It is appealing to form general notion of persistence object such that these definitions fall into special cases.\\
+
+\begin{definition}
+  Consider $I$ --- fixed linearly ordered set. There is a sequence category $Fun(I, \mathcal{C})$ of functors from $I$ to some category $\mathcal{C}$. We call objects of this category \define{persistence objects over $\mathcal{C}$}
+\end{definition}
+
+\begin{example} ~ \par
+  \begin{itemize}
+    \item Persistence complex is a persistence object over category of chain complexes;
+    \item Persistence $R$-module is a persistence object over category of $R$-modules;
+    \item Persistence simplicial set is a persistence object over category $Psh(\Delta)$;
+    \item Persistence poset is a persistence object over $Pos$;
+    \item Persistence topological space is a persistence object over $Top$.
+  \end{itemize}
+\end{example}
+
+\begin{definition}
+  We denote images of morphisms in $I$ as \define{structure} maps of a persistence object over $\mathcal{C}$. It is generally enough to consider generating set of these morphisms, i.e. set of morphisms which cannot be written as a composition of two nontrivial morphisms.
+\end{definition}
+
+Notation remark --- we use notation $(X,\phi)$ for "Persistence object X with generating structure maps $\phi$".\\
+
+Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be persistence poset. Apparently $\mathcal{B}(S)$ is a persistence topological space.\\
+
+\begin{definition}
+  Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
+\end{definition}
+
+\begin{definition}
+  We say that morphism $f : X \to Y$ between persistence topological spaces induces $\varepsilon$-interleaving if there exists $g : Y \to X$ such that induced maps of pair $(f,g)$ on graded homology modules form $\varepsilon$-interleaving.
+\end{definition}
+
+\begin{definition}
+  \define{Persistence poset of finite type} is a finite sequence of finite posets.\\
+
+  In terms of functors "finite sequence" means that only finite set of indices has nontrivial image. It's convenient to define "trivial object" as initial object where present.
+\end{definition}
+
+Property of being of finite type is preserved by functors which map initial objects to initial.\\
+
+\begin{proposition}
+  Let $X$ be a persistence poset of finite type. Then $BX$ has homology modules of finite type.
+\end{proposition}
+
+\begin{pf}
+  Nerve of the empty poset is an empty simplicial set, which is an initial object. Hence $BX$ is a geometric realization of simplicial complex of finite type. This simplicial complex can be used as a triangulation of $X$. Standard construction of chain complex by given simplicial complex assigns zero complex to empty simplicial complex, therefore preserves property of being finite type. Hence homology modules of $BX$ are of finite type as homology of complex of finite type.
+\end{pf}\\
+
+There is a general fact --- if some universal object exists in $C$, it can be constructed component-wise in $Fun(I,C)$. Let's inspect this component-wise construction of universal objects by useful example:\\
+
+\begin{definition}
+  Let $f = (f_1,\ldots,f_n,\ldots)$ be map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then mapping cylinders $M(f_i)$ form persistence poset $M(f)$ with structure maps arising from universal property of coproduct and structure maps of $X$ and $Y$.\\
+
+  To be explicit consider the following diagram in $Pos$ with $i$, $j$ being series of canonical inclusions:\\
+  \begin{tikzcd}
+  X_{i}\arrow{r}{i_i}\arrow{d}{\phi_{i}} & X_i \coprod Y_i\arrow{d}{\zeta_i} & Y_{i}\arrow{l}{j_i}\arrow{d}{\psi_{i}} \\
+  X_{i+1}\arrow{r}{i_{i+1}} & X_{i+1} \coprod Y_{i+1} & Y_{i+1}\arrow{l}{j_{i+1}} \\
+  \end{tikzcd}\\
+  Notation $i$ for inclusion is kept for consistency with definition of mapping cylinder of posets.
+
+  Existence of order-preserving maps $\zeta_i$ is guaranteed by universal property of coproducts, they are set to be structure maps of $M(f)$. $M(f)$ is a \define{mapping cylinder of map of persistence posets}.\\
+
+  We also have canonical inclusions $i$ and $j$ arising from the same diagram.
+\end{definition}
+
+Other examples of such component-wise constructions are tensor product and direct sum of persistence modules over good enough ring. Persistence modules give us the first example of appoximation distance. So we can infer some results about distances.\\
+
+\begin{proposition} ~ \par
+  Let $A$, $B$ be two persistence modules such that $d(A,0) \leq \varepsilon$ and $d(B,0) \leq \varepsilon$.
+  \begin{enumerate}
+    \item Then $d(A \oplus B,0) \leq \varepsilon$.
+    \item Then $d(A \otimes B,0) \leq \varepsilon$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{pf}
+  Both statements follow from properties of these universal constructions in category of non-negatively graded modules and from Remark \ref{epstriv}
+\end{pf}

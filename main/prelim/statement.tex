@@ -1,0 +1,57 @@
+In order to give a general context we formulate general theorem and deduce Quillen-McCord theorem as a special case.\\
+
+\begin{definition}
+  \define{Join} $A \star B$ of simplicial complexes $A$ and $B$ is the simplicial complex with simplices --- all possible unions of simplices $a \in A$ and $b \in B$.
+\end{definition}
+
+\begin{definition}
+  \define{Join} of topological spaces $A$ and $B$ is defined as follows: $A \star B\ := A \sqcup_{p_0} (A \times B \times [0,1]) \sqcup_{p_1} B$, where $p$ are projections of the cylinder $A \times B \times [0,1]$ onto faces.
+\end{definition}
+
+\begin{definition}
+  \define{Star} $\operatorname{st}(x)$ of simplex $x \in A$ ($A$ is a simplicial complex) is the minimal simplicial complex containing all simplices $a \in A$ such that there exists inclusion $x \hookrightarrow a$.
+\end{definition}
+
+\begin{definition}
+  \define{Link} $\operatorname{lk}(x)$ of simplex $x \in A$ is defined as follows: $\operatorname{lk}(x) = \{v \in \operatorname{st}(x)|\; x \not\in v\}$.
+\end{definition}
+
+\begin{definition}
+  Let $\Delta$ be a simplicial category. Functor $\mathcal{K} : \Delta \to Top$ which maps simplices to geometric simplices of corresponding dimension and morphisms to inclusions of faces and restrictions to subcomplexes is called \define{geometric realization}.
+\end{definition}
+
+\begin{proposition}
+  $\operatorname{st}(x) = \operatorname{lk}(x) \star x$.
+\end{proposition}
+
+\begin{proposition}
+  $\mathcal{K}(A \star B) = \mathcal{K}(A) \star \mathcal{K}(B)$. Hence $\mathcal{K}(\operatorname{st}(x))$ is a cone over $\mathcal{K}(x)$.
+\end{proposition}
+
+Let $\mathcal{C}$ denote a small category. We can construct the simplicial set called the \define{nerve of category $\mathcal{C}$} as follows:\\
+Let objects of $\mathcal{C}$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices and so on with morphisms --- inclusions of compositions into longer ones and replacements of compositions $i \circ j$ with $f = i \circ j$.\\
+This construction is functorial over category of posets $Pos$, we denote nerve functor from $Pos$ to $Psh(\Delta)$ as $\mathcal{N}$.
+
+\begin{definition}
+  Geometric realization $B\mathcal{C}$ of $\mathcal{N}(\mathcal{C})$ is called \define{classifying space} of $\mathcal{C}$.\\
+
+  We denote composition of nerve and geometric realization as $\mathcal{B}$. It is obviously a functor and we only need this construction to avoid confusing notation $Bf$ for induced morphism of classifying spaces. By definition $\mathcal{B}(\mathcal{C}) = B\mathcal{C}$.
+\end{definition}
+
+\begin{definition}
+  Let $f: \mathcal{C} \to \mathcal{D}$ be a functor and $d$ --- object in $\mathcal{D}$. Then \define{comma category} $d \downarrow f$ is a category with objects --- pairs $(s,i_s)$ of objects in $\mathcal{C}$ and morphisms $i_s : d \to f(s)$ and morphisms --- morphisms $g$ in $\mathcal{C}$ such that triangle $i_s, i_{g(s)}, f(g)$ is commutative.
+\end{definition}
+
+\begin{theorem} {\cite[Theorem A]{Quillen72}}\\
+  If $f: C \to D$ is a functor such that the classifying space $B(d \downarrow f)$ of the comma category $d \downarrow f$ is contractible for any object $d \in D$, then $f$ induces a homotopy equivalence $BC \to BD$.
+\end{theorem}
+
+Every poset $X$ with order relation $R$ can be seen as a category if we set $\operatorname{Ob}(X) = X$ and $Hom_X(a,b) = \{r_{ab}\}$ if $(a,b) \in R$ and $\emptyset$ otherwise. Note that map between posets is functorial if and only if it preserves order.\\
+Nerve construction on a poset yields a simplicial complex called \define{order complex}. Application of Quillen A theorem to posets yields the following theorem:
+
+\begin{theorem} \textbf{Quillen-McCord theorem}\\
+  Assume $X, Y$ are finite posets, $f : X \to Y$ is order-preserving map.\\
+  If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is contractible, then $\mathcal{B}f$ is a homotopy equivalence between $BX$ and $BY$.\\
+\end{theorem}
+
+Proof of the theorem is necessary for construction of a desired result.\\

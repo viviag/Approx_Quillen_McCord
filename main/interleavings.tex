@@ -1,0 +1,116 @@
+Basic definition is the following:
+
+\begin{definition}
+  \define{Persistence complex} is a family of chain complexes $C_{\star}^{i_0} \xrightarrow{f_{i_0}} C_{\star}^{i_1} \xrightarrow{f_{i_1}} C_{\star}^{i_2} \xrightarrow{f_{i_2}} \ldots$ where $I$ is the linearly ordered set of indices and $f_i$ are chain maps. We call maps $f=(\ldots,f_i,\ldots)$ \define{the structure maps} of a persistence complex.
+\end{definition}
+
+These objects naturally arise in experiments. If we consider $I$ as a time, this is a structure we obtain while observing some dynamic structure which can at any time be represented by a chain complex.\\
+
+\begin{definition}
+  Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorpisms $\phi_i :: M^i \to M^{i+1}$ as the structure maps. If $R$ is a field it is natural to use notion of \define{persistence vector space}.
+\end{definition}
+
+Example of a persistence module is given by (by default simplicial) homology modules of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{j})$, maps $\phi_j$ are induced by $f_i$.\\
+
+\begin{definition}
+  Persistence complex (module) is of \define{finite type} over $R$ if all components of complexes (modules) are finitely-generated as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
+\end{definition}
+
+Since experiments usually take finite time and operate finite amount of data, we can safely consider only complexes of finite type. Note that by construction homology of complex of finite type is a module of finite type.\\
+
+% Why only linear?
+\begin{definition}
+  Assume $I$ is a monoid with linear order. Then \define{non-negatively graded module} over $I$-graded ring $R$ is an $R$-module $M$ together with a decomposition $M = \bigoplus_{j \in I} M^j:\; \forall i \in I_{\geq 0}\, R_i \cdot M^j \subset M^{j+i}$
+\end{definition}
+
+Non-negatively graded modules over $R$ form a category. Maps $\phi$ between modules $M$ and $N$ such that $\phi(M^j) \subset N^j$ for all $j$ in indexing set are morphisms in this category.\\
+
+There is a well-known theorem:
+
+\begin{theorem} {\cite[Theorem 3.1]{Zomorodian05}}\\
+  Category of persistence modules of finite type over Noetherian ring with unity $R$ indexed by $\mathbb{N}$ is equivalent to category of non-negatively graded finitely generated $R[t]$-modules.
+\end{theorem}
+
+It is proven in {\cite{Corbet18}}. Authors provide generalization {\cite[Theorem 2]{Corbet18}} which is more suitable for our needs.\\
+
+\begin{theorem} {\cite[Case of Corollary 20 of Theorem 2]{Corbet18}}\\
+  Let $R$ be a Noetherian ring with unity and $G$ be a monoid with linear order such that $R[G]$ is Noetherian. Then the category of finitely generated graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finite type.
+\end{theorem}
+
+\begin{corollary}
+  Category of persistence modules of finite type over $\mathbb{Z}$ indexed by infinite additive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely generated $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
+\end{corollary}
+
+\begin{corollary}
+  Category of persistence modules of finite type over Noetherian ring $R$ indexed by $\mathbb{Z}$ is equivalent to category of non-negatively graded finitely generated $R[t^{-1},t]$-modules.
+\end{corollary}
+
+\begin{remark} ~ \par
+  If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in Z$.\\
+  Rings $Nov(\Gamma)$ are also PIDs with graded ideals $t^{\gamma}$ for $\gamma \in \Gamma$.\\
+
+  The most practically reasonable examples are given by considering corollary 1 with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
+\end{remark}
+
+This equivalence is required to introduce a measure of similarity between persistence modules. It is essential since in applications we have to accept error in experimental data and we must decide whether observed homology modules are close enough to initial hypothesis or not.
+
+\begin{definition} {\cite[Definition 2.7]{GS16}}\\
+  Let $M$ and $N$ be non-negatively graded $R[\Gamma]$-modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
+\end{definition}
+
+\begin{remark}
+  Note that $0$-morphism is a morphism in category of non-negatively graded modules over $R[\Gamma]$.
+\end{remark}
+
+\begin{remark}
+  Let $\mathbb{F}$ be a field. Then for every $\mathbb{Z}$-graded vector space $V$ over $\mathbb{F}$ and any $\varepsilon \in \mathbb{Z}$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+\end{remark}
+
+\begin{remark}
+  For every $\Gamma$-graded module $V$ over $\mathbb{Z}$ and any $\varepsilon \in \Gamma$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+\end{remark}
+
+\begin{definition}
+  Non-negatively graded modules $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exists pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.\\
+
+  This definition depends on existence of distinguished $Id_{\varepsilon}$ morphisms and we shall operate only cases given by remarks above.
+\end{definition}
+
+\begin{remark}
+There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alpha}{\sim} N$ for any $\alpha > \varepsilon$ since for $\varepsilon$-interleaving $(\phi, \psi)$ we have $\alpha$-interleaving $(Id_{\alpha - \varepsilon} \circ \phi, Id_{\alpha - \varepsilon} \circ \psi)$.
+\end{remark}
+
+\begin{definition}
+  We denote as \define{$\varepsilon$-equivalence} relation with the following properties:\\
+  For any $M$, $N$, $L$, $\varepsilon$, $\varepsilon_1$, $\varepsilon_2$
+  \begin{itemize}
+    \item $M \stackrel{0}{\sim} M$.
+    \item $M \stackrel{\varepsilon}{\sim} N$ is equivalent to $N \stackrel{\varepsilon}{\sim} M$.
+    \item if $M \stackrel{\varepsilon_1}{\sim} N$ and $N \stackrel{\varepsilon_2}{\sim} L$ then $M \stackrel{\varepsilon_1 + \varepsilon_2}{\sim} L$.
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  $\varepsilon$-interleaved non-negatively graded modules are $\varepsilon$-equivalent.
+\end{proposition}
+
+\begin{remark}
+  \label{epstriv}
+  Condition $M \stackrel{\varepsilon}{\sim} 0$ is equivalent to condition $t^{2\varepsilon}M = 0$.
+\end{remark}
+
+\begin{definition}
+  Any $\varepsilon$-equivalence induces an extended pseudometric on its domain. This pseudometric is defined as $d(X,Y) = min\{\varepsilon \in I\;|\;X \stackrel{\varepsilon}{\sim} Y\}$. For non-negatively graded modules this pseudometric is called interleaving distance. {\cite[Definition 2.12]{GS16}}\\
+  We shall refer to this general pseudometric as to approximation distance.
+\end{definition}
+
+\textit{FIXME: links. Seems that it is a corollary of one-sided interleaving techniques.}
+\begin{lemma}
+  Let $0 \to M \to L \to N \to 0$ be a short exact sequence of non-negatively graded modules. Then the following properties hold:
+  \begin{itemize}
+    \item If $M \stackrel{\varepsilon_1}{\sim} 0$ and $N \stackrel{\varepsilon_2}{\sim} 0$ then $L \stackrel{\varepsilon_1 + \varepsilon_2}{\sim} 0$. {\cite[Proposition 4.6]{GS16}}
+    \item If $L \stackrel{\varepsilon}{\sim} 0$ then $M \stackrel{\varepsilon}{\sim} 0$ and $N \stackrel{\varepsilon}{\sim} 0$.
+    \item If $M \stackrel{\varepsilon_1}{\sim} 0$ then $L \stackrel{\varepsilon}{\sim} N$. \textit{To prove}
+    \item If $N \stackrel{\varepsilon_1}{\sim} 0$ then $M \stackrel{\varepsilon}{\sim} L$. \textit{To prove}
+  \end{itemize}
+\end{lemma}
