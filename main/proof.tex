@@ -13,37 +13,18 @@ We are now able to rely on apparatus of interleavings, hence are ready to establ
 Value of $e$ is set later.\\
 
 \begin{proposition}
+  \label{prop:acyclic}
   Let $A$ and $B$ be two persistence topological spaces with at least one of them being $\varepsilon$-acyclic over $\mathbb{F}$. Then $A \star B$ is $\varepsilon$-acyclic over $\mathbb{F}$.
 \end{proposition}
 
 \begin{pf}
-  Over a field all $Tor$-functors from Proposition 9 vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition 9 is $\varepsilon$-trivial by Proposition 10.
+  Over a field all $Tor$-functors from Proposition \ref{prop:kunneth} vanish since every vector space is free module, hence flat. Hence right hand side of expression of Proposition \ref{prop:kunneth} is $\varepsilon$-equivalent to $0$.
 \end{pf}
-
-\begin{proposition}
-  Let $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D \to \operatorname{coker}g \to 0$ be exact sequence in category of non-negatively graded vector spaces. Then if $A$ and $D$ are $\varepsilon$-trivial, then $B \stackrel{2\varepsilon}{\sim} C$ with $\phi$ being left morphism in interleaving pair.
-\end{proposition}
-
-\begin{pf}
-  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{im}f \to 0$ $\operatorname{im}f$ is $\varepsilon$-trivial. By exactness it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \to D \to 0$ there follows that $I = \operatorname{im} \phi$ is $\varepsilon$-trivial. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
-
-  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. $B = K \oplus \operatorname{coIm}\phi$, $C = I \oplus \operatorname{Im} \phi$. Coimage and image are canonically isomorphic, hence by Proposition 10 proposition follows.
-\end{pf}\\
-
-\begin{definition} ~ \par
-  Consider poset $(X,\phi)$ and sets $Y_i \subset X_i$.\\
-
-  If there is no element $y$ in any $Y_i$ such that $\phi(y) \not\in Y_{i+1}$ then component-wise inclusion $Y \to X$ commutes with structure maps and form embedding of persistence posets. In this case $Y=(\ldots,Y_i,\ldots)$ is a \define {persistence subposet} of $X$.
-\end{definition}
-
-\begin{definition}
-  Assume poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called \define{persistence covering}.
-\end{definition}
 
 Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ where possible, and special bottom element $x_i = \bot$ for empty $X_i$'s. We call $x = (\ldots, x_i, \ldots)$ element of $X$. Sets of type $X_{<x}$ with different relations to $x$ are all defined component-wise and are all empty in components with $x_i = \bot$.\\
 
 \begin{proposition}
-  For $x = (\ldots,x_i,\phi(x_i),\ldots)$ with all $x_i$ except firsts after bottoms being images of structure maps covering from Remark 6 can be extended to persistence covering $\mathcal{U}$ with $Y^1$ --- preimage of $st(\mathcal{N}(x))$ under nerve functor and $Y^2 = X \setminus \{x\}$.
+  For $x = (\ldots,x_i,\phi(x_i),\ldots)$ with all $x_i$ except firsts after bottoms being images of structure maps covering from Remark \ref{covering} can be extended to persistence covering $\mathcal{U}$ with $Y^1$ --- preimage of $st(\mathcal{N}(x))$ under nerve functor and $Y^2 = X \setminus \{x\}$.
 \end{proposition}
 
 \begin{pf}
@@ -57,13 +38,9 @@ Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ w
 \end{lemma}
 
 \begin{pf} ~ \par
-  By Proposition 11 $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
+  By Proposition \ref{prop:acyclic} $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is $\varepsilon$-acyclic.\\
 
-  Given persistence covering we have persistence embeddings of covering sets into $X$. In homology we have induced maps. Category of persistence modules is abelian with kernels and cokernels computable pointwise.\\
-
-  Hence we can define persistence Mayer-Vietoris exact sequence on homology spaces component-wise by gluing sequences for components over structure maps. This is an exact sequence in $Fun(I,R-Mod)$. By equivalence of categories it defines exact sequence $Seq$ of non-negatively graded $R[I]$-modules.\\
-
-  $Seq$ construction on $\mathcal{U}$ and Proposition 12 yield the lemma.
+  Given persistent covering we can define Mayer-Vietoris exact sequence on persistence homology modules component-wise by gluing sequences for components over structure maps. Proposition \ref{major} yield the lemma.
 \end{pf}
 
 \begin{definition}
@@ -95,7 +72,6 @@ Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ w
 \end{remark}
 
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
-%Case of coefficients in $\mathbb{Z}$ is better to be considered separately.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
   Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map. Let $m = \max_{i}(|Y_i|)$ --- maximal cardinality of components of $Y$ and one of the following holds:\\
@@ -114,9 +90,9 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
   There are posets such that $n_i < r$. In these cases notation $x_r$ means that on positions with $n_i < r$ we take $x_{n_i}$. $n_i$ can be undefined, in this case $x_r = \bot$.\\
 
-  Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone over $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is component-wise homotopy equivalence by lemma 2. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
+  Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone over $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is component-wise homotopy equivalence by lemma \ref{lem:homotopy}. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
 
   Then consider linear extension of $Y$ with enumerations $y^i_1,\ldots,y^i_{m_i}$ and $X_i^r = X \cup \{y^i_{r+1},\ldots,y^i_{m_i}\} \subset M_i(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $\mathbb{F}$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $2\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i)$ induces $2m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
 
-  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition 7 $\mathcal{B}(i)$ is component-wise homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $2m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
+  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i)$ is component-wise homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $j$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $2m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
 \end{pf}

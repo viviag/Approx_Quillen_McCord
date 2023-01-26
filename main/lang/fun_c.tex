@@ -66,16 +66,26 @@ There is a general fact --- if some universal object exists in $C$, it can be co
   We also have canonical inclusions $i$ and $j$ arising from the same diagram.
 \end{definition}
 
-Other examples of such component-wise constructions are tensor product and direct sum of persistence modules over good enough ring. Persistence modules give us the first example of appoximation distance. So we can infer some results about distances.\\
+Other examples of such component-wise constructions are kernels, cokernes, tensor product and direct sum of persistence modules.\\
 
-\begin{proposition} ~ \par
-  Let $A$, $B$ be two persistence modules such that $d(A,0) \leq \varepsilon$ and $d(B,0) \leq \varepsilon$.
-  \begin{enumerate}
-    \item Then $d(A \oplus B,0) \leq \varepsilon$.
-    \item Then $d(A \otimes B,0) \leq \varepsilon$.
-  \end{enumerate}
-\end{proposition}
+We can also define a subobject in $Fun(I, \mathcal{C})$:
 
-\begin{pf}
-  Both statements follow from properties of these universal constructions in category of non-negatively graded modules and from Remark \ref{epstriv}
-\end{pf}
+\begin{definition} ~ \par
+  Consider persistence object $(X,\phi)$ and subobjects $Y_i$ of $X_i$.\\
+
+  Then if structure maps $\phi$ admit pullbacks $\phi_{\star}$ $(Y,\phi_{\star})$ is a subobject of $(X, \phi)$
+\end{definition}
+
+Illustrative definition is given by definition in $Fun(I, Pos)$:\\
+
+\begin{definition} ~ \par
+  Consider persistence poset $(X,\phi)$ and sets $Y_i \subset X_i$.\\
+
+  If there is no element $y$ in any $Y_i$ such that $\phi(y) \not\in Y_{i+1}$ then component-wise inclusion $Y \to X$ commutes with structure maps and form embedding of persistence posets. In this case $Y=(\ldots,Y_i,\ldots)$ is a \define {persistence subposet} of $X$.
+\end{definition}
+
+Finally we give a definition of persistence covering.\\
+
+\begin{definition}
+  Assume poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called \define{persistence covering}.
+\end{definition}

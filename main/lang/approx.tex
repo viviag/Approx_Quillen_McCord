@@ -1,0 +1,28 @@
+Persistence modules over good enough ring (as always here and after) give us the first example of approximation distance. So we can infer some results about distances. Specificity of these results is that they depend on implementation of approximation distance over specific category. So we can only give results for persistence modules with technical conditions specified in Preliminaries.\\
+
+\begin{proposition} ~ \par
+  Let $A$, $B$ be two persistence modules such that $d(A,0) \leq \varepsilon$ and $d(B,0) \leq \varepsilon$.
+  \begin{enumerate}
+    \item Then $d(A \oplus B,0) \leq \varepsilon$.
+    \item Then $d(A \otimes B,0) \leq \varepsilon$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{pf}
+  Both statements follow from properties of these universal constructions in category of non-negatively graded modules and from Remark \ref{epstriv}.
+\end{pf}
+
+We also need a result about distances in exact sequences.\\
+
+\begin{proposition}
+  \label{major}
+  Let $A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D$ be exact sequence in category of persistence modules. Then if $d(A,0) \leq \varepsilon$ and $d(D,0) \leq \varepsilon$, then $B \stackrel{2\varepsilon}{\sim} C$ with $\phi$ being left morphism in interleaving pair.
+\end{proposition}
+
+\begin{pf}
+  Under conditions of theorems 1 and 2 we can identify the category of persistence modules and the category of non-negatively graded modules.\\
+
+  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{im}f \to 0$ $\operatorname{im}f$ is $\varepsilon$-trivial. By exactness it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \to D \to 0$ there follows that $d(I = \operatorname{im} \phi, 0) \leq \varepsilon$. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
+
+  We obtain exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. This sequences decomposes into sequences $0 \to K \to B \to \operatorname{coIm}\phi$ and $0 \to \operatorname{Im}\phi \to C \to I \to 0$. By lemma \ref{ops} we have that $d(B,\operatorname{coIm}\phi) \leq \varepsilon$ and $d(C,\operatorname{Im}\phi) \leq \varepsilon$. $coIm$ and $Im$ are pointwise canonically isomorphic by first isomorphism theorems for modules, hence $d(B,C) \leq 2\varepsilon$.
+\end{pf}\\
