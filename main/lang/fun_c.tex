@@ -73,10 +73,17 @@ We can also define a subobject in $Fun(I, \mathcal{C})$:
 \begin{definition} ~ \par
   Consider persistence object $(X,\phi)$ and subobjects $Y_i$ of $X_i$.\\
 
-  Then if structure maps $\phi$ admit pullbacks $\phi_{\star}$ $(Y,\phi_{\star})$ is a subobject of $(X, \phi)$
+  Then if structure maps $\phi$ admit all pullbacks $\phi^{\star}$ $(Y,\phi^{\star})$ is a subobject of $(X, \phi)$.\\
+
+  Pullback of $f : A \to B$ onto subobjects $[i]$ and $[j]$ is a map $f^{\star}$ between preimages of subobjects --- isomorphism classes $S$, $T$ of objects, such that the diagram\\
+  \begin{tikzcd}
+    S \arrow{d}{f^{\star}}\arrow{r}{[i]} & A\arrow{d}{f} \\
+    T \arrow{r}{[j]} & B \\
+  \end{tikzcd}
+  commutes.
 \end{definition}
 
-Illustrative definition is given by definition in $Fun(I, Pos)$:\\
+Illustrative example is given by definition in $Fun(I, Pos)$:\\
 
 \begin{definition} ~ \par
   Consider persistence poset $(X,\phi)$ and sets $Y_i \subset X_i$.\\
