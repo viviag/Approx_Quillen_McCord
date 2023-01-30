@@ -1,8 +1,8 @@
-This section contains the proof of Quillen-McCord theorem given by Barmak.
+Let us outline the proof of Quillen-McCord theorem given by Barmak.\\
 
 \begin{proposition} {\cite[Proposition 2.1]{Bar11}}
   \label{prop:homotopy_t}
-  Let $X$ and $Y$ be two simplicial complexes such that $X \cup Y$ is a simplicial complex. Then if $\mathcal{K}(X) \cup \mathcal{K}(Y) \hookrightarrow \mathcal{K}(X)$ is a homotopy equivalence, then so is $\mathcal{K}(Y) \hookrightarrow \mathcal{K}(X \cup Y)$.
+  Let $X$ and $Y$ be two simplicial complexes such that $X \cup Y$ is a simplicial complex. Then if $\left|X\right| \cup \left|Y\right| \hookrightarrow \left|X\right|$ is a homotopy equivalence, then so is $\left|Y\right| \hookrightarrow \left|X \cup Y\right|$.
 \end{proposition}
 
 \begin{proposition} {Variation of \cite[Proposition 2.2]{Bar11}}
@@ -19,12 +19,12 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 \end{pf}
 
 \begin{proposition}
-  Note that $\operatorname{lk}(\mathcal{N}(x)) = \mathcal{N}(X_{>x}) \star \mathcal{N}(X_{<x})$. Therefore $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x))) = \mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x})$.
+  Note that $\operatorname{lk}(\mathcal{N}(x)) = \mathcal{N}(X_{>x}) \star \mathcal{N}(X_{<x})$. Therefore $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x})$.
 \end{proposition}
 
 \begin{remark}
   \label{covering}
-  $\mathcal{B}(X) = \mathcal{B}(X \setminus \{x\}) \cup \mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ for any $x \in X$.\\
+  $\mathcal{B}(X) = \mathcal{B}(X \setminus \{x\}) \cup \left|\operatorname{st}(\mathcal{N}(x))\right|$ for any $x \in X$.\\
 \end{remark}
 
 \begin{lemma}
@@ -33,13 +33,13 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 \end{lemma}
 
 \begin{pf}
-  By proposition $\mathcal{K}(\operatorname{lk}(\mathcal{N}(x)))$ is contractible. Hence its embedding to its cone $\mathcal{K}(\operatorname{st}(\mathcal{N}(x)))$ is homotopy equivalence by Whitehead theorem. Lemma follows by Proposition \ref{prop:homotopy_t}.
+  By proposition $\left|\operatorname{lk}(\mathcal{N}(x))\right|$ is contractible. Hence its embedding to its cone $\left|\operatorname{st}(\mathcal{N}(x))\right|$ is homotopy equivalence by Whitehead theorem. Lemma follows by Proposition \ref{prop:homotopy_t}.
 \end{pf}
 
-\begin{definition}
+\begin{definition} {Variation of \cite[Proposition 2.1]{Bar11}}
   Let $f : X \to Y$ be an order preserving map between posets. Denote orders ($\leq$) on $X$ and $Y$ as $R_X$ and $R_Y$. Then we define poset $M(f) = X \coprod Y$ with $R = R_X \cup R_Y \cup R_{f}$ where $(x,y) \in R_f$ if and only if $(f(x),y) \in R_Y$.\\
 
-  We will by analogy denote this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i : X \to M(f)$ and $j : Y \to M(f)$.
+  We shall by analogy denote this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i_X : X \to M(f)$ and $i_Y : Y \to M(f)$.
 \end{definition}
 
 \begin{pf} \textbf{Quillen-McCord theorem}\\
@@ -49,7 +49,7 @@ This section contains the proof of Quillen-McCord theorem given by Barmak.
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is homotopy equivalence between $BY$ and $M(f)$.\\
 
-  Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is contractible by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is homotopy equivalence and by transitivity $\mathcal{B}(i)$ is a homotopy equivalence between $X$ and $M(f)$.\\
+  Then consider linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is contractible by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is homotopy equivalence and by transitivity $\mathcal{B}(i_X)$ is a homotopy equivalence between $X$ and $M(f)$.\\
 
-  Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
+  Note that $i(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i_X)$ is homotopic to $\mathcal{B}(i_Y \circ f) = \mathcal{B}(i_Y) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}

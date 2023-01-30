@@ -1,6 +1,6 @@
 Basic definition is the following:
 
-\begin{definition}
+\begin{definition} {\cite[Definition 3.1]{Zomorodian05}}\\
   \define{Persistence complex} is a family of chain complexes $C_{\star}^{i_0} \xrightarrow{f_{i_0}} C_{\star}^{i_1} \xrightarrow{f_{i_1}} C_{\star}^{i_2} \xrightarrow{f_{i_2}} \ldots$ where $I$ is the linearly ordered set of indices and $f_i$ are chain maps. We call maps $f=(\ldots,f_i,\ldots)$ \define{the structure maps} of a persistence complex.
 \end{definition}
 
@@ -38,6 +38,7 @@ It is proven in {\cite{Corbet18}}. Authors provide generalization {\cite[Theorem
 \end{theorem}
 
 \begin{corollary}
+  \label{thm}
   Category of persistence modules of finite type over $\mathbb{Z}$ indexed by infinite additive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely generated $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
 \end{corollary}
 
@@ -49,7 +50,7 @@ It is proven in {\cite{Corbet18}}. Authors provide generalization {\cite[Theorem
   If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in Z$.\\
   Rings $Nov(\Gamma)$ are also PIDs with graded ideals $t^{\gamma}$ for $\gamma \in \Gamma$.\\
 
-  The most practically reasonable examples are given by considering corollary 1 with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
+  The most practically reasonable examples are given by considering corollary \ref{thm} with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
 \end{remark}
 
 This equivalence is required to introduce a measure of similarity between persistence modules. It is essential since in applications we have to accept error in experimental data and we must decide whether observed homology modules are close enough to initial hypothesis or not.
@@ -77,7 +78,7 @@ This equivalence is required to introduce a measure of similarity between persis
 \end{definition}
 
 \begin{remark}
-There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alpha}{\sim} N$ for any $\alpha > \varepsilon$ since for $\varepsilon$-interleaving $(\phi, \psi)$ we have $\alpha$-interleaving $(Id_{\alpha - \varepsilon} \circ \phi, Id_{\alpha - \varepsilon} \circ \psi)$.
+  There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alpha}{\sim} N$ for any $\alpha > \varepsilon$ since for $\varepsilon$-interleaving $(\phi, \psi)$ we have $\alpha$-interleaving $(Id_{\alpha - \varepsilon} \circ \phi, Id_{\alpha - \varepsilon} \circ \psi)$.
 \end{remark}
 
 \begin{definition}
@@ -101,7 +102,7 @@ There follows that $M \stackrel{\varepsilon}{\sim} N$ implies $M \stackrel{\alph
 
 \begin{definition}
   Any $\varepsilon$-equivalence induces an extended pseudometric on its domain. This pseudometric is defined as $d(X,Y) = min\{\varepsilon \in I\;|\;X \stackrel{\varepsilon}{\sim} Y\}$. For non-negatively graded modules this pseudometric is called interleaving distance. {\cite[Definition 2.12]{GS16}}\\
-  We shall refer to this general pseudometric as to approximation distance.
+  We shall refer to this general pseudometric as to approximation distance, however we do not give another examples expect for interleaving distance.
 \end{definition}
 
 \begin{lemma}
