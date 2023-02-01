@@ -1,6 +1,7 @@
-Persistence modules over good enough ring (as always here and after) give us the first example of approximation distance. So we can infer some results about distances. These results essentially use specifics of implementation of approximate distance in category of persistence modules.\\
+Persistence modules over good enough ring (as always here and after) give us the first example of approximation distance. So we can infer some results about distances.\\
 
 \begin{proposition} ~ \par
+  \label{prop:sum}
   Let $A$, $B$ be two persistence modules such that $d(A,0) \leq \varepsilon$ and $d(B,0) \leq \varepsilon$. Then $d(A \oplus B,0) \leq \varepsilon$.
 \end{proposition}
 
@@ -9,12 +10,37 @@ Persistence modules over good enough ring (as always here and after) give us the
 \end{pf}
 
 \begin{proposition} ~ \par
+  \label{prop:tensor}
   Let $A$, $B$ be two persistence modules such that $d(A,0) \leq \varepsilon$ and $d(B,0) \leq \varepsilon$. Then $d(A \otimes B,0) \leq \varepsilon$.
 \end{proposition}
 
 \begin{pf}
   Result follows from bilinearity of tensor product and Theorems 1 and 2.
 \end{pf}
+
+\begin{proposition}
+  \label{prop:hominter}
+  Let $P = \ldots \to P_n \to P_{n-1} \to \ldots$ be a persistence complex such that for all $i$'s $P_i \stackrel{\varepsilon}{\sim} 0$. Then the homology modules of $P$ are $\varepsilon$-interleaved with $0$.
+\end{proposition}
+
+\begin{pf}
+  Assume $d_i$ is a differential in a complex. We know that $0 \to \operatorname{im}{d_{i+1}} \to \ker{d_{i}} \to H_i(P) \to 0$ is exact. Result follows by Lemma 1.
+\end{pf}\\
+
+\begin{proposition} {\cite[Page 2]{Mitchell81}}\\
+  Category $Fun(I, $R$-Mod)$ has enough projectives.
+\end{proposition}
+
+Since we have enough projectives we can compute derived functors. We need the following proposition.\\
+
+\begin{proposition}
+  \label{prop:tor}
+  Let $R$ be commutative ring, $A$ and $B$ --- $R$-modules such that either $A$ or $B$ is $\varepsilon$-interleaved with $0$. Then $Tor_i^R(A,B) \stackrel{\varepsilon}{\sim} 0$.
+\end{proposition}
+
+\begin{pf}
+  Since $R$ is commutative, $Tor_i^R(A,B) = Tor_i^R(B,A)$. Without loss of generality assume $B \stackrel{\varepsilon}{\sim} 0$. Let $P$ be the projective resolution of $A$. After taking tensor product we obtain by Proposition \ref{prop:tensor} sequence of modules $\varepsilon$-interleaved with $0$. Proposition follows by Proposition \ref{prop:hominter}.
+\end{pf}\\
 
 We can also derive the result about exact sequences.\\
 
