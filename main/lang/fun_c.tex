@@ -21,7 +21,7 @@ We have two types of persistence objects with similar definitions. It is appeali
   We denote images of morphisms in $I$ as \define{structure} maps of a persistence object over $\mathcal{C}$. For countable $I$ it is generally enough to consider generating set of these morphisms, i.e. set of morphisms which cannot be written as a composition of two nontrivial morphisms.
 \end{definition}
 
-We use notation $(X,\phi)$ for "Persistence object X with generating structure maps $\phi$".\\
+We use notation $(X,\phi)$ for "Persistence object X with structure maps $\phi$ over fixed indexing category $I$".\\
 
 Consider $\mathcal{F}$ --- functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be persistence poset. Apparently $\mathcal{B}(P)$ is a persistence topological space.\\
 
@@ -49,6 +49,10 @@ Property of being of finite type is preserved by functors which map initial obje
   Nerve of the empty poset is an empty simplicial set, which is an initial object. Hence $BX$ is a geometric realization of simplicial complex of finite type. Homology of $BX$ can be computed as homology of this simplicial comples. Hence homology modules of $BX$ are of finite type.
 \end{pf}\\
 
+\begin{corollary}
+  In particular $BX$ has finitely presented homology modules.
+\end{corollary}
+
 There is a general fact --- if some universal object exists in $C$, it can be constructed component-wise in $Fun(I,C)$. Let's inspect this component-wise construction of universal objects by useful example:\\
 
 \begin{definition}
@@ -56,7 +60,7 @@ There is a general fact --- if some universal object exists in $C$, it can be co
 
   To be explicit consider the following diagram in $Pos$ with $i_X$, $j_Y$ being series of canonical inclusions:\\
   \begin{tikzcd}
-  X_{j}\arrow{r}{{i_X}_j}\arrow{d}{\phi_{i_X}} & X_j \coprod Y_j\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{j}} \\
+  X_{j}\arrow{r}{{i_X}_j}\arrow{d}{\phi_{i_X}} & X_j \coprod Y_j\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{i_Y}} \\
   X_{j+1}\arrow{r}{{i_X}_{j+1}} & X_{j+1} \coprod Y_{j+1} & Y_{j+1}\arrow{l}{{i_Y}_{j+1}} \\
   \end{tikzcd}\\
 
@@ -65,7 +69,7 @@ There is a general fact --- if some universal object exists in $C$, it can be co
   We also have canonical inclusions $i_X$ and $i_Y$ arising from the same diagram.
 \end{definition}
 
-Other examples of such component-wise constructions are kernels, cokernes, tensor product and direct sum of persistence modules.\\
+Other examples of such component-wise constructions are kernels, cokernels and homology modules.\\
 
 We can also define a subobject in $Fun(I, \mathcal{C})$:
 
@@ -90,10 +94,23 @@ Illustrative example is given by definition in $Fun(I, Pos)$:\\
   If there is no element $y$ in any $Y_i$ such that $\phi(y) \not\in Y_{i+1}$ then component-wise inclusion $Y \to X$ commutes with structure maps and form embedding of persistence posets. In this case $Y=(\ldots,Y_i,\ldots)$ is a \define {persistence subposet} of $X$.
 \end{definition}
 
+We can also define \define{element} of a persistence poset.
+\begin{definition}
+  Let $(X,\phi)$ be a persistence poset, $x_i \in X_i$. In all components with degree above $i$ there exist elements $\phi(x_i)$ in components. In degrees below we take iterated preimages while possible and define $x_j = \bot$ for $j < i$ if there is no preimage.
+\end{definition}
+
+Although this definition operates contradiction it is eliminated by applications.\\
+For instance we can consider the following example of subposet:
+\begin{example}
+  Let $x$ be an element of persistence subposet $(X, \phi)$. Then we can define $X_{<x}$ component-wise as poset of elements less than $x$ and as trivial poset if $x_i = \bot$.\\
+
+  $X_{<x}$ contains component-wise only elements comparable with $x$. Since structure maps are order preserving, $X_{<x}$ is a subposet.
+\end{example}
+
 Finally we give a definition of persistence covering.\\
 
 \begin{definition}
   Assume poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called \define{persistence covering}.
 \end{definition}
 
-This definition gives an example of how structures in category of persistence modules can be transferred to other persistence categories. It is possible to reformulate the definition as internal to category of persistence topological spaces but we prefer to keep more constructive way.
+This definition gives an example of how structures in category of persistence posets can be transferred to other persistence categories. It is possible to reformulate the definition as internal to category of persistence topological spaces but we prefer to keep more constructive way.

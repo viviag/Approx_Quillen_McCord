@@ -1,11 +1,7 @@
 We are ready to establish the target theorem.\\
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, draft statement}\\
-  Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map, and one of the following holds:\\
-  \begin{enumerate}
-    \item $R$ is a field, $I = \mathbb{Z}$
-    \item $R = \mathbb{Z}$, $I$ is an infinite additive subgroup in $\mathbb{R}$
-  \end{enumerate}.
+  Assume $X, Y$ are persistence posets of finite type indexed by totally ordered monoid $I$, $f : X \to Y$ is order-preserving map, and $R$ is a commutative ring with unity.\\
 
   Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $e$-interleavings of all homology spaces over $R$ on $BX$ and $BY$.\\
 \end{theorem}
@@ -21,10 +17,8 @@ Value of $e$ is set later.\\
   All $Tor$-functors from Proposition \ref{prop:kunneth} are $\varepsilon$-interleaved with $0$ by Proposition \ref{prop:tor}. Hence by Proposition \ref{prop:sum} right hand side of expression of Proposition \ref{prop:kunneth} is $\varepsilon$-equivalent to $0$.\\
 \end{pf}\\
 
-Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ where possible, and special bottom element $x_i = \bot$ for empty $X_i$'s. We call $x = (\ldots, x_i, \ldots)$ element of $X$. Sets of type $X_{<x}$ with different relations to $x$ are all defined component-wise and are all empty in components with $x_i = \bot$.\\
-
 \begin{proposition}
-  For $x = (\ldots,x_i,\phi(x_i),\ldots)$ with all $x_i$ except firsts after bottoms being images of structure maps covering from Remark \ref{covering} can be extended to persistence covering $\mathcal{U}$ with $Y^1$ --- preimage of $\operatorname{st}(\mathcal{N}(x))$ under nerve functor and $Y^2 = X \setminus \{x\}$.
+  Let $x$ be an element of $(X,\phi)$. Then covering from Remark \ref{covering} can be extended to persistence covering $\mathcal{U}$ with covering sets $U_1$ --- preimage of $\operatorname{st}(\mathcal{N}(x))$ under nerve functor and $U_2 = X \setminus \{x\}$.
 \end{proposition}
 
 \begin{pf}
@@ -68,17 +62,13 @@ Let $X=(\ldots,X_i,\ldots)$ be persistence poset. Take arbitrary $x_i \in X_i$ w
 \end{pf}\\
 
 \begin{remark}
-  While working with persistence topological spaces we sometimes see properties which hold component-wise. If for persistence space $X$ or map $f_i$ there is a property which holds for any $X_i$ or $f_i$ we call it component-wise property of $X$. For instance, if map $f$ is component-wise homotopy equivalence, it induces $0$-interleaving of homology modules.
+  If map $f$ is component-wise homotopy equivalence, it induces $0$-interleaving of homology modules.
 \end{remark}
 
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
-  Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map. Let $m = \max_{i}(|Y_i|)$ be the maximal cardinality of components of $Y$ and one of the following holds:\\
-  \begin{enumerate}
-    \item $R$ is a field, $I = \mathbb{Z}$
-    \item $R = \mathbb{Z}$, $I$ is an infinite additive subgroup in $\mathbb{R}$
-  \end{enumerate}.
+  Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map. Let $m = \max_{i}(|Y_i|)$ be the maximal cardinality of components of $Y$ and $R$ is a commutative ring with unity.\\
 
   Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $4m\varepsilon$-interleavings of all homology spaces over $R$ on $BX$ and $BY$.\\
 \end{theorem}

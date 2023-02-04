@@ -16,65 +16,52 @@ Example of a persistence module is given by homology modules of persistence comp
   Persistence complex (module) is of \define{finite type} over $R$ if all components of complexes (modules) are finitely-generated as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
-Since experiments usually take finite time and operate finite amount of data, we can safely consider only complexes of finite type. Note that by construction homology of complex of finite type is a module of finite type.\\
-
-% Why only linear?
 \begin{definition}
-  Assume $I$ is a monoid with linear order. Then \define{non-negatively graded module} over $I$-graded ring $R$ is an $R$-module $M$ together with a decomposition $M = \bigoplus_{j \in I} M^j:\; \forall i \in I_{\geq 0}\, R_i \cdot M^j \subset M^{j+i}$
+  Persistence complex (module) is of \define{finitely presented type} over $R$ if all components of complexes (modules) are finitely-presented as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
-Non-negatively graded modules over $R$ form a category. Maps $\phi$ between modules $M$ and $N$ such that $\phi(M^j) \subset N^j$ for all $j$ in indexing set are morphisms in this category.\\
+Note that by construction homology of complex of finite type is a module of finite type. It follows from the fact that quotient of finitely generated module by finitely generated module is finitely generated. Analogous statement fails for complexes of finitely presented type.\\
+
+\begin{definition}
+  Assume $I$ is a semigroup. Then \define{graded module} over $I$-graded ring $R$ is an $R$-module $M$ together with a decomposition $M = \bigoplus_{j \in I} M^j:\; \forall i \in I\, R_i \cdot M^j \subset M^{j+i}$
+\end{definition}
+
+Graded modules over $R$ form a category. Maps $\phi$ between modules $M$ and $N$ such that $\phi(M^j) \subset N^j$ for all $j$ in indexing set are morphisms in this category.\\
 
 There is a well-known theorem:
 
 \begin{theorem} {\cite[Theorem 3.1]{Zomorodian05}}\\
-  Category of persistence modules of finite type over Noetherian ring with unity $R$ indexed by $\mathbb{N}$ is equivalent to category of non-negatively graded finitely generated $R[t]$-modules.
+  Category of persistence modules of finite type over Noetherian ring with unity $R$ indexed by $\mathbb{N}$ is equivalent to category of graded finitely generated $R[t]$-modules.
 \end{theorem}
 
-It is proven in {\cite{Corbet18}}. Authors provide generalization {\cite[Theorem 2]{Corbet18}} which is more suitable for our needs.\\
+It is proven in {\cite{Corbet18}}. Authors provide generalization which is more suitable for our needs.\\
 
-\begin{theorem} {\cite[Case of Corollary 20 of Theorem 2]{Corbet18}}\\
-  Let $R$ be a Noetherian ring with unity and $G$ be a monoid with linear order such that $R[G]$ is Noetherian. Then the category of finitely generated graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finite type.
+\begin{theorem} {\cite[Theorem 21]{Corbet18}}\\
+  Let $R$ be a ring with unity and $G$ be a monoid with linear order. Then the category of finitely presented graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finitely presented type.
 \end{theorem}
-
-\begin{corollary}
-  \label{thm}
-  Category of persistence modules of finite type over $\mathbb{Z}$ indexed by infinite additive subgroup $\Gamma \subset \mathbb{R}$ is equivalent to category of non-negatively graded finitely generated $Nov(\Gamma)$-modules. $Nov(\Gamma)$ is the Novikov ring.
-\end{corollary}
-
-\begin{corollary}
-  Category of persistence modules of finite type over Noetherian ring $R$ indexed by $\mathbb{Z}$ is equivalent to category of non-negatively graded finitely generated $R[t^{-1},t]$-modules.
-\end{corollary}
 
 \begin{remark} ~ \par
-  If $R$ is a field then $R[t]$ is a PID and graded ideals are exactly $t^n$ for $n \in Z$.\\
-  Rings $Nov(\Gamma)$ are also PIDs with graded ideals $t^{\gamma}$ for $\gamma \in \Gamma$.\\
-
-  The most practically reasonable examples are given by considering corollary \ref{thm} with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
+  The most practically reasonable examples are given by considering corollary Theorem with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
 \end{remark}
 
 This equivalence is required to introduce a measure of similarity between persistence modules. It is essential since in applications we have to accept error in experimental data and we must decide whether observed homology modules are close enough to initial hypothesis or not.
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
-  Let $M$ and $N$ be non-negatively graded $R[\Gamma]$-modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$ for $\varepsilon \geq 0$.
+  Let $M$ and $N$ be graded $R[G]$-modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$.
 \end{definition}
 
 \begin{remark}
-  Note that $0$-morphism is a morphism in category of non-negatively graded modules over $R[\Gamma]$.
+  Note that $0$-morphism is a morphism in category of graded modules over $R[G]$.
 \end{remark}
 
-\begin{remark}
-  Let $\mathbb{F}$ be a field. Then for every $\mathbb{Z}$-graded vector space $V$ over $\mathbb{F}$ and any $\varepsilon \in \mathbb{Z}$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
-\end{remark}
+\begin{proposition}
+  Let $\mathbb{R}$ be a ring with unity and $G$ a monoid with linear order. Then for any graded $R[G]$-module $M$ and any $\varepsilon \in \mathbb{G}$ there exists morphism $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+\end{proposition}
 
-\begin{remark}
-  For every $\Gamma$-graded module $V$ over $\mathbb{Z}$ and any $\varepsilon \in \Gamma$ there exists morphism $Id_{\varepsilon}$ such that $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
-\end{remark}
+This proposition follows from definition of monoid ring and does not require any assumptions on $R$ and ideals in $R[G]$.
 
 \begin{definition}
-  Non-negatively graded modules $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exists pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.\\
-
-  This definition depends on existence of distinguished $Id_{\varepsilon}$ morphisms and we shall operate only cases given by remarks above.
+  Graded modules $M$ and $N$ are called \define{$\varepsilon$-interleaved} ($M \stackrel{\varepsilon}{\sim} N$) if there exists pair of $\varepsilon$-morphisms $(\phi : M \to N,\;\psi : N \to M)$ (\define{$\varepsilon$-interleaving}) such that $\phi \circ \psi = Id_{2\varepsilon} : N \to N$ and $\psi \circ \phi = Id_{2\varepsilon} : M \to M$.\\
 \end{definition}
 
 \begin{remark}
@@ -95,13 +82,13 @@ This equivalence is required to introduce a measure of similarity between persis
   $\varepsilon$-interleaved non-negatively graded modules are $\varepsilon$-equivalent.
 \end{proposition}
 
-\begin{remark}
+\begin{proposition} {\cite[Proposition 2.13]{GS16}}
   \label{epstriv}
-  Condition $M \stackrel{\varepsilon}{\sim} 0$ is equivalent to condition $t^{2\varepsilon}M = 0$. {\cite[Proposition 2.13]{GS16}}
-\end{remark}
+  Condition $M \stackrel{\varepsilon}{\sim} 0$ is equivalent to condition $t^{2\varepsilon}M = 0$.
+\end{proposition}
 
 \begin{definition}
-  Any $\varepsilon$-equivalence induces an extended pseudometric on its domain. This pseudometric is defined as $d(X,Y) = min\{\varepsilon \in I\;|\;X \stackrel{\varepsilon}{\sim} Y\}$. For non-negatively graded modules this pseudometric is called interleaving distance. {\cite[Definition 2.12]{GS16}}\\
+  Any $\varepsilon$-equivalence induces an extended pseudometric on its domain. This pseudometric is defined as $d(X,Y) = min\{\varepsilon \in I\;|\;X \stackrel{\varepsilon}{\sim} Y\}$. For graded modules this pseudometric is called interleaving distance. {\cite[Definition 2.12]{GS16}}\\
   We shall refer to this general pseudometric as to approximation distance since we do not want to overload the term, however we do not give another examples expect for interleaving distance. For deeper evaluation of this construction see {\cite{deSilva18}}.
 \end{definition}
 
@@ -119,7 +106,7 @@ This equivalence is required to introduce a measure of similarity between persis
 \begin{pf}
   Second statement of the lemma requires the proof. Denote non-trivial maps in s.e.s as $i$ and $q$.\\
 
-  Then $i(t^{2\varepsilon}a) = t^{2\varepsilon}i(a) = 0$ for any $a \in M$. $i$ is injective. Hence by Remark \ref{epstriv} $M \stackrel{\varepsilon}{\sim} 0$.\\
+  Then $i(t^{2\varepsilon}a) = t^{2\varepsilon}i(a) = 0$ for any $a \in M$. $i$ is injective. Hence by Proposition \ref{epstriv} $M \stackrel{\varepsilon}{\sim} 0$.\\
 
   On the other side $0 = q(t^{2\varepsilon}a) = t^{2\varepsilon}q(a)$ where $q$is surjective. Hence $N \stackrel{\varepsilon}{\sim} 0$.
 \end{pf}
