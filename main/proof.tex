@@ -37,30 +37,6 @@ Value of $e$ is set later.\\
   Given persistence covering we can define Mayer-Vietoris exact sequence on persistence homology modules component-wise by gluing sequences for components over structure maps. Proposition \ref{major} yields the lemma.
 \end{pf}
 
-\begin{definition}
-  We denote as \define{linear extension of persistence poset} $X$ series of linear extensions of $X_i$ such that they admit structure maps.
-\end{definition}
-
-\begin{proposition}
-  Every persistence poset has linear extension.
-\end{proposition}
-
-\begin{pf}
-  Let $(X, \phi)$ be a persistence poset. We denote map from $X_i$ as $\phi_i$ and refer to composition of $k$ structure maps as to $\phi^k$ to simplify notation.\\
-
-  For any incomparable pair $a,b$ in $X_i$ one of the following hold:
-  \begin{enumerate}
-    \item $a \in \operatorname{im}(\phi_{i-1})$, $b \in \operatorname{im}(\phi_{i-1})$. Then we know that preimages are incomparable since $\phi_{i-1}$ is order preserving.
-    \item $a \in \operatorname{im}(\phi_{i-1})$, $b \not\in \operatorname{im}(\phi_{i-1})$ or vice versa.
-    \item Both $a$ and $b$ are not in image of $\phi_{i-1}$.
-  \end{enumerate}
-
-  Assume for some incomparable $a,b$ in $X_i$ $\phi^k(a)$ and $\phi^k(b)$ are comparable for some natural $k$. W.l.o.g $\phi^k(a) \leq \phi^k(b)$. Then we have to add pair $(a,b)$ to order on $X_i$. There is no possible contradiction since pair $(b,a)$ in order implies $\phi^k(b) \leq \phi^k(a)$.\\
-  This extension extends infinitely to the left since we never have ordered pair in iterated preimages of $a$ and $b$. If there is no such $k$ we leave ordering on $a,b$ to order extension principle. This extension can be safely extended to both sides.\\
-
-  Application of this reasoning to all poset components and incomparable pairs in them yields proposition.
-\end{pf}\\
-
 \begin{remark}
   If map $f$ is component-wise homotopy equivalence, it induces $0$-interleaving of homology modules.
 \end{remark}
