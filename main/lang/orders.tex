@@ -22,9 +22,11 @@ Our target proposition (which we shall refer to as \define{persistent order exte
   If equality holds we can take arbitrary order on a set $f^{-1}(f(a))$.
 \end{pf}
 
-\begin{corollary}
+We have the following corollary:\\
+
+\begin{proposition}
   Every persistence poset $(X,\phi)$ with finite number of nonempty components has linear extension.
-\end{corollary}
+\end{proposition}
 
 \begin{pf}
   We can extend order to linear on the component $X_i$ such that $X_j = \emptyset$ for $j > i$. Given this order we can extend it to the left by proposition.
@@ -60,6 +62,12 @@ This corollary is strong enough to be used in a proof of the target theorem. Pro
   % Should be discussed.
   So we fix $i \in I$, fix orders on $\psi_i^{-1}$ for all equivalence classes in colimit and perform an extension with both kinds of propagation. For any $i$ we have constructed persistence poset with $X_j$ linearly ordered for all $j \leq i$. $I$ is well-founded hence by transfinite recursion result follows.
 \end{pf}
+
+Note that forth propagation of arbitrary linear order on any component frees us from usage of transfinite recursion. Hence we also have the following proposition:\\
+
+\begin{proposition}
+  Every persistence poset with surjective structure maps has linear extension.
+\end{proposition}
 
 % \begin{pf}
 %   Let $(X, \phi)$ be a persistence poset. We denote map from $X_i$ as $\phi_i$ and refer to composition of $k$ structure maps as to $\phi^k$ to simplify notation.\\
