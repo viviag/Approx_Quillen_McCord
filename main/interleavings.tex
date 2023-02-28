@@ -1,13 +1,13 @@
-Basic definition is the following:
+Initial definition is the following:
 
 \begin{definition} {\cite[Definition 3.1]{Zomorodian05}}\\
-  \define{Persistence complex} is a family of chain complexes $C_{\star}^{i_0} \xrightarrow{f_{i_0}} C_{\star}^{i_1} \xrightarrow{f_{i_1}} C_{\star}^{i_2} \xrightarrow{f_{i_2}} \ldots$ where $I$ is the linearly ordered set of indices and $f_i$ are chain maps. We call maps $f=(\ldots,f_i,\ldots)$ \define{the structure maps} of a persistence complex.
+  \define{Persistence complex} is a family of chain complexes $C_{\star}^{0} \xrightarrow{f_0} C_{\star}^{1} \xrightarrow{f_1} C_{\star}^{2} \xrightarrow{f_2} \ldots$ where $f_i$ are chain maps. We call maps $f=(\ldots,f_i,\ldots)$ \define{the structure maps} of a persistence complex.
 \end{definition}
 
-These objects naturally arise in experiments. If we consider $I$ as a time, this is a structure we obtain while observing some dynamic structure which can at any time be represented by a chain complex.\\
+These objects naturally arise in experiments. If we consider indexing set as a time, this is a structure we obtain while observing some dynamic structure which can at any time be represented by a chain complex.\\
 
 \begin{definition}
-  Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorpisms $\phi_i :: M^i \to M^{i+1}$ as the structure maps. If $R$ is a field it is natural to use notion of \define{persistence vector space}.
+  Let $R$ be a ring. \define{Persistence module} is a family of $R$-modules $M^i$ with homomorphisms $\phi_i :: M^i \to M^{i+1}$ as the structure maps. If $R$ is a field it is natural to use notion of \define{persistence vector space}.
 \end{definition}
 
 Example of a persistence module is given by homology modules of persistence complex $C_{\star}$ (\define{persistent homology}). $H_i^j(C_{\star}) = H_i(C_{j})$, maps $\phi_j$ are induced by $f_i$.\\
@@ -36,12 +36,33 @@ There is a well-known theorem:
 
 It is proven in {\cite{Corbet18}}. Authors provide generalization which is more suitable for our needs.\\
 
+\begin{definition}
+  Let $(G,\star)$ be a commutative monoid and $g_1, g_2 \in G$.
+  We say that $g_1 \preceq g_2$ if $\exists h \in G:\; h \star g_1 = g_2$, $h$ is not neutral element.
+\end{definition}
+
+\begin{definition} {following \cite[Definition 11]{Corbet18}}
+  Monoid $(G,\star)$ is called \define{good} if the following holds:
+  \begin{itemize}
+    \item $(G, \star)$ is commutative;
+    \item $g_1 \star g_2 = g_1 \star g_3$ implies $g_2 = g_3$ (cancellation);
+    \item $g_1 \preceq g_2$ and $g_2 \preceq g_1$ imply $g_1 = g_2$ (anti-symmetricity);
+    \item For any finite $H \subseteq G$ there exists at most finitely many distinct elements (common multiples) $m$ such that $\forall h \in H:\; h \preceq m$ and there is no common multiple $m_1 \prec m$ satisfying 1 (partially least) (property of being weak plcm).
+  \end{itemize}
+\end{definition}
+
+Note that original definition does not require commutativity.
+
+\begin{definition} {\cite[Definition 12]{Corbet18}}
+  Let $R$ be a ring and $G$ be a good monoid. \define{(Generalized) persistence module} is a family of $R$-modules $M^i$ with homomorphisms $\phi_{ij} :: M^i \to M^{j}$ satisfying $\phi_{ii} = Id$ and relation $\phi_{ij} \circ \phi_{jk} = \phi_{ik}$ for any $i < j < k$ as the structure maps.
+\end{definition}
+
 \begin{theorem} {\cite[Theorem 21]{Corbet18}}\\
-  Let $R$ be a ring with unity and $G$ be a monoid with linear order. Then the category of finitely presented graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finitely presented type.
+  Let $R$ be a ring with unity and $G$ be a good monoid. Then the category of finitely presented graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finitely presented type.
 \end{theorem}
 
 \begin{remark} ~ \par
-  The most practically reasonable examples are given by considering corollary Theorem with $G$ is either $\mathbb{R}$ or $\mathbb{Z}$. These examples represent continuous and discrete time in observation with ability to reason about the past.
+  The most practically reasonable examples are given by considering this Theorem with $G$ is either $(\mathbb{R},+)$ or $(\mathbb{Z},+)$. These examples represent continuous and discrete time in observation with ability to reason about the past.
 \end{remark}
 
 This equivalence is required to introduce a measure of similarity between persistence modules. It is essential since in applications we have to accept error in experimental data and we must decide whether observed homology modules are close enough to initial hypothesis or not.
@@ -54,8 +75,18 @@ This equivalence is required to introduce a measure of similarity between persis
   Note that $0$-morphism is a morphism in category of graded modules over $R[G]$.
 \end{remark}
 
+\begin{remark}
+  Cancellative commutative monoid with $\preceq$ being a total order (totally ordered) is good.
+\end{remark}
+
+\begin{definition}
+  We shall call cancellative commutative totally ordered monoids \define{very good}.
+\end{definition}
+
+In further constructions we shall use multiplicative notation for monoids.
+
 \begin{proposition}
-  Let $\mathbb{R}$ be a ring with unity and $G$ a monoid with linear order. Then for any graded $R[G]$-module $M$ and any $\varepsilon \in \mathbb{G}$ there exists morphism $Id_{\varepsilon}(a) = t^{\varepsilon}a$.
+  Let $\mathbb{R}$ be a ring with unity and $G$ be a very good monoid. Then for any graded $R[G]$-module $M$ and any $\varepsilon \in \mathbb{G}$ there exists morphism $Id_{\varepsilon}(a) = t^{\varepsilon}a$ where $t$ is a successor of identity.
 \end{proposition}
 
 This proposition follows from definition of monoid ring and does not require any assumptions on $R$ and ideals in $R[G]$.
