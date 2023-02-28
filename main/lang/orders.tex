@@ -17,7 +17,7 @@ In his proof of Quillen-McCord theorem Barmak relies on order extension principl
     \item f(a) = f(b)
   \end{itemize}
   If strict inequality holds, we can impose a single relation on $a$ and $b$ --- we inherit relation from images.\\
-  If equality holds we do not.
+  If equality holds we do not add any new relation.
 \end{pf}
 
 \begin{proposition}
@@ -26,7 +26,7 @@ In his proof of Quillen-McCord theorem Barmak relies on order extension principl
 
 \begin{pf}
   We can extend order on the component $X_i$ to linear. Given this order we can transfer it to the left via all possible structure maps by proposition. We obtain extension of $(X,\phi)$ because all preimages of incomparable elements were imcomparable and we have equipped them with compatible orders. Now let's assume we obtained by this construction linear orders in components $X_j$ for $j > j_0$. Then $X_{j_0}$ can be linearly extended. Proposition follows by transfinite induction.
-\end{pf}
+\end{pf}\\
 
 This statement can also be seen as a corollary of a more general proposition.
 One can consider set $E(X,\phi)$ of extensions of persistence poset $(X,\phi)$ with partial order defined as follows: let $Y,Z$ be extensions of $X$, then $Y \geq Z$ if and only if $Y$ is extension of $Z$. Since underlying sets of these extensions are always the same we can identify element of $E(X,\phi)$ with tuple of order relations on components of $X$.
