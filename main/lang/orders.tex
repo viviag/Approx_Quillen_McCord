@@ -1,13 +1,11 @@
-In his proof of Quillen-McCord theorem Barmak relies on order extension principle. To be able to transfer Barmak's proof of Quillen-McCord theorem to persistent case we have to stress similar statement for persistence modules.
+In his proof of Quillen-McCord theorem Barmak relies on order extension principle. To be able to transfer Barmak's proof of Quillen-McCord theorem to persistent case we have to stress similar statement for persistence posets.
 
 \begin{definition}
-  We denote as \define{linear extension of persistence poset} $X$ series of linear extensions of $X_i$ such that structure maps of $X$ are well-defined on these extensions.
+  We denote as \define{extension of persistence poset} $X$ series of partially-ordered extensions of $X_i$ such that structure maps of $X$ are well-defined on these extensions. If extensions of all components are linear we call this series linear extension.
 \end{definition}
 
-Our target proposition (which we shall refer to as \define{persistent order extension principle}) is the following: every persistence poset has linear extension.
-
 \begin{proposition}
-  \textbf{Transfer of linear order}. Let $f$ be a morphism between posets $X$ and $Y$ and $\overline{Y}$ be a linear extension of $Y$. Then $f$ induces at least one linear extension $\overline{X}$ of $X$ such that $f$ is well-defined as map $\overline{X} \to \overline{Y}$.
+  \textbf{Transfer of order}. Let $f$ be a morphism between posets $X$ and $Y$ and $\overline{Y}$ be a linear extension of $Y$. Then $f$ induces partially ordered extension $\hat{X}$ of $X$ such that $f$ is well-defined as map $\hat{X} \to \overline{Y}$.
 \end{proposition}
 
 \begin{pf}
@@ -19,68 +17,36 @@ Our target proposition (which we shall refer to as \define{persistent order exte
     \item f(a) = f(b)
   \end{itemize}
   If strict inequality holds, we can impose a single relation on $a$ and $b$ --- we inherit relation from images.\\
-  If equality holds we can take arbitrary order on a set $f^{-1}(f(a))$.
+  If equality holds we do not.
 \end{pf}
 
-We have the following corollary:\\
-
 \begin{proposition}
-  Every persistence poset $(X,\phi)$ with finite number of nonempty components has linear extension.
+  \textbf{Left propagation of linear extension.} Assume indexing set $I$ of persistence poset $(X,\phi)$ is well-founded with respect to inverted order and there exists maximal index $i$ such that $X_j = \emptyset$ for any $j > i$. Then $(X,\phi)$ has linear extension.
 \end{proposition}
 
 \begin{pf}
-  We can extend order to linear on the component $X_i$ such that $X_j = \emptyset$ for $j > i$. Given this order we can extend it to the left by proposition.
+  We can extend order on the component $X_i$ to linear. Given this order we can transfer it to the left via all possible structure maps by proposition. We obtain extension of $(X,\phi)$ because all preimages of incomparable elements were imcomparable and we have equipped them with compatible orders. Now let's assume we obtained by this construction linear orders in components $X_j$ for $j > j_0$. Then $X_{j_0}$ can be linearly extended. Proposition follows by transfinite induction.
 \end{pf}
 
-This corollary is strong enough to be used in a proof of the target theorem. Proof of this corollary allows also to reasons about sequences infinite to the left. For sequences infinite to the right we can use the observation that $Pos$ is cocomplete {\cite[Example 1.10 and Theorem 1.11, page 17]{Adamec94}}.
+This statement can also be seen as a corollary of a more general proposition.
+One can consider set $E(X,\phi)$ of extensions of persistence poset $(X,\phi)$ with partial order defined as follows: let $Y,Z$ be extensions of $X$, then $Y \geq Z$ if and only if $Y$ is extension of $Z$. Since underlying sets of these extensions are always the same we can identify element of $E(X,\phi)$ with tuple of order relations on components of $X$.
 
 \begin{proposition}
-  \textbf{Persistent order extension principle}. Every persistence poset over well-founded indexing set has linear extension.
+  Every linearly ordered subset of $E(X,\phi)$ has an upper bound in $E(X,\phi)$.
 \end{proposition}
 
 \begin{pf}
-  Let $(X,\phi)$ be a persistence poset. It is by definition a diagram in $Pos$. $Pos$ is cocomplete, hence there exists $\operatorname{colim}(X, \phi)$. In particular it is a co-cone over $(X,\phi)$ with maps $\psi_i : X_i \to \operatorname{colim}(X, \phi)$. For all $i$ $\psi_i$ transfers linear extension from $\overline{\operatorname{colim}(X, \phi)}$ to $X_i$.\\
-
-  Consider co-cone diagram\\
-  \begin{tikzcd}
-    X_i \arrow{dr}{\psi_i}\arrow{rr}{\phi_{i}} & & X_{j}\arrow{dl}{\psi_{i+1}} \\
-    & \operatorname{colim}(X, \phi) &  \\
-  \end{tikzcd}
-  It is commutative, i.e. $\psi_i = \psi_{i+1} \circ \phi_i$. Extend colimit linearly and transfer this extension by $\psi$. It's enough to check that $\phi_i$ is well-defined as a morphism between $\overline{X_i}$ and $\overline{X_{i+1}}$.\\
-
-  Assume it is not. Then there exists pair of elements $a,b \in \overline{X_i}$ such that $a > b$ and $\phi_i(a) < \phi_i(b)$. There are three possibilities:
-  \begin{itemize}
-    \item $a > b$ is an element of order on $X_i$. It is impossible since $\phi_i$ preserves order on $X_i$.
-    \item Relation $a > b$ is induced by relation $\psi_i(a) > \psi_i(b)$ on $\overline{\operatorname{colim}(X, \phi)}$. In this case from commutativity of the diagram we know that this relation induces relation $\phi_i(a) > \phi_i(b)$.
-    \item $\psi_i(a) = \psi_i(b)$.
-  \end{itemize}
-
-  In last case we have to adjust our transferred extensions and make them less arbitrary. At first fix element $\alpha \in \overline{\operatorname{colim}(X, \phi)}$. In all components of $(X,\phi)$ order between preimages of $\alpha$ is not defined by extension of colimit. By diagram structure maps move preimages of $\alpha$ to preimages of $\alpha$, possibly not all.\\
-
-  For arbitrary $i \in I$ fix linear order on $\psi_i^{-1}(\alpha)$. Its back propagation is given by transfer along $\phi$, its forth propagation is given by co-cone diagram but it does not define linear order if structure maps are not surjective.\\
-
-  % Should be discussed.
-  So we fix $i \in I$, fix orders on $\psi_i^{-1}$ for all elements of a colimit and perform an extension to the left. For any $i$ we have constructed persistence poset with $X_j$ linearly ordered for all $j \leq i$. $I$ is well-founded hence by transfinite recursion result follows.
+  Let $\{R^s|\;s \in S\}$ be a linearly ordered subset of $E(X,\phi)$ indexed by set $S$. Consider $R = \bigcup R^s$ where union is taken component-wise. Assume for some elements $a, b \in X_i$ for some $i$ some $\phi_{ij}$ cannot be defined on them as order-preserving map. Then there exists $s \in S$ such that $a$ and $b$ are comparable in extension $R^s$. But $R^s$ is an extension, hence $\phi_{ij}$ is defined on both $a$ and $b$. By contradiction proposition follows.
 \end{pf}
 
-Note that forth propagation of arbitrary linear order on any component frees us from usage of transfinite recursion. Hence we also have the following proposition:\\
-
 \begin{proposition}
-  Every persistence poset with surjective structure maps has linear extension.
+  \textbf{Persistent order extension principle.} Every persistence poset $(X,\phi)$ has linear extension.
 \end{proposition}
 
-% \begin{pf}
-%   Let $(X, \phi)$ be a persistence poset. We denote map from $X_i$ as $\phi_i$ and refer to composition of $k$ structure maps as to $\phi^k$ to simplify notation.\\
-%
-%   For any incomparable pair $a,b$ in $X_i$ one of the following hold:
-%   \begin{enumerate}
-%     \item $a \in \operatorname{im}(\phi_{i-1})$, $b \in \operatorname{im}(\phi_{i-1})$. Then we know that preimages are incomparable since $\phi_{i-1}$ is order preserving.
-%     \item $a \in \operatorname{im}(\phi_{i-1})$, $b \not\in \operatorname{im}(\phi_{i-1})$ or vice versa.
-%     \item Both $a$ and $b$ are not in image of $\phi_{i-1}$.
-%   \end{enumerate}
-%
-%   Assume for some incomparable $a,b$ in $X_i$ $\phi^k(a)$ and $\phi^k(b)$ are comparable for some natural $k$. W.l.o.g $\phi^k(a) \leq \phi^k(b)$. Then we have to add pair $(a,b)$ to order on $X_i$. There is no possible contradiction since pair $(b,a)$ in order implies $\phi^k(b) \leq \phi^k(a)$.\\
-%   This extension extends infinitely to the left since we never have ordered pair in iterated preimages of $a$ and $b$. If there is no such $k$ we leave ordering on $a,b$ to order extension principle. This extension can be safely extended to both sides.\\
-%
-%   Application of this reasoning to all poset components and incomparable pairs in them yields proposition.
-% \end{pf}\\
+\begin{pf}
+  By Zorn's lemma $E(X,\phi)$ has maximal element $M$. Assume this element is not a linear extension of $(X,\phi)$.\\
+
+  Then in some $M_i$ there exists incomparable pair $(a,b)$. Consider $\phi_{ij}(a)$ and $\phi_{ij}(b)$ for all $j > i$. Assume without loss of generality for $j_2 > j_1$ that $\phi_{ij_1}(a) > \phi_{ij_1}(b)$ and $\phi_{ij_2}(a) < \phi_{ij_2}(b)$. Then map $\phi_{j_1j_2}$ cannot be defined. Hence for any $j$ relation between images of $a$ and $b$ has the same sign if exists. If there exists such $j$ that relation between $\phi_{ij}(a)$ and $\phi_{ij}(b)$ exists we define relation between $a$ and $b$ accordingly. Otherwise we define it arbitrarily and propagate order to the left --- all preimages of $a$ and $b$ were incomparable and are now equipped with compatible orders.\\
+
+  We have constructed an extension of $M$ which is taken to be maximal. Hence $M$ must be linear extension of $(X,\phi)$.
+\end{pf}
