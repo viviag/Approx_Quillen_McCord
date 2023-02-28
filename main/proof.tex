@@ -44,7 +44,7 @@ Value of $e$ is set later.\\
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem, final statement}\\
-  Assume $X, Y$ are persistence posets of finite type indexed by $I$, $f : X \to Y$ is order-preserving map. Let $m = \max_{i}(|Y_i|)$ be the maximal cardinality of components of $Y$ and $R$ is a PID.\\
+  Assume $X, Y$ are persistence posets of finite type indexed by totally ordered monoid $I$, $f : X \to Y$ is order-preserving map. Let $m = \max_{i}(|Y_i|)$ be the maximal cardinality of components of $Y$ and $R$ is a PID.\\
 
   Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $4m\varepsilon$-interleavings of all homology spaces over $R$ on $BX$ and $BY$.\\
 \end{theorem}
@@ -61,4 +61,6 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
   Then consider linear extension of $Y$ with enumerations $y^i_1,\ldots,y^i_{m_i}$ and $X_i^r = X \cup \{y^i_{r+1},\ldots,y^i_{m_i}\} \subset M_i(f)$. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $\mathbb{F}$ by condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $4\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i_X)$ induces $4m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
 
   Note that $i_X(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i_X)$ is component-wise homotopic to $\mathcal{B}(i_Y \circ f) = \mathcal{B}(i_Y) \circ \mathcal{B}(f)$. Homotopic maps induce same maps on homology, $i_Y$ is a homotopy equivalence and induce $0$-interleavings. Hence $\mathcal{B}(f)$ induce $4m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
-\end{pf}
+\end{pf}\\
+
+We expect the stronger statement with no conditions on $R$ to be true with another error multiple and that it can be proved using the technique of this paper by considering error propagation in Kunneth spectral sequence.
