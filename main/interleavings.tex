@@ -59,10 +59,6 @@ Note that original definition does not require commutativity.
   Let $R$ be a ring with unity and $G$ be a good monoid. Then the category of finitely presented graded $R[G]$-modules is isomorphic to the category of $G$-indexed persistence modules over $R$ of finitely presented type.
 \end{theorem}
 
-\begin{remark} ~ \par
-  Our basic examples are given by considering this Theorem with $G$ being either $(\mathbb{R},+)$ or $(\mathbb{Z},+)$. These examples represent continuous and discrete time in observation of some dynamic structure with ability to reason about the past. All techniques we describe are applicable for static data, e.g. for Čech complexes.
-\end{remark}
-
 This equivalence is required to introduce a measure of similarity between persistence modules. It is essential since in applications we have to accept error in experimental data and we must decide whether observed homology modules are close enough to initial hypothesis or not.
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
@@ -81,7 +77,19 @@ This equivalence is required to introduce a measure of similarity between persis
   We shall call cancellative commutative totally ordered monoids \define{very good}.
 \end{definition}
 
-In further constructions we shall use multiplicative notation for monoids.
+\begin{example}
+  Consider monoid of non-negative real numbers $\mathbb{R}_{\geq 0}$ with addition as monoidal operation. Addition of real numbers is cancellative and $\preceq$ is a total order. This monoid is very good.\\
+
+  For constrast we can consider $\mathbb{R}$. Since $g_1 = h + g_2$ implies $g_2 = (-h) + g_1$ $\preceq$ is trivial and $R$ is not a good monoid in sense of given definition.
+\end{example}
+
+\begin{remark} ~ \par
+  Our basic examples are given by considering Theorem 2 with $G$ being either $(\mathbb{R}_{\geq 0},+)$ or $(\mathbb{N}_0,+)$. These examples represent continuous and discrete time in observation of some dynamic structure.\\
+
+  All techniques we describe are applicable for static data, e.g. for Čech complexes.\\
+\end{remark}
+
+In further constructions we shall use multiplicative notation for monoids for compatibility with references. This notation is inspired by standard notation in polynomial ring $R[t]$ which is a monoid ring over a free monoid on single generator $t$.
 
 \begin{proposition}
   Let $\mathbb{R}$ be a ring with unity and $G$ be a very good monoid. Then for any graded $R[G]$-module $M$ and any $\varepsilon \in \mathbb{G}$ there exists morphism $Id_{\varepsilon}(a) = t^{\varepsilon}a$ where $t$ is a successor of identity.
