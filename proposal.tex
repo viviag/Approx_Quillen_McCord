@@ -101,7 +101,7 @@ The proposal is structured as follows.
   \item In preliminaries we give an outline of well-known notions used throughout the proposal.
   \begin{enumerate}[label*=\arabic*.]
     \item First preliminary subsection is devoted to a notion of interleaving distance (according to {\cite{GS16}}) which fits as a required measure of similarity between persistent homology modules and hence between complexes. Usability of this notion is guaranteed by persistence theorem {\cite{Zomorodian05}}. We try to keep some level of generality, in particular, we work with a generalized version of the theorem proven in {\cite{Corbet18}} and formulate it. This generality is necessary for applications and allows us to operate both discrete and continuous models of time in an experiment.
-    \item Second subsection gives a classical formulation of the Quillen-McCord theorem. In order to give an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive the lemma from the theorem.
+    \item Second subsection gives a classical formulation of the Quillen-McCord theorem and necessary definitions, mostly in a combinatorial manner. In order to give an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive it from the general theorem. Additionally, we outline Barmak's ({\cite{Bar11}}) proofs of classical and homological versions of the theorem.
   \end{enumerate}
   \item In the apparatus section we systematize and sometimes introduce various results forming the toolchain to prove the target theorem. Its necessary set of definitions is close to well-established in a field (for instance, {\cite{Bubenik15}}), but the whole toolchain is independent.
   \begin{enumerate}[label*=\arabic*.]
@@ -109,7 +109,7 @@ The proposal is structured as follows.
     \item In the second section we formulate and prove the linear extension principle for functors to the category of posets. We give both finite and general versions with an AC-dependent proof of the latter.
     \item At the end of the section we give some technical stability results concerning objects of appropriate functor categories.
   \end{enumerate}
-  \item Finally, we formulate the main result --- stable (w.r.t. interleaving distances) homological Quillen-McCord theorem. We adapt a proof given in [Bar11] using developed apparatus and sketch the proof here.
+  \item Finally, we formulate the main result --- stable (w.r.t. interleaving distances) homological Quillen-McCord theorem. We adapt a proof given in ({\cite{Bar11}}) using developed apparatus and sketch the proof here.
 \end{enumerate}
 
 Since the whole text is a research proposal, we give possible directions of research alongside with established results.
@@ -279,42 +279,83 @@ One can analogously construct the notion of oriented good monoid and oriented pe
 
 \subsection{Quillen-McCord theorem}
 
+The series of definitions necessary to formulate Quillen's A theorem starts with the definition of a simplicial set.
+
+% FIXME: link to ncatlab.
 \begin{definition}
-  \define{Join} $A \star B$ of (abstract) simplicial complexes $A$ and $B$ is the simplicial complex with simplices --- all possible unions of simplices $a \in A$ and $b \in B$.
+  \define{Simplicial set} is the following collection of data:
+  \begin{itemize}
+     \item for each natural $n$ a set $X_n$ of $n$-simplices --- subsets on $\mathbb{N}$ of cardinality $n$ isomorphic as ordered sets to initial segment $[n]$ of $\mathbb{N}$ of length $n$;
+     \item for each injective map $\delta_i : [n-1] \to [n]$ a function $d_i: X_n \to X_{n-1}$ – the $i$-th face map on $n$-simplices;
+     \item for each surjective map $\sigma_i : [n+1] \to [n]$ a function $s_i : X_n \to X_{n+1}$ – the $i$-th degeneracy map on $n$-simplices.
+  \end{itemize}
+
+  These functions must obey so-called simplicial identities. I.e.
+  \begin{itemize}
+    \item $d_i \circ d_j = d_{j-1} \circ d_i$ if $i < j$;
+    \item $s_i \circ s_j = s_j \circ s_{i-1}$ if $i > j$;
+    \item $d_i \circ s_j = s_{j-1} \circ d_i$ if $i < j$;
+    \item $d_i \circ s_j = Id$ if $i = j$ or $i = j + 1$;
+    \item $d_i \circ s_j = s_j \circ d_{i-1}$ if $i > j + 1$;
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  Simplicial sets form the category $sSet$.
+\end{proposition}
+
+\begin{definition}
+  Let $X$ be a simplicial set and $x \in X_n$ --- its arbitrary $n$-simplex. Consider the powerset $\mathcal{P}(x)$ of $x$. If for any simplex $x$ any element $y \in \mathcal{P}(x)$ of cardinality $k$ satisfies $y \in X_k$, $X$ is called a simplicial complex.
 \end{definition}
 
 \begin{definition}
-  \define{Join} of topological spaces $A$ and $B$ is defined as follows: $A \star B\ := A \sqcup_{p_0} (A \times B \times [0,1]) \sqcup_{p_1} B$, where $p$ are projections of the cylinder $A \times B \times [0,1]$ onto faces.
+  \define{Join} $A \star B$ of simplicial complexes $A$ and $B$ is the simplicial complex with simplices --- all possible unions of simplices $a \in A$ and $b \in B$.
 \end{definition}
 
+Let $A$ be a simplicial complex.
+
 \begin{definition}
-  \define{Star} $\operatorname{st}(x)$ of simplex $x \in A$ ($A$ is a simplicial complex) is the minimal simplicial complex containing all simplices $a \in A$ such that there exists inclusion $x \hookrightarrow a$.
+  \define{Star} $\operatorname{st}(x)$ of simplex $x \in A$ is the minimal by inclusion simplicial complex containing all simplices $a \in A$ such that there exists inclusion $x \hookrightarrow a$.
 \end{definition}
 
 \begin{definition}
   \define{Link} $\operatorname{lk}(x)$ of simplex $x \in A$ is defined as follows: $\operatorname{lk}(x) = \{v \in \operatorname{st}(x)|\; x \not\in v\}$.
 \end{definition}
 
-\begin{definition}
-  Let $\Delta$ be a simplicial category. Functor $\left|\right| : \Delta \to Top$ which maps simplices to geometric simplices of corresponding dimension and morphisms to inclusions of faces and restrictions to subcomplexes is called standard \define{geometric realization}.
-\end{definition}
-
 \begin{proposition}
   $\operatorname{st}(x) = \operatorname{lk}(x) \star x$.
 \end{proposition}
+
+\begin{definition}
+  Functor $\left|\right| : sSet \to Top$ which maps $n$-simplices to geometric $n$-simplices and morphisms to inclusions of faces and restrictions to them is called standard \define{geometric realization}.
+\end{definition}
+
+\begin{definition}
+  \define{Join} of topological spaces $A$ and $B$ is defined as follows: $A \star B\ := A \sqcup_{p_0} (A \times B \times [0,1]) \sqcup_{p_1} B$, where $p$ are projections of the cylinder $A \times B \times [0,1]$ onto faces.
+\end{definition}
+
+The next proposition gives motivation for the definition of a join of simplicial complexes.
 
 \begin{proposition}
   $\left|A \star B\right| = \left|A\right| \star \left|B\right|$. Hence $\left|\operatorname{st}(x)\right|$ is a cone over $\left|x\right|$.
 \end{proposition}
 
-Let $\mathcal{C}$ denote a small category. We can construct the simplicial set called the \define{nerve of category $\mathcal{C}$} as follows.\\
-Let objects of $\mathcal{C}$ be the only 0-dimensional simplices. Then let all morphisms be 1-dimensional simplices, all composable pairs of morphisms be 2-dimensional simplices, and so on with morphisms --- inclusions of compositions into longer ones and replacements of compositions $i \circ j$ with $f = i \circ j$.\\
-This construction is functorial over the category of posets $Pos$, we denote nerve functor from $Pos$ to the category of simplicial sets over $\Delta$ as $\mathcal{N}$.
+\begin{definition}
+  Let $\mathcal{C}$ be a small category. Then we can functorially (w.r.t. to category $Cat$) assign a simplicial set $\mathcal{N}(\mathcal{C})$ called \define{nerve of a category} to it.\\
+
+  Construction goes as follows:
+  \begin{itemize}
+    \item we assign to each object of $\mathcal{C}$ a $0$-simplex and to each morphism in $\mathcal{C}$ a $1$-simplex;
+    \item then we take the set of all morphisms as an alphabet and write all words in it with no relations. We assign an $l$-simplex to a word of length $l$. Obviously, each commutative triangle $f, g, h = f \circ g$ in $\mathcal{C}$ gives rise to two morphisms between these words --- one is replacing $h$ with $f \circ g$ and maps to a face map, another replaces $f \circ g$ with $h$ and maps to a degeneracy map.
+  \end{itemize}
+
+   One can check that the constructed object is a simplicial set.
+\end{definition}
 
 \begin{definition}
   Geometric realization $B\mathcal{C}$ of $\mathcal{N}(\mathcal{C})$ is called \define{classifying space} of $\mathcal{C}$.\\
 
-  We denote the composition of nerve and geometric realization as $\mathcal{B}$. It is obviously a functor and we only need this construction to avoid confusing notation $Bf$ for induced morphism of classifying spaces. By definition $\mathcal{B}(\mathcal{C}) = B\mathcal{C}$.
+  We denote the composition of nerve and geometric realization as $\mathcal{B}$. It is a composition of functors, hence a functor. By definition $\mathcal{B}(\mathcal{C}) = B\mathcal{C}$ and we prefer notation $\mathcal{B}(f)$ to $Bf$.
 \end{definition}
 
 \begin{definition}
@@ -336,7 +377,6 @@ The nerve construction on a posetal category yields a simplicial complex called 
   Assume $X, Y$ are finite posets, $f : X \to Y$ is an order-preserving map, $R$ is a PID.\\
   If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
 \end{theorem}
-
 
 Proofs of both theorems are necessary to understand the proposal and we recall them in brief.
 
@@ -446,7 +486,7 @@ We have two types of persistence objects with similar definitions. It is appeali
   \begin{itemize}
     \item Persistence complex is a persistence object over the category of chain complexes;
     \item Persistence $R$-module is a persistence object over the category of $R$-modules;
-    \item Persistence simplicial set is a persistence object over the category $Psh(\Delta)$;
+    \item Persistence simplicial set is a persistence object over the category $sSet$;
     \item Persistence poset is a persistence object over $Pos$;
     \item Persistence topological space is a persistence object over $Top$.
   \end{itemize}
