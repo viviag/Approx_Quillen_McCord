@@ -89,7 +89,7 @@ Since the given proof gives explicit Lipschitz constant for the map of persisten
 
 In topological data analysis, there is a standard invariant known as persistent homology. It can be roughly introduced as the homology of a filtered chain complex, proper definitions are left for preliminaries. Since the whole field is devoted to applications, researchers are frequently faced with the problem of computing persistent homology of complexes, constructed from experimental data. These computations can require lots of computational resources.\\
 
-Hence there is a natural problem --- how to construct a chain complex with persistent homology equal to given or similar to them. Since experimental data always come with an error and experiment reproducibility criteria never require an exact match of the results, it's necessary to introduce the notion of similarity between complexes or at least their homology.\\
+Hence there is a natural problem --- how to construct a filtered chain complex with persistent homology equal to given or similar to them. Since experimental data always come with an error and experiment reproducibility criteria never require an exact match of the results, it's necessary to introduce the notion of similarity between complexes or at least their homology.\\
 
 We investigate the problem from the theoretical angle by constructing an approximate theorem analogous to Quillen's A theorem for posetal categories. We do not give an algorithm based on the theorem. However, such an algorithm would be a vast improvement of the result and is a possible direction of further work.\\
 
@@ -105,7 +105,7 @@ The proposal is structured as follows.
   \end{enumerate}
   \item In the apparatus section we systematize and sometimes introduce various results forming the toolchain to prove the target theorem. Its necessary set of definitions is close to well-established in a field (for instance, {\cite{Bubenik15}}), but the whole toolchain is independent.
   \begin{enumerate}[label*=\arabic*.]
-    \item At first, we reformulate several preliminary definitions in terms of functor categories and transfer some notions, e.g. classifying space of a category and left derived functors, to appropriate functor categories.
+    \item At first, we reformulate several preliminary definitions in terms of functor categories and transfer some notions, e.g. classifying space of a category and covering, to appropriate functor categories.
     \item In the second section we formulate and prove the linear extension principle for functors to the category of posets. We give both finite and general versions with an AC-dependent proof of the latter.
     \item At the end of the section we give some technical stability results concerning objects of appropriate functor categories.
   \end{enumerate}
@@ -121,7 +121,7 @@ Since the whole text is a research proposal, we give possible directions of rese
 The initial definition is the following.
 
 \begin{definition} {\cite[Definition 3.1]{Zomorodian05}}\\
-  \define{Persistence complex} is a family of chain complexes $C_{\star}^{0} \xrightarrow{f_0} C_{\star}^{1} \xrightarrow{f_1} C_{\star}^{2} \xrightarrow{f_2} \ldots$ where $f_i$ are the chain maps. We call the maps $f=(\ldots,f_i,\ldots)$ \define{the structure maps} of a persistence complex.
+  \define{Persistence complex} is a family of chain complexes $C_{\star}^{0} \xrightarrow{f_0} C_{\star}^{1} \xrightarrow{f_1} C_{\star}^{2} \xrightarrow{f_2} \ldots$ where $f_i$ are the chain maps. We call the maps $f=(\ldots,f_i,\ldots)$ the \define{structure maps} of a persistence complex.
 \end{definition}
 
 \begin{definition}
@@ -149,7 +149,7 @@ Graded modules over $R$ form a category. Maps $\phi$ between modules $M$ and $N$
 There is a well-known theorem.
 
 \begin{theorem} {\cite[Theorem 3.1]{Zomorodian05}}\\
-  The category of persistence modules of finite type over Noetherian ring with unity $R$ indexed by $\mathbb{N}$ is equivalent to the category of graded finitely generated $R[t]$-modules.
+  The category of persistence modules of finite type over Noetherian ring with unity $R$ is equivalent to the category of graded finitely generated $R[t]$-modules.
 \end{theorem}
 
 It is proven in {\cite{Corbet18}}. The authors provide a generalization that is more suitable for our needs.\\
@@ -170,7 +170,7 @@ It is proven in {\cite{Corbet18}}. The authors provide a generalization that is 
 \end{definition}
 
 \begin{definition} {\cite[Definition 12]{Corbet18}}
-  Let $R$ be a ring and $G$ be a good monoid. \define{(Generalized) persistence module} is a family of $R$-modules $M^i$ with homomorphisms $\phi_{ij} : M^i \to M^{j}$ satisfying $\phi_{ii} = Id$ and relation $\phi_{ij} \circ \phi_{jk} = \phi_{ik}$ for any $i < j < k$ as the structure maps.
+  Let $R$ be a ring and $G$ be a good monoid. \define{(Generalized) persistence module} is a family of $R$-modules $M^i$ with homomorphisms $\phi_{ij} : M^i \to M^{j}$ satisfying $\phi_{ii} = Id$ and relation $\phi_{ij} \circ \phi_{jk} = \phi_{ik}$ for any $i < j < k \in G$ as the structure maps.
 \end{definition}
 
 \begin{theorem} {\cite[Theorem 21]{Corbet18}}\\
@@ -505,10 +505,6 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 \end{definition}
 
 \begin{definition}
-  We say that morphism $f : X \to Y$ between persistence topological spaces induces $\varepsilon$-interleaving if there exists $g : Y \to X$ such that any of the pairs $(f_* \circ Id_{\varepsilon}, Id_{\varepsilon} \circ g_*)$ and $(Id_{\varepsilon} \circ f_*, g_* \circ Id_{\varepsilon})$ on graded homology modules form $\varepsilon$-interleaving.
-\end{definition}
-
-\begin{definition}
   \define{Persistence poset of finite type} is a finite sequence of finite posets.\\
 
   In terms of functors ``finite sequence'' means that only the finite set of indices has a nontrivial image. It's convenient to define ``trivial object'' as the initial object where present.
@@ -589,7 +585,7 @@ For instance, we can consider the following example of a subposet.
 Finally, we give a definition of \define{persistence covering}.\\
 
 \begin{definition}
-  Assume a poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called \define{persistence covering}.
+  Assume a poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called a \define{persistence covering}.
 \end{definition}
 
 This definition gives an example of how structures in the category of persistence posets can be transferred to other persistence categories. It is possible to reformulate the definition as internal to the category of persistence topological spaces but we prefer to keep a more constructive way.
@@ -700,7 +696,7 @@ We can also derive the result about exact sequences.\\
 
 \begin{proposition}
   \label{major}
-  Let $A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D$ be an exact sequence in the category of persistence modules. Then if $d(A,0) \leq \varepsilon$ and $d(D,0) \leq \varepsilon$, then $B \stackrel{4\varepsilon}{\sim} C$ with $\phi$ being left morphism in an interleaving pair.
+  Let $A \xrightarrow{f} B \xrightarrow{\phi} C \xrightarrow{g} D$ be an exact sequence in the category of persistence modules. Then if $d(A,0) \leq \varepsilon$ and $d(D,0) \leq \varepsilon$, then $B \stackrel{4\varepsilon}{\sim} C$.
 \end{proposition}
 
 \begin{pf}
@@ -733,7 +729,7 @@ We can also derive the result about exact sequences.\\
 \end{pf}\\
 
 \begin{lemma}
-  Let $(X,\phi)$ be a persistence poset and for $x=(\ldots,x_i,\phi(x_i),\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ is $\varepsilon$-acyclic. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ induces $4\varepsilon$-interleavings of all homology spaces.
+  Let $(X,\phi)$ be a persistence poset and for $x=(\ldots,x_i,\phi(x_i),\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ is $\varepsilon$-acyclic. Then persistent homology of $\mathcal{B}(X \setminus \{x\})$ and $\mathcal{B}(X)$ are $4\varepsilon$-interleaved.
 \end{lemma}
 
 \begin{pf} ~ \par
@@ -751,7 +747,7 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem}\\
   Assume $X, Y$ are persistence posets of finite type indexed by very good monoid $I$, $f : X \to Y$ is an order-preserving map. Let $m$ be the number of elements of $Y$ and $R$ is a PID.\\
 
-  Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $\mathcal{B}f$ induces $4m\varepsilon$-interleavings of all homology modules over $R$ of $BX$ and $BY$.\\
+  Then if $\forall y=(\ldots,y_i,\ldots) \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$, $BX$ and $BY$ are $4m\varepsilon$-interleaved over $R$.\\
 \end{theorem}
 
 \begin{pf} \textbf{Approximate Quillen-McCord theorem}\\
@@ -763,9 +759,9 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone over $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is a component-wise homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration $\mathcal{B}(i_Y) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is a component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
 
-  Then consider a linear extension of $Y$ with the enumeration of elements and $X^r \subset M_i(f)$ constructed analogously. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $\mathbb{F}$ by the condition of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces $4\varepsilon$-interleavings of all homology modules and by transitivity of $\varepsilon$-equivalence $\mathcal{B}(i_X)$ induces $4m\varepsilon$-interleavings between homology of $X$ and $M(f)$.\\
+  Then consider a linear extension of $Y$ with the enumeration of elements and $X^r \subset M_i(f)$ constructed analogously. $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. Latter is $\varepsilon$-acyclic over $\mathbb{F}$ by the condition of the theorem. Hence homology modules of $\mathcal{B}(X^{r})$ and $\mathcal{B}(X^{r-1})$ are $4\varepsilon$-interleaved. By transitivity of $\varepsilon$-equivalence homology of $BX$ and $M(f)$ are $4m\varepsilon$-interleaved.\\
 
-  Note that $i_X(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i_X)$ is component-wise homotopic to $\mathcal{B}(i_Y \circ f) = \mathcal{B}(i_Y) \circ \mathcal{B}(f)$. Homotopic maps induce the same maps on homology, $i_Y$ is a homotopy equivalence and induces $0$-interleavings. Hence $\mathcal{B}(f)$ induces $4m\varepsilon$-interleavings between $H_i(BX,R)$ and $H_i(BY,R)$.
+  We have that $H_i(BX) \stackrel{4m\varepsilon}{\sim} H_i(M(f))$ and $H_i(M(f)) \stackrel{0}{\sim} H_i(BY)$ for all $i$. Hence $H_i(BX) \stackrel{4m\varepsilon}{\sim} H_i(BY)$.
 \end{pf}\\
 
 We expect the stronger statement with no conditions on $R$ to be true with another error multiple and that it can be proved using the technique of this paper by considering error propagation in Kunneth spectral sequence.
