@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[english,12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T2A]{fontenc}
 \usepackage{amsmath,amssymb,amsthm}
@@ -34,10 +34,10 @@
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 
-\title{Approximate Homological Version of Quillen-McCord Theorem}
-\author{V. Guzeev, A. Ayzenberg}
-
 \begin{document}
+
+% \title{Approximate Homological Version of Quillen-McCord Theorem}
+% \author{V. Guzeev, A. Ayzenberg}
 
 %%
 %% Title page
@@ -73,6 +73,7 @@ Quillen-McCord theorem and homological persistence in categories of functors\\
 \end{center}
 \thispagestyle{empty}
 \pagebreak
+\pagenumbering{arabic}
 %%
 %% ===========================================================================
 %%
@@ -85,13 +86,15 @@ We formulate and prove the homological Quillen-McCord theorem in the setting of 
 Since the given proof gives explicit Lipschitz constant for the map of persistence classifying spaces, we expect this result to be useful in TDA for reducing the complexity of experimental data.
 \end{abstract}
 
+% \maketitle
+
 \section{Introduction}
 
 In topological data analysis, there is a standard invariant known as persistent homology. It can be roughly introduced as the homology of a filtered chain complex, proper definitions are left for preliminaries. Since the whole field is devoted to applications, researchers are frequently faced with the problem of computing persistent homology of complexes, constructed from experimental data. These computations can require lots of computational resources.\\
 
 Hence there is a natural problem --- how to construct a filtered chain complex with persistent homology equal to given or similar to them. Since experimental data always come with an error and experiment reproducibility criteria never require an exact match of the results, it's necessary to introduce the notion of similarity between complexes or at least their homology.\\
 
-We investigate the problem from the theoretical angle by constructing an approximate theorem analogous to Quillen's A theorem for posetal categories. We do not give an algorithm based on the theorem. However, such an algorithm would be a vast improvement of the result and is a possible direction of further work.\\
+We investigate the problem from the theoretical angle by constructing an approximate theorem analogous to Quillen's A theorem for posetal categories. The theorem is technically complex and is given at the beginning of the main results section. We do not give an algorithm based on the theorem. However, such an algorithm would be a vast improvement of the result and is a possible direction of further work.\\
 
 Experimental setting which was minded during the work --- observation of some dynamic structure, which is represented by some chain complex at any moment, in some time frame.\\
 
@@ -766,9 +769,7 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
 We expect the stronger statement with no conditions on $R$ to be true with another error multiple and that it can be proved using the technique of this paper by considering error propagation in Kunneth spectral sequence.
 
-\section{References}
-
-\begin{enumerate}
+\begin{thebibliography}{99}
   \bibitem[Bar11]{Bar11}
   Jonathan Ariel Barmak. 2011.
   \newblock On Quillen’s Theorem A for posets.
@@ -809,6 +810,6 @@ We expect the stronger statement with no conditions on $R$ to be true with anoth
   Peter Bubenik, Vin de Silva, Jonathan Scott,
   \newblock Metrics for generalized persistence modules.
   \newblock Foundations of Computational Mathematics volume 15, pages 1501–1531 (2015)
-\end{enumerate}
+\end{thebibliography}
 
 \end{document}
