@@ -102,17 +102,17 @@ Since the given proof gives explicit Lipschitz constant for the map of persisten
 
 \section{Introduction}
 
-Computation of the homotopy type of an arbitrary simplicial complex is an open problem. It is theoretically possible to compute homology groups in all cases, but in practice such computations are limited by resources. Compexity generally grows with a dimension of a complex. Hence there is an optimization problem --- given simplicial complex $B$, construct simplicial complex $A$ such that $\operatorname{dim}(A) < \operatorname{dim}(B)$ and $H_{\star}(A) \cong H_{\star}(B)$.\\
+Computation of the homotopy type of an arbitrary CW complex is an open problem. It is theoretically possible to compute homology groups in all cases, but in practice such computations are limited by resources. Compexity generally grows with a dimension of a complex. Hence there is an optimization problem --- given CW complex $B$, construct CW complex $A$ such that $\operatorname{dim}(A) < \operatorname{dim}(B)$ and $H_{\star}(A) \cong H_{\star}(B)$.\\
 
-The Alexandrov-\v{C}ech theorem is proven [1, 2] to be a useful tool in applications. One can associate to a given covering $\mathcal{U}$ a partially ordered set of sets $U \in \mathcal{U}$ and all their intersections, ordered by inclusion. The classifying space of this poset (to be precise, its posetal category) is a barycentric subdivision of geometric realization of the nerve of $\mathcal{U}$, hence these two spaces are homeomorphic. Given this observation, one can formulate the theorem in terms of classifying spaces.\\
+The Alexandrov-\v{C}ech theorem is proven [1, 2] to be a useful tool in applications. One can associate to a given covering $\mathcal{U}$ a partially ordered set of sets $U \in \mathcal{U}$ and all their intersections, ordered by inclusion. The classifying space of this poset (to be precise, its posetal category) is a barycentric subdivision of geometric realization of the nerve of $\mathcal{U}$, endowed with orientation, hence these two spaces are homeomorphic. Given this observation, one can formulate the theorem in terms of classifying spaces.\\
 
-Jonathan Barmak proves [Bar11] the homological version of Quillen-McCord theorem (also known as Quillen fiber lemma of Quillen's theorem A for posets). It is stated as follows.
+Jonathan Barmak proves [Bar11] the homological version of Quillen-McCord theorem (also known as Quillen fiber lemma or Quillen's theorem A for posets). It is stated as follows.
 \begin{theorem*}
   Assume $X, Y$ are finite posets, $f : X \to Y$ is an order-preserving map, $R$ is a PID.\\
   If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.
 \end{theorem*}
 
-Provided an algorithm for construction of $X$ and a map by $Y$, this theorem may provide a partial solution of stated optimization problem, in particular, for nerves of coverings.\\
+Provided an algorithm for construction of $X$ and a map by $Y$, this theorem may provide a partial solution of stated optimization problem, in particular, for oriented nerves of coverings.\\
 
 Coverings we operate may come from series of observations, for instance, from long experiment. While considering the series in a whole, we are interested in persistence of nerves. To operate experimental data some stable version of the theorem is required.\\
 
@@ -128,8 +128,8 @@ The paper is structured as follows.
   \setcounter{enumi}{1}
   \item In preliminaries we give an outline of well-known notions used throughout the proposal.
   \begin{enumerate}[label*=\arabic*.]
-    \item First preliminary subsection is devoted to a notion of interleaving distance (following to {\cite{GS16}}) which fits as a required measure of similarity between series. Usability of this notion is guaranteed by persistence theorem {\cite{Zomorodian05}}. We try to keep some level of generality, in particular, we work with a generalized version of the theorem proven in {\cite{Corbet18}} and formulate it. This generality is necessary for applications and allows us to operate both discrete and continuous models of time in an experiment.
-    \item Second subsection gives a classical formulation of the Quillen-McCord theorem and necessary definitions, mostly in a combinatorial manner. In order to bind the theorem to an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive it from the general theorem. Additionally, we outline Barmak's ({\cite{Bar11}}) proofs of classical and homological versions of the theorem.
+    \item First preliminary subsection is devoted to a notion of interleaving distance (following {\cite{GS16}}) which fits as a required measure of similarity between series. Usability of this notion is guaranteed by persistence theorem {\cite{Zomorodian05}}. We try to keep some level of generality, in particular, we work with a generalized version of the theorem proven in {\cite{Corbet18}} and formulate it. This generality is necessary for applications and allows us to operate both discrete and continuous models of time in an experiment.
+    \item Second subsection gives a classical formulation of the Quillen-McCord theorem and necessary definitions. In order to bind the theorem to an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive it from the general theorem. Additionally, we outline Barmak's ({\cite{Bar11}}) proofs of classical and homological versions of the theorem.
   \end{enumerate}
   \item In the apparatus section we systematize and sometimes introduce various results forming the toolchain to prove the target theorem. Its necessary set of definitions is close to well-established in a field (for instance, {\cite{Bubenik15}}), but the whole toolchain is independent.
   \begin{enumerate}[label*=\arabic*.]
@@ -144,10 +144,24 @@ The paper is structured as follows.
 
 \subsection{Persistence modules and interleaving distance}
 
-The initial definition, representing a series of simplicial complexes, is the following.
+We have to start with the definition of a simplicial set.
 
 \begin{definition}
-  \define{Persistence complex} is a family of simplicial complexes $C_{0} \xrightarrow{f_0} C_{1} \xrightarrow{f_1} C_{2} \xrightarrow{f_2} \ldots$ where $f_i$ are the simplicial maps. We call the maps $f=(\ldots,f_i,\ldots)$ the \define{structure maps} of a persistence complex.
+  The simplex category $\Delta$ is a category of non-empty totally-ordered sets of finite length with order-preserving functions as morphisms.
+\end{definition}
+
+\begin{definition}
+  \define{Simplicial set} is a contravariant functor from $\Delta$ to $Set$.
+\end{definition}
+
+\begin{proposition}
+  Simplicial sets form the category $sSet$.
+\end{proposition}
+
+The real initial definition, representing a series of simplicial sets, is the following.
+
+\begin{definition}
+  \define{Persistence simplicial set} is a family of simplicial sets $C_{0} \xrightarrow{f_0} C_{1} \xrightarrow{f_1} C_{2} \xrightarrow{f_2} \ldots$ where $f_i$ are the simplicial maps. We call the maps $f=(\ldots,f_i,\ldots)$ the \define{structure maps} of a persistence simplicial set.
 \end{definition}
 
 \begin{definition}
@@ -156,17 +170,17 @@ The initial definition, representing a series of simplicial complexes, is the fo
 
 We only consider one-dimensional persistence.\\
 
-An example of a persistence module is given by homology modules of persistence complex $C_{\star}$ (\define{persistent homology}). We set $H_i^j(C_{\star}) := H_i(C_{j})$, the maps $\phi_j$ are induced by $f_i$.\\
+An example of a persistence module is given by homology modules of persistence simplicial set $C_{\star}$ (\define{persistent homology}). We set $H_i^j(C_{\star}) := H_i(C_{j})$, the maps $\phi_j$ are induced by $f_i$.\\
 
 \begin{definition}
-  Persistence complex (module) is of \define{finite type} over $R$ if all its simplicial complexes (modules) have finite sets of vertices (are finitely generated as $R$-modules) and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
+  Persistence simplicial set (module) is of \define{finite type} over $R$ if all its simplicial sets (modules) have finite sets of vertices (are finitely generated as $R$-modules) and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
 \begin{definition}
   Persistence module is of \define{finitely presented type} over $R$ if all its modules are finitely presented as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
-Note that by construction homology of a complex of finite type is a module of finite type. Hence, in particular, is a module of finitely presented type. We shall generally use terms of module in this section.\\
+Note that by construction homology of a persistence simplicial set of finite type is a persistence module of finite type. Hence, in particular, is a module of finitely presented type. We shall generally use terms of modules in this section.\\
 
 One can study maps of persistence modules. 
 
@@ -174,7 +188,7 @@ One can study maps of persistence modules.
   Let $M$ and $N$ be persistence modules. Then family $f$ of maps $f_i : M_i \to N_i$ is called a morphism from $M$ to $N$ if all $f_i$s commute with structure maps.
 \end{definition}
 
-\begin{definition} {\cite[Definition 2.7]{GS16}}\\
+\begin{definition}
   Let $M$ and $N$ be persistence modules, $f$ is a collection of maps $f_i : M_i \to N_{i+\varepsilon}$. Then if all $f_i$ commute with structure maps, $f$ is called an \define{$\varepsilon$-morphism}.
 \end{definition}
 
@@ -281,33 +295,8 @@ By equivalence of categories, the lemma holds for persistence modules over rings
 
 \subsection{Quillen-McCord theorem}
 
-The series of definitions necessary to formulate Quillen's A theorem starts with the definition of a simplicial set.
-
-% FIXME: link to ncatlab.
 \begin{definition}
-  \define{Simplicial set} is the following collection of data:
-  \begin{itemize}
-     \item for each natural $n$ a set $X_n$ of $n$-simplices --- subsets on $\mathbb{N}$ of cardinality $n$ isomorphic as ordered sets to initial segment $[n]$ of $\mathbb{N}$ of length $n$;
-     \item for each injective map $\delta_i : [n-1] \to [n]$ a function $d_i: X_n \to X_{n-1}$ – the $i$-th face map on $n$-simplices;
-     \item for each surjective map $\sigma_i : [n+1] \to [n]$ a function $s_i : X_n \to X_{n+1}$ – the $i$-th degeneracy map on $n$-simplices.
-  \end{itemize}
-
-  These functions must obey so-called simplicial identities. I.e.
-  \begin{itemize}
-    \item $d_i \circ d_j = d_{j-1} \circ d_i$ if $i < j$;
-    \item $s_i \circ s_j = s_j \circ s_{i-1}$ if $i > j$;
-    \item $d_i \circ s_j = s_{j-1} \circ d_i$ if $i < j$;
-    \item $d_i \circ s_j = Id$ if $i = j$ or $i = j + 1$;
-    \item $d_i \circ s_j = s_j \circ d_{i-1}$ if $i > j + 1$;
-  \end{itemize}
-\end{definition}
-
-\begin{proposition}
-  Simplicial sets form the category $sSet$.
-\end{proposition}
-
-\begin{definition}
-  Let $X$ be a simplicial set and $x \in X_n$ --- its arbitrary $n$-simplex. Consider the powerset $\mathcal{P}(x)$ of $x$. If for any simplex $x$ any element $y \in \mathcal{P}(x)$ of cardinality $k$ satisfies $y \in X_k$, $X$ is called a simplicial complex.
+  Let $X$ be a set and $\mathcal{P}(X)$ be its powerset. Then a set $S \subset \mathcal{P}(X)$ is called a simplicial complex if it for any $V \in S$ and $W \subset V$ $W \in S$.
 \end{definition}
 
 \begin{definition}
@@ -347,11 +336,11 @@ The next proposition gives motivation for the definition of a join of simplicial
 
   Construction goes as follows:
   \begin{itemize}
-    \item we assign to each object of $\mathcal{C}$ a $0$-simplex and to each morphism in $\mathcal{C}$ a $1$-simplex;
-    \item then we take the set of all morphisms as an alphabet and write all words in it with no relations. We assign an $l$-simplex to a word of length $l$. Obviously, each commutative triangle $f, g, h = f \circ g$ in $\mathcal{C}$ gives rise to two morphisms between these words --- one is replacing $h$ with $f \circ g$ and maps to a face map, another replaces $f \circ g$ with $h$ and maps to a degeneracy map.
+    \item we assign to each object of $\mathcal{C}$ a $0$-simplex and to each morphism in $\mathcal{C}$ a $1$-simplex with order following corresponding arrow in a category;
+    \item then we take the set of all morphisms as an alphabet and write all the words in it such that we can move from the first letter to the last following arrows in a category. We assign an $l$-simplex to a word of length $l$. Obviously, each commutative triangle $f, g, h = f \circ g$ in $\mathcal{C}$ gives rise to two morphisms between these words --- one is replacing $h$ with $f \circ g$ and maps to a degeneracy map, another replaces $f \circ g$ with $h$ and maps to a face map.
   \end{itemize}
 
-   One can check that the constructed object is a simplicial set.
+  By construction this object is a simplicial set.
 \end{definition}
 
 \begin{definition}
@@ -368,7 +357,15 @@ The next proposition gives motivation for the definition of a join of simplicial
   If $f: C \to D$ is a functor such that the classifying space $B(d \downarrow f)$ of the comma category $d \downarrow f$ is contractible for any object $d \in D$, then $f$ induces a homotopy equivalence $BC \to BD$.
 \end{theorem}
 
-The nerve construction on a posetal category yields a simplicial complex called \define{order complex}. Application of Quillen A theorem to posets yields the following theorem (we identify poset with its posetal category).
+The nerve construction on a posetal category yields a simplicial set with good properties that there is an unique simplex spanning each unordered set and that subsets of its simplices are also simplices. These simplicial sets form a subcategory $sCpx$ of $sSet$. There is a functor $F$ from this subcategory to the category of simplicial complexes which forgets orientation.\\
+
+\begin{proposition}
+  Let $X$ be an object of $sCpx$. Then $|X|$ is homeomorphic to realization of simplicial complex $[F(X)]$.
+\end{proposition}
+
+This obvious (geometric realization forgets orientation) proposition allowed Barmak to operate simplicial complexes instead of simplicial sets in his paper.\\
+
+Application of Quillen's A theorem to posets yields the following theorem (we identify poset with its posetal category).
 
 \begin{theorem} \textbf{Quillen-McCord theorem}\\
   Assume $X, Y$ are finite posets, $f : X \to Y$ is an order-preserving map.\\
@@ -380,31 +377,17 @@ The nerve construction on a posetal category yields a simplicial complex called 
   If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
-Proofs of both theorems are necessary to understand the proposal and we recall them in brief.
+Proofs of both theorems are necessary to understand the text and we recall them in brief.
 
 \subsubsection{Barmak's proof of Quillen-McCord theorem}
 
-\begin{proposition} {\cite[Proposition 2.1]{Bar11}}
-  \label{prop:homotopy_t}
-  Let $X$ and $Y$ be two simplicial complexes such that $X \cup Y$ is a simplicial complex. Then if $\left|X\right| \cap \left|Y\right| \hookrightarrow \left|X\right|$ is a homotopy equivalence, then so is $\left|Y\right| \hookrightarrow \left|X \cup Y\right|$.
-\end{proposition}
-
-\begin{proposition} {Variation of \cite[Proposition 2.2]{Bar11}}
+\begin{proposition} {Variation of \cite[Lemma 2.2]{Bar11}}
   \label{prop:comparison}
   Let $f,g : X \to Y$ be order-preserving maps between finite posets such that $\forall x\;f(x) \leq g(x)$. Then $\mathcal{B}(f)$ is homotopy-equivalent to $\mathcal{B}(g)$.
 \end{proposition}
 
-\begin{pf}
-  $X$ has a finite set $M$ of maximal elements. Take any of them ($m_1$) and define $h_1 : X \to Y$ such that $h_1(m_1) = g(m_1)$ and $h_1 = f$ on all other elements of $X$. This is an order-preserving map due to the maximality of $m_1$. Take $M \setminus \{m_1\}$ and build $h_2$ which is equal to $h_1$ on complement to $m_2$ and to $g$ on $m_2$ and so on. We have built a finite sequence of maps $h_0 = f \leq h_1 \leq h_1 \leq \ldots \leq g = h_n$.\\
-
-  Elements $h_i(m_i)$ and $h_{i-1}(m_i)$ are comparable.\\
-  Hence there exists simplex $\{h_i(m_i); h_{i-1}(m_i)\}$ in $\mathcal{N}(Y)$. Since $\mathcal{N}(Y)$ is a simplicial complex, for other elements between selected where exist no holes and thus there is a linear homotopy between $h_{i-1}$ and $h_{i}$ which contracts simplex $\{h_i(m_i); h_{i-1}(m_i)\}$.\\
-
-  Hence there is a homotopy between $f$ and $g$.
-\end{pf}
-
 \begin{proposition}
-  Note that $\operatorname{lk}(\mathcal{N}(x)) = \mathcal{N}(X_{>x}) \star \mathcal{N}(X_{<x})$. Therefore $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x})$.
+  Note that $\operatorname{lk}(F(\mathcal{N}(x))) = F(\mathcal{N}(X_{>x})) \star F(\mathcal{N}(X_{<x}))$. Therefore $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x})$.
 \end{proposition}
 
 The crucial observation is the existence of the following covering for any $x \in X$.
@@ -418,8 +401,10 @@ The crucial observation is the existence of the following covering for any $x \i
   Let $X$ be a finite poset and for $x \in X$ either $\mathcal{B}(X_{>x})$ or $\mathcal{B}(X_{<x})$ is contractible. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ is a homotopy equivalence.
 \end{lemma}
 
+This lemma is a most important part of the proof for this paper and we recall a proof.
+
 \begin{pf}
-  By proposition $\left|\operatorname{lk}(\mathcal{N}(x))\right|$ is contractible. Hence its embedding to its cone $\left|\operatorname{st}(\mathcal{N}(x))\right|$ is a homotopy equivalence by Whitehead theorem. Lemma follows by Proposition \ref{prop:homotopy_t}.
+  By hypothesis, $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \left|\operatorname{st}(\mathcal{N}(x))\right| \cap \mathcal{B}(X \setminus \{x\})$ is contractible. Hence its embedding to its cone $\left|\operatorname{st}(\mathcal{N}(x))\right|$ is a homotopy equivalence by Whitehead theorem. Being a subcomplex, it is a strong deformation retract. Then, $\mathcal{B}(X \setminus \{x\})$ is a strong deformation retract of $\mathcal{B}X = \left|\operatorname{st}(\mathcal{N}(x))\right| \cup \mathcal{B}(X \setminus \{x\})$
 \end{pf}
 
 \begin{definition} {Variation of \cite[Proposition 2.1]{Bar11}}
@@ -454,7 +439,7 @@ The crucial observation is the existence of the following covering for any $x \i
 \end{lemma}
 
 \begin{pf} ~ \par
-  By Proposition \ref{prop:kunneth} $H_i(\left|\operatorname{lk}(\mathcal{N}(x))\right|) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$ --- $Tor$-functors vanish if any of their arguments is trivial.
+  By Proposition \ref{prop:kunneth} $H_i(\left|\operatorname{lk}(\mathcal{N}(x))\right|) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$.
   Application of Mayer-Vietoris long exact sequence to covering \eqref{covering} yields the lemma.
 \end{pf}\\
 
