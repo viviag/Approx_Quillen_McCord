@@ -126,7 +126,7 @@ In this paper, we formulate and prove the persistent homological version of Quil
 The paper is structured as follows.
 \begin{enumerate}
   \setcounter{enumi}{1}
-  \item In preliminaries we give an outline of well-known notions used throughout the proposal.
+  \item In preliminaries we give an outline of well-known notions used throughout the paper.
   \begin{enumerate}[label*=\arabic*.]
     \item First preliminary subsection is devoted to a notion of interleaving distance (following {\cite{GS16}}) which fits as a required measure of similarity between series. Usability of this notion is guaranteed by persistence theorem {\cite{Zomorodian05}}. We try to keep some level of generality, in particular, we work with a generalized version of the theorem proven in {\cite{Corbet18}} and formulate it. This generality is necessary for applications and allows us to operate both discrete and continuous models of time in an experiment.
     \item Second subsection gives a classical formulation of the Quillen-McCord theorem and necessary definitions. In order to bind the theorem to an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive it from the general theorem. Additionally, we outline Barmak's ({\cite{Bar11}}) proofs of classical and homological versions of the theorem.
@@ -408,7 +408,7 @@ This lemma is a most important part of the proof for this paper and we recall a 
 \end{pf}
 
 \begin{definition} {Variation of \cite[Proposition 2.1]{Bar11}}
-  Let $f : X \to Y$ be an order-preserving map between posets. Denote orders ($\leq$) on $X$ and $Y$ as $R_X$ and $R_Y$. Then we define poset $M(f) = X \coprod Y$ with $R = R_X \cup R_Y \cup R_{f}$ where $(x,y) \in R_f$ if and only if $(f(x),y) \in R_Y$.\\
+  Let $f : X \to Y$ be an order-preserving map between posets. Denote orders ($\leq$) on $X$ and $Y$ as $R_X$ and $R_Y$. Then we define poset $M(f) = X \coprod_f Y$ with $R = R_X \cup R_Y \cup R_{f}$ where $(x,y) \in R_f$ if and only if $(f(x),y) \in R_Y$.\\
 
   We shall by analogy denote this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i_X : X \to M(f)$ and $i_Y : Y \to M(f)$.
 \end{definition}
@@ -480,56 +480,50 @@ We have two types of persistence objects with similar definitions. It is appeali
 \end{example}
 
 \begin{definition}
-  We denote images of morphisms in $I$ as \define{structure maps} of a persistence object over $\mathcal{C}$. For countable $I$ it is generally enough to consider the generating set of these morphisms, i.e. the set of indecomposable morphisms.
+  We call images of morphisms in $I$ the \define{structure maps} of a persistence object over $\mathcal{C}$. For countable $I$ it is generally enough to consider the set of indecomposable morphisms.
 \end{definition}
 
-We use the notation $(X,\phi)$ for ``Persistence object X with structure maps $\phi$ over fixed indexing category $I$''. We use notation $\phi_{ij}$ for a structure map between $X_i$ and $X_{j}$.\\
+We use the notation $(X,\phi)$ for ``Persistence object X with the family of structure maps $\phi$ over fixed indexing category $I$''. We use notation $\phi_{ij}$ for a structure map between $X_i$ and $X_{j}$.\\
 
-Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to a functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be a persistence poset. Apparently $\mathcal{B}(P)$ is a persistence topological space.\\
+Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It naturally extends to a functor between $Fun(I,\mathcal{C})$ and $Fun(I,\mathcal{D})$. Let $P$ be a persistence poset. Apparently, $\mathcal{B}(P)$ is a persistence topological space.\\
 
 \begin{definition}
   Persistence topological space $X$ is called \define{$\varepsilon$-acyclic} over $R$ if for all indices\\ $H_i(X,R) \stackrel{\varepsilon}{\sim} H_i(pt,R)$.
 \end{definition}
 
 \begin{definition}
-  \define{Persistence poset of finite type} is a finite sequence of finite posets.\\
-
-  In terms of functors ``finite sequence'' means that only the finite set of indices has a nontrivial image. It's convenient to define ``trivial object'' as the initial object where present.
+  \define{Persistence object of finite type} is a finite sequence of finite objects.\\
 \end{definition}
-
-The property of being of finite type is preserved by functors that map initial objects to initial.\\
 
 \begin{proposition}
   Let $X$ be a persistence poset of finite type. Then $BX$ has homology modules of finite type.
 \end{proposition}
 
 \begin{pf}
-  The nerve of an empty poset is an empty simplicial set, which is an initial object. Hence $BX$ is a geometric realization of a simplicial complex of finite type. The homology of $BX$ can be computed as the homology of this simplicial complex. Hence homology modules of $BX$ are of finite type.
+  The nerve of an empty poset is an empty simplicial set. Hence $\mathcal{N}(X)$ is a finite sequence of simplicial sets. Since finite poset has only finite number of chains, each component is finite, hence $\mathcal{N}(X)$ has finite type. The homology of $BX$ can be computed as the homology of this simplicial set. Hence homology modules of $BX$ are of finite type.
 \end{pf}\\
 
 \begin{corollary}
   In particular, $BX$ has finitely presented homology modules.
 \end{corollary}
 
-There is a general fact --- if some universal object exists in $C$, it can be constructed component-wise in $Fun(I,C)$. Let's inspect this component-wise construction of universal objects by example.\\
+If some limit or colimit exists in $C$, it can be constructed component-wise in $Fun(I,C)$. We are indirectly using this fact while speaking about homology modules of persistence simplicial sets. We can examine the component-wise construction of colimits by example.\\
 
 \begin{definition}
-  Let $f = (f_1,\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then mapping cylinders $M(f_j)$ form persistence poset $M(f)$ with structure maps arising from the universal property of coproduct and structure maps of $X$ and $Y$.\\
+  Let $f = (f_1,\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then mapping cylinders $M(f_j)$ form persistence poset $M(f)$ with structure maps arising from the universal property of pushouts and structure maps of $X$ and $Y$.\\
 
   To be explicit consider the following diagram in $Pos$ with $i_X$, $j_Y$ being series of canonical inclusions.\\
   \begin{equation}
   \begin{tikzcd}
-  X_{j}\arrow{r}{{i_X}_j}\arrow{d}{\phi_{i_X}} & X_j \coprod Y_j\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{i_Y}} \\
-  X_{j+1}\arrow{r}{{i_X}_{j+1}} & X_{j+1} \coprod Y_{j+1} & Y_{j+1}\arrow{l}{{i_Y}_{j+1}} \\
+  X_{j}\arrow{r}{{i_X}_j}\arrow{d}{\phi_{i_X}}\arrow[bend left=17,swap]{rr}{f_j} & X_j \coprod_{f_j} Y_j\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{i_Y}} \\
+  X_{j+1}\arrow{r}{{i_X}_{j+1}}\arrow[bend left=17,swap]{rr}{f_{j+1}} & X_{j+1} \coprod_{f_{j+1}} Y_{j+1} & Y_{j+1}\arrow{l}{{i_Y}_{j+1}} \\
   \end{tikzcd}
   \end{equation}\\
 
-  The existence of order-preserving maps $\zeta_j$ is guaranteed by the universal property of coproducts, they are set to be structure maps of $M(f)$. $(M(f), \zeta_j)$ is a \define{mapping cylinder of map of persistence posets}.\\
+  The existence of order-preserving maps $\zeta_j$ is guaranteed by the universal property of pushouts, they are set to be structure maps of $M(f)$. $(M(f), \zeta_j)$ is a \define{mapping cylinder of map of persistence posets}.\\
 
   We also have canonical inclusions $i_X$ and $i_Y$ arising from the same diagram.
 \end{definition}
-
-Other examples of such component-wise constructions are kernels, cokernels, and homology modules.\\
 
 We can also define a subobject in $Fun(I, \mathcal{C})$.
 
@@ -553,26 +547,25 @@ Illustrative example is given by definition in $Fun(I, Pos)$.\\
 \begin{definition} ~ \par
   Consider persistence poset $(X,\phi)$ and sets $Y_i \subset X_i$.\\
 
-  If there is no element $y$ in any $Y_i$ such that $\phi(y) \not\in Y_{i+1}$ then component-wise inclusion $Y \to X$ commutes with structure maps and form an embedding of persistence posets. In this case $Y=(\ldots,Y_i,\ldots)$ is a \define {persistence subposet} of $X$.
+  If there is no element $y$ in any $Y_i$ such that $\phi(y) \not\in Y_{i+1}$ then component-wise inclusion $Y \to X$ commutes with structure maps and form an embedding of persistence posets. In this case $(Y, \phi)=(\ldots,Y_i,\ldots)$ is a \define {persistence subposet} of $X$.
 \end{definition}
 
 We can also define an \define{element} of a persistence poset.
 \begin{definition}
-  Let $(X,\phi)$ be a persistence poset, $x_i \in X_i$ such that $x_i$ has no preimages under structure maps. In all components with degrees above $i$ there exist elements $\phi(x_i)$ in components. We define $x_j = \bot$ for $j < i$ for consistency of the definition.
+  Persistence subposet $x$ of $(X,\phi)$ with at most one element in each component is called an element of $X$
 \end{definition}
 
-Although this definition operates the contradiction it is eliminated by applications.\\
-For instance, we can consider the following example of a subposet.
+One can consider conponent-wise order on $X$ and work with sets like the following.
 \begin{example}
-  Let $x$ be an element of the persistence subposet $(X, \phi)$. Then we can define $X_{<x}$ component-wise as the poset of elements less than $x$ and as a trivial poset if $x_i = \bot$.\\
+  Let $x$ be an element of the persistence subposet $(X, \phi)$. Then $X_{<x}$ is the poset of elements component-wise less than $x$.\\
 
   $X_{<x}$ contains component-wise only elements comparable with $x$. Since structure maps are order-preserving, $X_{<x}$ is a subposet.
-\end{example}
+\end{example} ~ \par
 
 Finally, we give a definition of \define{persistence covering}.\\
 
 \begin{definition}
-  Assume a poset $X$ splits into subposets $X_j$. It is not a trivial assumption since arbitrary split can lose some structure maps. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them) cover the whole $BX$, they are called a \define{persistence covering}.
+  Assume a poset $X$ splits into union of subposets $X_j$. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them in $BX$) cover the whole $BX$, they are called a \define{persistence covering}.
 \end{definition}
 
 This definition gives an example of how structures in the category of persistence posets can be transferred to other persistence categories. It is possible to reformulate the definition as internal to the category of persistence topological spaces but we prefer to keep a more constructive way.
