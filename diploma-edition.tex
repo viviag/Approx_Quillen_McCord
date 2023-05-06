@@ -576,7 +576,7 @@ This definition gives an example of how structures in the category of persistenc
 In his proof of the Quillen-McCord theorem Barmak relies on the order extension principle. To be able to transfer Barmak's proof of Quillen-McCord theorem to the persistent case we have to stress a similar statement for persistence posets.
 
 \begin{definition}
-  We denote as \define{extension of persistence poset} $X$ series of partially-ordered extensions of $X_i$ such that the structure maps of $X$ are well-defined on these extensions. If extensions of all components are linear we call this series linear extension.
+  An \define{extension of persistence poset} $X$ is a series of partially-ordered extensions of $X_i$ such that the structure maps of $X$ are well-defined on these extensions. If extensions of all components are linear we call this series linear extension.
 \end{definition}
 
 \begin{proposition}
@@ -615,20 +615,20 @@ One can consider set $E(X,\phi)$ of extensions of persistence poset $(X,\phi)$ w
 \end{pf}
 
 \begin{proposition}
-  \textbf{Persistent order extension principle.} Every persistence poset $(X,\phi)$ has linear extension.
+  \textbf{Persistent order extension principle.} Every persistence poset $(X,\phi)$ has a linear extension.
 \end{proposition}
 
 \begin{pf}
   By Zorn's lemma $E(X,\phi)$ has maximal element $M$. Assume this element is not a linear extension of $(X,\phi)$.\\
 
-  Then in some $M_i$ there exists incomparable pair $(a,b)$. Consider $\phi_{ij}(a)$ and $\phi_{ij}(b)$ for all $j > i$. Assume without loss of generality for $j_2 > j_1$ that $\phi_{ij_1}(a) > \phi_{ij_1}(b)$ and $\phi_{ij_2}(a) < \phi_{ij_2}(b)$. Then the map $\phi_{j_1j_2}$ cannot be defined. Hence any $j$ relation between images of $a$ and $b$ has the same sign if exists. If there exists such $j$ that relation between $\phi_{ij}(a)$ and $\phi_{ij}(b)$ exists we define relation between $a$ and $b$ accordingly. Otherwise, we define it arbitrarily and propagate order to the left --- all preimages of $a$ and $b$ were incomparable and are now equipped with compatible orders.\\
+  Then in some $M_i$ there exists incomparable pair $(a,b)$. Consider $\phi_{ij}(a)$ and $\phi_{ij}(b)$ for all $j > i$. Assume without loss of generality for $j_2 > j_1$ that $\phi_{ij_1}(a) > \phi_{ij_1}(b)$ and $\phi_{ij_2}(a) < \phi_{ij_2}(b)$. Then the map $\phi_{j_1j_2}$ cannot be defined. Hence for any $j$ relation between images of $a$ and $b$ has the same sign if exists. If there exists such $j$ that relation between $\phi_{ij}(a)$ and $\phi_{ij}(b)$ exists we define relation between $a$ and $b$ accordingly. Otherwise, we define it arbitrarily and propagate order to the left --- all preimages of $a$ and $b$ were incomparable and are now equipped with compatible orders.\\
 
   We have constructed an extension of $M$ which is taken to be maximal. Hence $M$ must be a linear extension of $(X,\phi)$.
 \end{pf}
 
 \subsection{Approximation distances}
 
-Persistence modules give us the first example of an approximation distance. We can infer some results.\\
+We can infer some stability results on persistence modules, using notions transferred from the category of graded modules. During this subsection we assume conditions of Theorem 1 or Theorem 2 to be satisfied.\\
 
 \begin{proposition} ~ \par
   \label{prop:sum}
@@ -657,19 +657,23 @@ Persistence modules give us the first example of an approximation distance. We c
   Assume $d_i$ is a differential in a complex. We know that $0 \to \operatorname{im}{d_{i+1}} \to \ker{d_{i}} \to H_i(P) \to 0$ is exact and that $0 \to \ker{d_i} \to P_i \to P_{i-1} \to 0$ is exact. The result follows by the application of Lemma 1 twice.
 \end{pf}\\
 
-\begin{proposition} {\cite[Page 2]{Mitchell81}}\\
+\begin{proposition}
   Category $Fun(I, $R$-Mod)$ has enough projectives.
 \end{proposition}
 
-Since we have enough projectives we can compute derived functors. We need the following proposition.\\
+\begin{remark}
+ The following proposition is known to be true without conditions on $I$. {\cite[Page 2]{Mitchell81}}
+\end{remark}
+
+Since we have enough projectives, we can compute derived functors. We need the following proposition.\\
 
 \begin{proposition}
   \label{prop:tor}
-  Let $R$ be commutative ring, $A$ and $B$ --- $R$-modules such that either $A$ or $B$ is $\varepsilon$-interleaved with $0$. Then $Tor_i^R(A,B) \stackrel{\varepsilon}{\sim} 0$.
+  Let $R$ be a commutative ring, $A$ and $B$ --- $R$-modules such that either $A$ or $B$ is $\varepsilon$-interleaved with $0$. Then $Tor_i^R(A,B) \stackrel{\varepsilon}{\sim} 0$.
 \end{proposition}
 
 \begin{pf}
-  Since $R$ is commutative, $Tor_i^R(A,B) = Tor_i^R(B,A)$. Without loss of generality assume $B \stackrel{\varepsilon}{\sim} 0$. Let $P$ be the projective resolution of $A$. After taking the tensor product we obtain by Proposition \ref{prop:tensor} sequence of modules $\varepsilon$-interleaved with $0$. The proposition follows by Proposition \ref{prop:hominter}.
+  Since $R$ is commutative, $Tor_i^R(A,B) = Tor_i^R(B,A)$. Without loss of generality assume $B \stackrel{\varepsilon}{\sim} 0$. Let $P$ be the projective resolution of $A$. By Proposition \ref{prop:tensor}, after taking the tensor product we obtain sequence of modules, $\varepsilon$-interleaved with $0$. The proposition follows by Proposition \ref{prop:hominter}.
 \end{pf}\\
 
 We can also derive the result about exact sequences.\\
@@ -680,11 +684,9 @@ We can also derive the result about exact sequences.\\
 \end{proposition}
 
 \begin{pf}
-  Under conditions of theorems 1 and 2, we can identify the category of persistence modules and the category of non-negatively graded modules.\\
+  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{im}f \to 0$ the $\operatorname{im}f$ is $\varepsilon$-trivial. By exactness, it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \to D \to 0$ there follows that $d(I = \operatorname{im} \phi, 0) \leq \varepsilon$. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
 
-  In s.e.s $0 \to \ker{f} \hookrightarrow A \xrightarrow{f} \operatorname{im}f \to 0$ $\operatorname{im}f$ is $\varepsilon$-trivial. By exactness, it is equal to $K = \ker \phi$. On the other side from $0 \to \ker{g} \xrightarrow{g} D \to D \to 0$ there follows that $d(I = \operatorname{im} \phi, 0) \leq \varepsilon$. Hence by transitivity $K \stackrel{2\varepsilon}{\sim} I$.\\
-
-  We obtain an exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. This sequence decomposes into sequences $0 \to K \to B \to \operatorname{coIm}\phi$ and $0 \to \operatorname{Im}\phi \to C \to I \to 0$. By lemma \ref{ops} we have that $d(B,\operatorname{coIm}\phi) \leq 2\varepsilon$ and $d(C,\operatorname{Im}\phi) \leq 2\varepsilon$. $coIm$ and $Im$ are pointwise canonically isomorphic by the first isomorphism theorem for modules, hence $d(B, C) \leq 4\varepsilon$.
+  We obtain an exact sequence $0 \to K \to B \xrightarrow{\phi} C \to I \to 0$. This sequence decomposes into sequences $0 \to K \to B \to \operatorname{coIm}\phi \to 0$ and $0 \to \operatorname{Im}\phi \to C \to I \to 0$. By lemma \ref{ops} we have that $d(B,\operatorname{coIm}\phi) \leq 2\varepsilon$ and $d(C,\operatorname{Im}\phi) \leq 2\varepsilon$. Coimage and image are pointwise canonically isomorphic by the first isomorphism theorem for modules, hence $d(B, C) \leq 4\varepsilon$.
 \end{pf}\\
 
 \section{Main results}
@@ -696,6 +698,8 @@ We can also derive the result about exact sequences.\\
 
 \begin{pf}
   All $Tor$-functors from Proposition \ref{prop:kunneth} are $\varepsilon$-interleaved with $0$ by Proposition \ref{prop:tor}. Hence by Proposition \ref{prop:sum} the right hand side of expression of Proposition \ref{prop:kunneth} is $\varepsilon$-equivalent to $0$.\\
+  
+  Note that on the left hand side we operate a component-wise join. The Proposition \ref{prop:kunneth} is true component-wise and is true as a statement about persistence modules by gluing over structure maps.
 \end{pf}\\
 
 \begin{proposition}
