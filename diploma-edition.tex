@@ -263,18 +263,14 @@ We can examine how do notions related to interleaving distance look like in a ca
   Let $M$ and $N$ be graded $R[G]$-modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$.
 \end{definition}
 
-Let $R$ be a ring with unity and $G$ be a very good monoid. Then for any graded $R[G]$-module $M$ and any $\varepsilon \in \mathbb{G}$ there exists a $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon}(a)$. For instance, if the monoid $G$ is a monoid of non-negative natural numbers, the $\operatorname{Id}_{\varepsilon}$ is a multiplication by $t^{\varepsilon}$, where $t$ is a generator of a polynomial algebra {\cite[Example 2.8]{GS16}}.\\
+Let $R$ be a ring with unity and $G$ be a very good monoid. Then for any graded $R[G]$-module $M$ and any $\varepsilon \in \mathbb{G}$ there exists a $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon}(a)$. For instance, if the monoid $G$ is a monoid of non-negative integers, the $\operatorname{Id}_{\varepsilon}$ is a multiplication by $t^{\varepsilon}$, where $t$ is a generator of a polynomial algebra {\cite[Example 2.8]{GS16}}.\\
 
-This example can be generalized.
+This example can be generalized as follows.
 
-\begin{proposition}
+\begin{proposition} \cite[Following the Equation 4]{Corbet18}
   \label{mult}
-  Let $G$ be a very good monoid. The $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon}$ is a multiplication on a fixed element $m(\varepsilon) \in R[G]$.
+  Let $M$ be an $R[G]$-module. The $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon} : M \to M$ is a multiplication on a fixed element $m \in R[G]^{\varepsilon}$, where grading on $R[G]$ is given by $G$.
 \end{proposition}
-
-\begin{pf}
-  %FIXME: requires proof.
-\end{pf}
 
 \begin{proposition} {\cite[Proposition 2.13]{GS16}}
   \label{epstriv}
@@ -292,7 +288,7 @@ This example can be generalized.
   \end{itemize}
 \end{lemma}
 
-The second statement of the lemma requires proof. We give it for well-founded monoids first for compatibility with the referenced result. 
+The second statement of the lemma requires proof. We give it for non-negative integers first for compatibility with the referenced result. 
 
 \begin{pf}
   Denote non-trivial maps in s.e.s as $i$ and $q$.\\
@@ -489,7 +485,7 @@ We see two updates. The first one is essential, it requires Lemma \ref{lem:trivi
 
 \subsection{Persistence objects and related constructions}
 
-We have two types of persistence objects with similar definitions. It is appealing to form a general notion of a persistence object such that these definitions fall into special cases.\\
+We have two types of persistence objects with similar definitions. There is a general notion of a persistence object such that these definitions fall into special cases.\\
 
 \begin{definition}
   Consider $I$ --- the poset category of a fixed linearly ordered set. There is a sequence category $Fun(I, \mathcal{C})$ of functors from $I$ to some category $\mathcal{C}$. We call objects of this category \define{persistence objects over $\mathcal{C}$}
@@ -498,7 +494,7 @@ We have two types of persistence objects with similar definitions. It is appeali
 \begin{example} ~ \par
   \begin{itemize}
     \item Persistence complex is a persistence object over the category of chain complexes;
-    \item Persistence $R$-module is a persistence object over the category of $R$-modules;
+    \item Persistence $R$-module is a persistence object over the category of $R$-modules; \cite[Definition 2.15]{GS16}
     \item Persistence simplicial set is a persistence object over the category $sSet$;
     \item Persistence poset is a persistence object over $Pos$;
     \item Persistence topological space is a persistence object over $Top$.
