@@ -418,7 +418,7 @@ The crucial observation is the existence of the following covering for any $x \i
   Let $X$ be a finite poset and for $x \in X$ either $\mathcal{B}(X_{>x})$ or $\mathcal{B}(X_{<x})$ is contractible. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ is a homotopy equivalence.
 \end{lemma}
 
-This lemma is a most important part of the proof for this paper and we recall a proof.
+For this paper, this lemma is a most important part of the proof of the theorem, hence we recall its proof.\\
 
 \begin{pf}
   By hypothesis, $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \left|\operatorname{st}(\mathcal{N}(x))\right| \cap \mathcal{B}(X \setminus \{x\})$ is contractible. Hence its embedding to its cone $\left|\operatorname{st}(\mathcal{N}(x))\right|$ is a homotopy equivalence by Whitehead theorem. Being a subcomplex, it is a strong deformation retract. Then, $\mathcal{B}(X \setminus \{x\})$ is a strong deformation retract of $\mathcal{B}X = \left|\operatorname{st}(\mathcal{N}(x))\right| \cup \mathcal{B}(X \setminus \{x\})$
@@ -429,34 +429,6 @@ This lemma is a most important part of the proof for this paper and we recall a 
 
   We call this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i_X : X \to M(f)$ and $i_Y : Y \to M(f)$.
 \end{definition}
-
-For comparison, we can consider a more standard construction.
-
-\begin{proposition}
-  \label{pushout}
-  Denote by $\sim$ the equivalence relation $x \sim f(x)$ and set $\widetilde{M(f)} = M(f)/\sim$. The square
-  \begin{equation}
-  \begin{tikzcd}
-  \widetilde{M(f)} & X\arrow{l}{\widetilde{i_X} = i_X/\sim} \\
-  Y\arrow{u}{i_Y} & X\arrow{l}{f}\arrow{u}{\operatorname{Id}}\
-  \end{tikzcd}
-  \end{equation}
-  is cocartesian in $Pos$.
-\end{proposition}
-
-\begin{pf}
-  Consider arbitrary $Z$ such that the following diagram commutes.
-  \begin{equation}
-  \begin{tikzcd}
-  Z & X\arrow{l}{\widetilde{i_X}} \\
-  Y\arrow{u}{i_Y} & X\arrow{l}{f}\arrow{u}{\operatorname{Id}}\
-  \end{tikzcd}
-  \end{equation}
-  
-  Maps $\widetilde{i_X}$ and $i_Y$ preserve order, thus orders $R_X$ and $R_Y$ are embedded to $R_Z$. The order relation $R_{\widetilde{M(f)}}$ is a union of $R_X$ and $R_Y$ because $R_f$ is trivialized by the quotient. Hence $R_{\widetilde{M(f)}} \subset R_Z$ and there exists an unique morphism $\widetilde{M(f)} \to Z$. This morphism is an embedding into an extension.
-\end{pf}
-
-\vspace{0.3cm}
 
 \begin{pf} \textbf{Quillen-McCord theorem}\\
   Let $X, Y$ be finite posets with an order-preserving map $f : X \to Y$.\\
@@ -469,8 +441,6 @@ For comparison, we can consider a more standard construction.
 
   Note that $i(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} the space $\mathcal{B}(i_X)$ is homotopic to the space $\mathcal{B}(i_Y \circ f) = \mathcal{B}(i_Y) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}
-
-Note that the standard construction of a cocartesian square cannot be used instead of the mapping cylinder.
 
 \subsubsection{Barmak's proof of homological Quillen-McCord theorem}
 
@@ -554,27 +524,9 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
   The nerve of an empty poset is an empty simplicial set. Hence $\mathcal{N}(X)$ is a finite sequence of simplicial sets. Since a finite poset has only finite number of chains, each component is finite, hence $\mathcal{N}(X)$ has finite type. The homology of $\mathcal{B}(X)$ can be computed as the homology of this simplicial set. Hence homology modules of $\mathcal{B}(X)$ are of finitely presented type as quotients of finite rank free modules by finite rank free modules.
 \end{pf}\\
 
-If some limit or colimit exists in $C$, it can be constructed component-wise in $Fun(I,C)$. We are indirectly using this fact while speaking about homology modules of persistence simplicial sets. We can examine the component-wise construction of colimits by example.\\
-
-\begin{example}
-  Let $f = (\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then contracted mapping cylinders $\widetilde{M(f_j)}$ form a persistence poset $\widetilde{M(f)}$ with structure maps arising from the universal property of cocartesian squares and structure maps of $X$ and $Y$.\\
-
-  To be explicit, consider the following diagram in $Pos$ with $\widetilde{i_X}$, $j_Y$ taken from Proposition \ref{pushout}.\\
-  \begin{equation}
-  \begin{tikzcd}
-  X_{j}\arrow{r}{{\widetilde{i_X}}_j}\arrow{d}{\phi_{i_X}}\arrow[bend left=30,swap]{rr}{f_j} & \widetilde{M(f_j)}\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{i_Y}} \\
-  X_{j+1}\arrow{r}{{i_X}_{j+1}}\arrow[bend right=30,swap]{rr}{f_{j+1}} & \widetilde{M(f_{j+1})} & Y_{j+1}\arrow{l}{{i_Y}_{j+1}} \\
-  \end{tikzcd}
-  \end{equation}\\
-
-  The existence of order-preserving maps $\zeta_j$ is guaranteed by the universal property of cocartesian squares, they are set to be structure maps of $\widetilde{M(f)}$.\\
-\end{example}  
-
 \begin{definition}
-  Consider the series of mapping cylinders of posets $M(f_i)$. We can define the structure maps $\chi$ on this series as $\phi$ on $X$ and $\psi$ on $Y$. They preserve orders $R_{f_i}$ by definition of structure maps. The persistence poset $(M(f), \chi_j)$ is a \define{mapping cylinder of a map of persistence posets}. We also have canonical inclusions $i_X$ and $i_Y$ arising from the same diagram.
+  Let $(X, \phi)$ and $(Y, \psi)$ be persistence posets and $f : X to Y$ be a morphism. Consider the series of mapping cylinders of posets $M(f_i)$. We can define the structure maps $\chi$ on this series as $\phi$ on $X$ and $\psi$ on $Y$. They preserve orders $R_{f_i}$ by definition of structure maps. The persistence poset $(M(f), \chi_i)$ is a \define{mapping cylinder of a map of persistence posets}. We also have canonical inclusions $i_X$ and $i_Y$.
 \end{definition}
-
-Note that the mapping cylinder is not a colimit.\\
 
 We can also define a subobject in $Fun(I, Pos)$.
 
