@@ -528,7 +528,7 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 \end{definition}
 
 \begin{remark}
-  The definition of a persistence poset has a foundational issue --- since there are no maps to an empty set, structure maps are in general not defined. We prefer to resolve this issue by adjoining a contradiction symbol $\bot$ to a class of functions. If there is no candidate for a function $\phi_{ij}$ in $Pos$, we set $\phi_{ij} = \bot$ and ignore these functions in reasonings similar to <<something is defined by all images of $x$ under the structure maps>>.
+  The definition of a persistence poset has a foundational issue --- since there are no maps to an empty set, structure maps are in general not defined. In particular, this issue is unavoidable in the case of posets of finite type. We prefer to resolve this issue by adjoining a contradiction symbol $\bot$ to a class of functions. If there is no candidate for a function $\phi_{ij}$ in $Pos$, we set $\phi_{ij} = \bot$ and ignore these functions in reasonings similar to <<something is defined by all images of $x$ under the structure maps>>.
 \end{remark}
 
 \begin{proposition}
@@ -542,7 +542,7 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 If some limit or colimit exists in $C$, it can be constructed component-wise in $Fun(I,C)$. We are indirectly using this fact while speaking about homology modules of persistence simplicial sets. We can examine the component-wise construction of colimits by example.\\
 
 \begin{definition}
-  Let $f = (f_1,\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then mapping cylinders $M(f_j)$ form a persistence poset $M(f)$ with structure maps arising from the universal property of cocartesian squares and structure maps of $X$ and $Y$.\\
+  Let $f = (\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then mapping cylinders $M(f_j)$ form a persistence poset $M(f)$ with structure maps arising from the universal property of cocartesian squares and structure maps of $X$ and $Y$.\\
 
   To be explicit, consider the following diagram in $Pos$ with $i_X$, $j_Y$ being series of canonical inclusions.\\
   \begin{equation}
@@ -730,7 +730,7 @@ We can also derive the result about exact sequences.\\
 \end{pf}\\
 
 \begin{lemma}
-  Let $(X,\phi)$ be a persistence poset and for $x=(\ldots,x_i,\phi(x_i),\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ is $\varepsilon$-acyclic. Then persistent homology of $\mathcal{B}(X \setminus \{x\})$ and $\mathcal{B}(X)$ are $4\varepsilon$-interleaved.
+  Let $(X,\phi)$ be a persistence poset and for $x=(\ldots,x_i,\ldots) \in X$ either $\mathcal{B}(X_{< x})$ or $\mathcal{B}(X_{> x})$ is $\varepsilon$-acyclic. Then persistent homology of $\mathcal{B}(X \setminus \{x\})$ and $\mathcal{B}(X)$ are $4\varepsilon$-interleaved.
 \end{lemma}
 
 \begin{pf} ~ \par
