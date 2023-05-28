@@ -269,7 +269,7 @@ This example can be generalized.
 
 \begin{proposition}
   \label{mult}
-  Let $G$ be a very good monoid. The $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon}$ is a multiplication on a fixed element $m \in R[G]$.
+  Let $G$ be a very good monoid. The $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon}$ is a multiplication on a fixed element $m(\varepsilon) \in R[G]$.
 \end{proposition}
 
 \begin{pf}
@@ -302,14 +302,14 @@ The second statement of the lemma requires proof. We give it for well-founded mo
   On the other side, we have $0 = q(t^{2\varepsilon}a) = t^{2\varepsilon}q(a)$ where $q$ is surjective. Hence $N \stackrel{\varepsilon}{\sim} 0$.
 \end{pf}\\
 
-Proposition \ref{mult} allows to generalise the lemma by changing $t^{'varepsilon}$ to $m$.\\
+Proposition \ref{mult} allows to generalise the lemma by changing $t^{\varepsilon}$ to $m$.\\
 
 By equivalence of categories, the lemma holds for persistence modules over rings with unity indexed by very good monoids.
 
 \subsection{Quillen-McCord theorem}
 
 \begin{definition}
-  Let $X$ be a set and $\mathcal{P}(X)$ be its powerset. Then a set $S \subset \mathcal{P}(X)$ is called a simplicial complex if $W \in S$ for any $V \in S$ and $W \subset V$.
+  Let $X$ be a set and $\mathcal{P}(X)$ be its powerset. Then a set $S \subset \mathcal{P}(X)$ is called a simplicial complex if $W \in S$ for any $V \in S$ and $W \subset V$. Element of a simplicial complex of cardinality $n$ is calles $n$-simplex.
 \end{definition}
 
 \begin{definition}
@@ -344,18 +344,27 @@ The next proposition gives a motivation for the definition of a join of simplici
   $\left|A \star B\right| = \left|A\right| \star \left|B\right|$. Hence $\left|\operatorname{st}(x)\right|$ is a cone over $\left|x\right|$.
 \end{proposition}
 
-%FIXME: elaborate on simplicial sets language.
+\begin{definition}
+  There is a standard set of definitions, accompanying the definition of a simplicial set. Let $S$ be a simplicial set. Then
+  \begin{enumerate}
+    \item images $S([n])$ of sets of cardinality $n$ are called $n$-simplices;
+    \item images of injective maps $S([n] \to [n+1])$ are called face maps;
+    \item images of surjective maps $S([n+1] \to [n]$ are called degeneracy maps.
+  \end{enumerate}
+  
+  Details of the explicit construction can be found in [Friedman]
+\end{definition}
 
 \begin{definition}
-  Let $\mathcal{C}$ be a small category. Then we can functorially (w.r.t. to category $Cat$) assign a simplicial set $\mathcal{N}(\mathcal{C})$ called \define{nerve of a category} to it.\\
+  Let $\mathcal{C}$ be a small category. Then we can functorially (w.r.t. to category $Cat$) assign to it a simplicial set $\mathcal{N}(\mathcal{C})$ called \define{nerve of a category} to it.\\
 
   Construction goes as follows:
   \begin{itemize}
     \item we assign to each object of $\mathcal{C}$ a $0$-simplex and to each morphism in $\mathcal{C}$ a $1$-simplex with order following corresponding arrow in a category;
-    \item then we take the set of all morphisms as an alphabet and write all the words in it such that we can move from the first letter to the last following arrows in a category. We assign an $l$-simplex to a word of length $l$. Obviously, each commutative triangle $f, g, h = f \circ g$ in $\mathcal{C}$ gives rise to two morphisms between these words --- one is replacing $h$ with $f \circ g$ and maps to a degeneracy map, another replaces $f \circ g$ with $h$ and maps to a face map.
+    \item then we take the set of all morphisms as an alphabet and write all the words in it such that we can move from the first letter to the last following arrows in a category. We assign an $l$-simplex to a word of length $l$. Each commutative triangle $f, g, h = f \circ g$ in $\mathcal{C}$ gives rise to a morphism between these words --- it replaces $f \circ g$ with $h$ and serves as a face map. Replacements $f \to f \circ Id$ represent degeneracy maps.
   \end{itemize}
 
-  By construction this object is a simplicial set.
+  This collection of data forms a simplicial set, details can be found in [Kerodon002M].
 \end{definition}
 
 \begin{definition}
@@ -372,7 +381,7 @@ The next proposition gives a motivation for the definition of a join of simplici
   If $F: C \to D$ is a functor such that the classifying space $B(d \downarrow F)$ of the comma category $d \downarrow F$ is contractible for any object $d \in D$, then $F$ induces a homotopy equivalence $BC \to BD$.
 \end{theorem}
 
-The nerve construction on a posetal category yields a simplicial set with good properties that there is an unique simplex spanning each unordered set and that subsets of its simplices are also simplices. These simplicial sets form a subcategory $ssCpx$ of $sSet$.\\
+The nerve construction on a posetal category yields a simplicial set with good properties that image of a set of reorderings on any set in $\Delta$ contains unique simplex and that subsets of its simplices are also simplices. These simplicial sets form a subcategory $ssCpx$ of $sSet$.\\
 
 There is a functor $F$ from this subcategory to the category of simplicial complexes, that turns a simplicial set to a set of its images.\\
 
@@ -525,7 +534,7 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 \end{pf}\\
 
 \begin{definition}
-  Let $(X, \phi)$ and $(Y, \psi)$ be persistence posets and $f : X to Y$ be a morphism. Consider the series of mapping cylinders of posets $M(f_i)$. We can define the structure maps $\chi$ on this series as $\phi$ on $X$ and $\psi$ on $Y$. They preserve orders $R_{f_i}$ by definition of structure maps. The persistence poset $(M(f), \chi_i)$ is a \define{mapping cylinder of a map of persistence posets}. We also have canonical inclusions $i_X$ and $i_Y$.
+  Let $(X, \phi)$ and $(Y, \psi)$ be persistence posets and $f : X \to Y$ be a morphism. Consider the series of mapping cylinders of posets $M(f_i)$. We can define the structure maps $\chi$ on this series as $\phi$ on $X$ and $\psi$ on $Y$. They preserve orders $R_{f_i}$ by definition of structure maps. The persistence poset $(M(f), \chi_i)$ is a \define{mapping cylinder of a map of persistence posets}. We also have canonical inclusions $i_X$ and $i_Y$.
 \end{definition}
 
 We can also define a subobject in $Fun(I, Pos)$.
@@ -746,6 +755,15 @@ We expect the stronger statement with no conditions on $R$ to be true with anoth
   \newblock In: Gasparovic, E., Robins, V., Turner, K. (eds)
   \newblock Research in Computational Topology 2. Association for Women in Mathematics Series, vol 30. Springer, Cham.
   \newblock https://doi.org/10.1007/978-3-030-95519-9\_6
+  \bibitem[Kerodon002M]{Kerodon002M}
+  Jacob Lurie. 2023.
+  \newblock Kerodon.
+  \newblock https://kerodon.net/tag/002M
+  \bibitem[Friedman]{Friedman}
+  Friedman, G. (2012).
+  \newblock Survey Article: An Elementary Illustrated Introduction To Simplicial Sets.
+  \newblock The Rocky Mountain Journal of Mathematics, 42(2), 353–423.
+  \newblock http://www.jstor.org/stable/44240054
   \bibitem[Bar11]{Bar11}
   Jonathan Ariel Barmak. 2011.
   \newblock On Quillen’s Theorem A for posets.
