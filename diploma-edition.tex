@@ -93,7 +93,7 @@ Moscow 2023
 \begin{abstract}
 Quillen-McCord theorem gives a sufficient condition on a map between classifying spaces of posetal categories to be a homotopy equivalence. Jonathan Ariel Barmak in his paper [J. Comb. Theory Ser. A 118, 8 (November 2011), 2445–2453.] gives an elementary topological proof and proves a homological version of the theorem.
 
-We formulate and prove the homological Quillen-McCord theorem in the setting of persistent homology using the technique of interleaving distances and generalized persistence theorem. To establish the technique we introduce persistence objects as objects in appropriate functor categories and prove several results, e.g. order extension principle for objects in Fun(I, Pos) and approximate triviality of left derived functors of approximately trivial objects in Fun(I, R-Mod).
+We formulate and prove the homological Quillen-McCord theorem in the setting of persistent homology using the technique of interleaving distances and the generalized persistence theorem. To establish the technique we introduce persistence objects as objects in appropriate functor categories and prove several results, e.g. order extension principle for objects in Fun(I, Pos) and approximate triviality of left derived functors of approximately trivial objects in Fun(I, R-Mod).
 
 Since the given proof gives explicit Lipschitz constant for the map of persistence classifying spaces, we expect this result to be useful in TDA for reducing the complexity of experimental data.
 \end{abstract}
@@ -102,21 +102,21 @@ Since the given proof gives explicit Lipschitz constant for the map of persisten
 
 \section{Introduction}
 
-Computation of the homotopy type of an arbitrary CW complex is an open problem. It is theoretically possible to compute homology groups in all cases, but in practice such computations are limited by resources. Compexity generally grows with a dimension of a complex. Hence there is an optimization problem --- given CW complex $B$, construct CW complex $A$ such that $\operatorname{dim}(A) < \operatorname{dim}(B)$ and $H_{\star}(A) \cong H_{\star}(B)$.\\
+Computation of the homotopy type of an arbitrary CW complex is an open problem. It is theoretically possible to compute homology groups in all cases, but in practice, such computations are limited by resources. Complexity generally grows with a dimension of a complex. Hence there is an optimization problem --- given CW complex $B$, construct CW complex $A$ such that $\operatorname{dim}(A) < \operatorname{dim}(B)$ and $H_{\star}(A) \cong H_{\star}(B)$.\\
 
 The Alexandrov-\v{C}ech theorem is proven to be a useful tool in applications [1, 2]. One can associate to a given covering $\mathcal{U}$ a partially ordered set of sets $U \in \mathcal{U}$ and all their intersections, ordered by inclusion. The classifying space of this poset (to be precise, its posetal category) is a barycentric subdivision of geometric realization of the nerve of $\mathcal{U}$, hence these two spaces are homeomorphic. Given this observation, one can formulate the theorem in terms of classifying spaces.\\
 
-Jonathan Barmak proves [Bar11] the homological version of Quillen-McCord theorem (also known as Quillen fiber lemma or Quillen's theorem A for posets). It is stated as follows.
+Jonathan Barmak proves [Bar11] the homological version of the Quillen-McCord theorem (also known as Quillen fiber lemma or Quillen's theorem A for posets). It is stated as follows.
 \begin{theorem*}
   Assume $X, Y$ are finite posets, $f : X \to Y$ is an order-preserving map, $R$ is a PID.\\
   If $H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$ and $y \in Y$, then $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.
 \end{theorem*}
 
-Provided an algorithm for construction of $X$ and a map by $Y$, this theorem may provide a partial solution of stated optimization problem, in particular, for nerves of coverings.\\
+Provided an algorithm for the construction of $X$ and a map by $Y$, this theorem may provide a partial solution to the stated optimization problem, in particular, for nerves of coverings.\\
 
-Coverings we operate may come from series of observations, for instance, from a long experiment. While considering the series in a whole, we are interested in persistence of nerves. To operate experimental data some stable version of the theorem is required.\\
+Coverings we operate may come from a series of observations, for instance, from a long experiment. While considering the series as a whole, we are interested in the persistence of nerves. To operate experimental data some stable version of the theorem is required.\\
 
-In this paper, we formulate and prove the persistent homological version of Quillen-McCord theorem.
+In this paper, we formulate and prove the persistent homological version of the Quillen-McCord theorem.
 \begin{theorem*}
     Assume $X, Y$ are persistence posets of finite type indexed by a very good monoid $I$, $f : X \to Y$ is an order-preserving map. Let $m$ be the number of elements of $Y$ and $R$ be a PID. Assume that the persistence topological space $\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$ for any $y=(\ldots,y_i,\ldots) \in Y$. Then $BX$ and $BY$ are $4m\varepsilon$-interleaved over $R$.\\
 \end{theorem*}
@@ -129,7 +129,7 @@ The paper is structured as follows.
   \item In preliminaries we give an outline of well-known notions used throughout the paper.
   \begin{enumerate}[label*=\arabic*.]
     \item First preliminary subsection is devoted to a notion of interleaving distance (following {\cite{GS16}}) which fits as a required measure of similarity between series. Usability of this notion is guaranteed by persistence theorem {\cite{Zomorodian05}}. We try to keep some level of generality, in particular, we work with a generalized version of the theorem proven in {\cite{Corbet18}} and formulate it. This generality is necessary for applications and allows us to operate both discrete and continuous models of time in an experiment.
-    \item Second subsection gives a classical formulation of the Quillen-McCord theorem and necessary definitions. In order to bind the theorem to an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive it from the general theorem. Additionally, we outline Barmak's ({\cite{Bar11}}) proofs of classical and homological versions of the theorem.
+    \item Second subsection gives a classical formulation of the Quillen-McCord theorem and necessary definitions. To bind the theorem to an abstract context in which the general Quillen A theorem {\cite{Quillen72}} is used, we derive it from the general theorem. Additionally, we outline Barmak's ({\cite{Bar11}}) proofs of classical and homological versions of the theorem.
   \end{enumerate}
   \item In the apparatus section we systematize and sometimes introduce various results forming the toolchain to prove the target theorem. Its necessary set of definitions is close to well-established in a field (for instance, {\cite{Bubenik15}}), but the whole toolchain is independent.
   \begin{enumerate}[label*=\arabic*.]
@@ -165,25 +165,25 @@ The real initial definition, representing a series of simplicial sets, is the fo
 \end{definition}
 
 \begin{definition}
-  Let $R$ be a ring. \define{Persistence module over $R$} is a family of $R$-modules $M_i$ with homomorphisms $\phi_i : M^i \to M^{i+1}$ as the structure maps. We denote composition of structure maps between $M_i$ and $M_j$ by $\phi_{ij}$.
+  Let $R$ be a ring. \define{Persistence module over $R$} is a family of $R$-modules $M_i$ with homomorphisms $\phi_i : M^i \to M^{i+1}$ as the structure maps. We denote the composition of structure maps between $M_i$ and $M_j$ by $\phi_{ij}$.
 \end{definition}
 
 An example of a persistence module is given by homology modules of persistence simplicial set $C_{\star}$ (\define{persistent homology}). We set $H_i^j(C_{\star}) := H_i(C_{j})$, the maps $\phi_j$ are induced by $f_i$.\\
 
 \begin{definition}
-  Persistence simplicial set (module) is of \define{finite type} over $R$ if all its simplicial sets (modules) have finite number of non-empty images (are finitely generated as $R$-modules) and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
+  Persistence simplicial set (module) is of \define{finite type} over $R$ if all its simplicial sets (modules) have a finite number of non-empty images (are finitely generated as $R$-modules) and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
 \begin{definition}
-  Persistence module is of \define{finitely presented type} over $R$ if all its modules are finitely presented as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
+  A persistence module is of \define{finitely presented type} over $R$ if all its modules are finitely presented as $R$-modules and all $f_i$ ($\phi_i$) are isomorphisms for $i > m$ for some $m$.
 \end{definition}
 
-Note that by construction homology of a persistence simplicial set of finite type is a persistence module of finitely presented type. We shall generally use terms of modules in this section.\\
+Note that by construction homology of a persistence simplicial set of finite type is a persistence module of finitely presented type. We shall generally use the terms of modules in this section.\\
 
 One can study maps of persistence modules. 
 
 \begin{definition}
-  Let $M$ and $N$ be persistence modules. Then family $f$ of maps $f_i : M_i \to N_i$ is called a morphism from $M$ to $N$ if all $f_i$s commute with structure maps.
+  Let $M$ and $N$ be persistence modules. The family $f$ of maps $f_i : M_i \to N_i$ is called a morphism from $M$ to $N$ if all $f_i$s commute with structure maps.
 \end{definition}
 
 \begin{definition}
@@ -254,10 +254,10 @@ It is proven in {\cite{Corbet18}}. The authors provide a generalization that is 
 \begin{example}
   Consider the monoid of non-negative real numbers $\mathbb{R}_{\geq 0}$ with addition as a monoidal operation. The addition of real numbers is cancellative and $\preceq$ is a total order. This monoid is very good.\\
 
-  For contrast, we can consider $\mathbb{R}$. Since $g_1 = h + g_2$ implies $g_2 = (-h) + g_1$ $\preceq$ is trivial and $R$ is not a good monoid in sense of the given definition.
+  For contrast, we can consider $\mathbb{R}$. Since $g_1 = h + g_2$ implies $g_2 = (-h) + g_1$ $\preceq$ is trivial and $R$ is not a good monoid in the sense of the given definition.
 \end{example} ~ \par
 
-We can examine how do notions related to interleaving distance look like in a category of graded modules under additional constraints on indexing set.
+We can examine how notions related to interleaving distance look in a category of graded modules under additional constraints on the indexing set.
 
 \begin{definition} {\cite[Definition 2.7]{GS16}}\\
   Let $M$ and $N$ be graded $R[G]$-modules, $f : M \to N$ be a homomorphism of modules. Then $f$ is called \define{$\varepsilon$-morphism} if $f(M^j) \subset N^{j+\varepsilon}$.
@@ -305,7 +305,7 @@ By equivalence of categories, the lemma holds for persistence modules over rings
 \subsection{Quillen-McCord theorem}
 
 \begin{definition}
-  Let $X$ be a set and $\mathcal{P}(X)$ be its powerset. Then a set $S \subset \mathcal{P}(X)$ is called a simplicial complex if $W \in S$ for any $V \in S$ and $W \subset V$. Element of a simplicial complex of cardinality $n$ is calles $n$-simplex.
+  Let $X$ be a set and $\mathcal{P}(X)$ be its powerset. Then a set $S \subset \mathcal{P}(X)$ is called a simplicial complex if $W \in S$ for any $V \in S$ and $W \subset V$. An element of a simplicial complex of cardinality $n$ is called $n$-simplex.
 \end{definition}
 
 \begin{definition}
@@ -334,7 +334,7 @@ Let $A$ be a simplicial complex.
   \define{Join} of topological spaces $A$ and $B$ is defined as follows: $A \star B\ := A \sqcup_{p_0} (A \times B \times [0,1]) \sqcup_{p_1} B$, where $p$ are projections of the cylinder $A \times B \times [0,1]$ onto faces.
 \end{definition}
 
-The next proposition gives a motivation for the definition of a join of simplicial complexes.
+The next proposition gives motivation for the definition of a join of simplicial complexes.
 
 \begin{proposition}
   $\left|A \star B\right| = \left|A\right| \star \left|B\right|$. Hence $\left|\operatorname{st}(x)\right|$ is a cone over $\left|x\right|$.
@@ -377,7 +377,7 @@ The next proposition gives a motivation for the definition of a join of simplici
   If $F: C \to D$ is a functor such that the classifying space $B(d \downarrow F)$ of the comma category $d \downarrow F$ is contractible for any object $d \in D$, then $F$ induces a homotopy equivalence $BC \to BD$.
 \end{theorem}
 
-The nerve construction on a posetal category yields a simplicial set with good properties that image of a set of reorderings on any set in $\Delta$ contains unique simplex and that subsets of its simplices are also simplices. These simplicial sets form a subcategory $ssCpx$ of $sSet$.\\
+The nerve construction on a posetal category yields a simplicial set with the following good properties: the image of a set of reorderings on any set in $\Delta$ contains unique simplex and subsets of its simplices are also simplices. These simplicial sets form a subcategory $ssCpx$ of $sSet$.\\
 
 There is a functor $F$ from this subcategory to the category of simplicial complexes, that turns a simplicial set to a set of its images.\\
 
@@ -385,7 +385,7 @@ There is a functor $F$ from this subcategory to the category of simplicial compl
   Let $X$ be an object of $ssCpx$. Then $|X|$ is homeomorphic to the geometric realization of simplicial complex $[F(X)]$.
 \end{proposition}
 
-This proposition allows us to operate simplicial complexes instead of simplicial sets and avoid general definitions of join, star and link for simplicial sets.\\
+This proposition allows us to operate simplicial complexes instead of simplicial sets and avoid general definitions of join, star, and link for simplicial sets.\\
 
 Application of Quillen's A theorem to posets yields the following theorem (we identify poset with its posetal category).
 
@@ -399,7 +399,7 @@ Application of Quillen's A theorem to posets yields the following theorem (we id
   If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
 \end{theorem}
 
-Proofs of both theorems are are used in our arguments and we recall them in brief.
+Proofs of both theorems are used in our arguments and we recall them in brief.
 
 \subsubsection{Barmak's proof of Quillen-McCord theorem}
 
@@ -423,10 +423,10 @@ The crucial observation is the existence of the following covering for any $x \i
   Let $X$ be a finite poset and for $x \in X$ either $\mathcal{B}(X_{>x})$ or $\mathcal{B}(X_{<x})$ is contractible. Then embedding $\mathcal{B}(X \setminus \{x\}) \hookrightarrow \mathcal{B}(X)$ is a homotopy equivalence.
 \end{lemma}
 
-For this paper, this lemma is a most important part of the proof of the theorem, hence we recall its proof.\\
+For this paper, this lemma is the most important part of the proof of the theorem, hence we recall its proof.\\
 
 \begin{pf}
-  By hypothesis, $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \left|\operatorname{st}(\mathcal{N}(x))\right| \cap \mathcal{B}(X \setminus \{x\})$ is contractible. Hence its embedding to its cone $\left|\operatorname{st}(\mathcal{N}(x))\right|$ is a homotopy equivalence by Whitehead theorem. Being a subcomplex, it is a strong deformation retract. Then, $\mathcal{B}(X \setminus \{x\})$ is a strong deformation retract of $\mathcal{B}X = \left|\operatorname{st}(\mathcal{N}(x))\right| \cup \mathcal{B}(X \setminus \{x\})$
+  By hypothesis, the space $\left|\operatorname{lk}(\mathcal{N}(x))\right| = \left|\operatorname{st}(\mathcal{N}(x))\right| \cap \mathcal{B}(X \setminus \{x\})$ is contractible. Hence its embedding to its cone $\left|\operatorname{st}(\mathcal{N}(x))\right|$ is a homotopy equivalence by Whitehead theorem. Being a subcomplex, it is a strong deformation retract. Then, $\mathcal{B}(X \setminus \{x\})$ is a strong deformation retract of $\mathcal{B}X = \left|\operatorname{st}(\mathcal{N}(x))\right| \cup \mathcal{B}(X \setminus \{x\})$
 \end{pf}
 
 \begin{definition} {Variation of \cite[Proposition 2.1]{Bar11}}
@@ -465,7 +465,7 @@ For this paper, this lemma is a most important part of the proof of the theorem,
   Application of Mayer-Vietoris long exact sequence to covering introduced in equation \eqref{covering} yields the lemma.
 \end{pf}\\
 
-Proof of the theorem is similar to the proof in the end of the previous subsection. We write it here to highlight differences. Changed parts are written in italic.\\
+Proof of the theorem is similar to the proof at the end of the previous subsection. We write it here to highlight differences. Changed parts are written in italic.\\
 
 \begin{pf} \textbf{Homological Quillen-McCord theorem}\\
 Let $X, Y$ be finite posets with an order-preserving map $f : X \to Y$.\\
@@ -474,7 +474,7 @@ Every poset has a linear extension. Let $x_1, x_2, \ldots, x_n$ be the enumerati
 
 Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. The space $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is a homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration, the map $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is a homotopy equivalence between $BY$ and $M(f)$.\\
 
-Now consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. \textit{The classifying space of the latter is acyclic over $R$ by assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by the functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
+Now consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. \textit{The classifying space of the latter is acyclic over $R$ by the assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by the functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
 
 Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce the same maps on homology, $j$ is a homotopy equivalence and induces isomorphisms. Hence $\mathcal{B}(f)$ induces isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
 \end{pf}\\
@@ -526,7 +526,7 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 \end{proposition}
 
 \begin{pf}
-  The nerve of an empty poset is an empty simplicial set. Hence $\mathcal{N}(X)$ is a finite sequence of simplicial sets. Since a finite poset has only finite number of chains, each component is finite, hence $\mathcal{N}(X)$ has finite type. The homology of $\mathcal{B}(X)$ can be computed as the homology of this simplicial set. Hence homology modules of $\mathcal{B}(X)$ are of finitely presented type as quotients of finite rank free modules by finite rank free modules.
+  The nerve of an empty poset is an empty simplicial set. Hence $\mathcal{N}(X)$ is a finite sequence of simplicial sets. Since a finite poset has only a finite number of chains, each component is finite, hence $\mathcal{N}(X)$ has finite type. The homology of $\mathcal{B}(X)$ can be computed as the homology of this simplicial set. Hence homology modules of $\mathcal{B}(X)$ are of finitely presented type as quotients of finite rank free modules by finite rank free modules.
 \end{pf}\\
 
 \begin{definition}
@@ -546,10 +546,10 @@ We can also define an \define{element} of a persistence poset.
 \end{definition}
 
 \begin{remark}
-  Consider the persistent poset $(X, \phi)$ of finite type. For each element $x \in X$ there exists a minimal index $i$ such that $x_i \neq \emptyset$. Then $x$ is completely defined by its images under structure maps.
+  Consider the persistent poset $(X, \phi)$ of finite type. For each element $x \in X$, there exists a minimal index $i$ such that $x_i \neq \emptyset$. Then $x$ is completely defined by its images under structure maps.
 \end{remark}
 
-One can consider conponent-wise order on $X$ and work with sets like the following.
+One can consider component-wise order on $X$ and work with sets like the following.
 \begin{example}
   Let $x$ be an element of the persistence subposet $(X, \phi)$. Then $X_{<x}$ is the poset of elements component-wise less than $x$.\\
 
@@ -559,7 +559,7 @@ One can consider conponent-wise order on $X$ and work with sets like the followi
 Finally, we give a definition of \define{persistence covering}.\\
 
 \begin{definition}
-  Assume a poset $X$ splits into union of subposets $X_j$. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them in $BX$) cover the whole $BX$, they are called a \define{persistence covering}.
+  Assume a poset $X$ splits into a union of subposets $X_j$. Then every subposet $X_j$ has its own classifying space $BX_j$. If these spaces (or minimal open sets containing them in $BX$) cover the whole $BX$, they are called a \define{persistence covering}.
 \end{definition}
 
 This definition gives an example of how structures in the category of persistence posets can be transferred to other persistence categories. It is possible to reformulate the definition as internal to the category of persistence topological spaces but we prefer to keep a more constructive way.
@@ -578,7 +578,7 @@ In his proof of the Quillen-McCord theorem Barmak relies on the order extension 
 \end{proposition}
 
 \begin{pf}
-  Consider two incomparable points $a, b \in X$ and map $f : X \to \overline{Y}$ which is obviously well-defined. One of the following hold.\\
+  Consider two incomparable points $a, b \in X$ and map $f : X \to \overline{Y}$ which is well-defined. One of the following holds.\\
   \begin{itemize}
     \item f(b) < f(a)
     \item f(a) < f(b)
@@ -605,7 +605,7 @@ One can consider set $E(X,\phi)$ of extensions of persistence poset $(X,\phi)$ w
 \end{proposition}
 
 \begin{pf}
-  Let $\{R^s|\;s \in S\}$ be a linearly ordered subset of $E(X,\phi)$ indexed by set $S$. Consider $R = \bigcup R^s$ where the union is taken component-wise. Assume for some elements $a, b \in X_i$ for some $i$ some $\phi_{ij}$ cannot be defined on them as an order-preserving map. Then there exists $s \in S$ such that $a$ and $b$ are comparable in extension $R^s$. But $R^s$ is an extension, hence $\phi_{ij}$ is defined on both $a$ and $b$. By contradiction, proposition follows.
+  Let $\{R^s|\;s \in S\}$ be a linearly ordered subset of $E(X,\phi)$ indexed by set $S$. Consider $R = \bigcup R^s$ where the union is taken component-wise. Assume for some elements $a, b \in X_i$ for some $i$ some $\phi_{ij}$ cannot be defined on them as an order-preserving map. Then there exists $s \in S$ such that $a$ and $b$ are comparable in extension $R^s$. But $R^s$ is an extension, hence $\phi_{ij}$ is defined on both $a$ and $b$. By contradiction, the proposition follows.
 \end{pf}
 
 \begin{proposition}
@@ -615,14 +615,14 @@ One can consider set $E(X,\phi)$ of extensions of persistence poset $(X,\phi)$ w
 \begin{pf}
   By proposition \ref{Zorn_cond}, conditions of Zorn's lemma are fulfilled. By Zorn's lemma $E(X,\phi)$ has maximal element $M$. Assume this element is not a linear extension of $(X,\phi)$.\\
 
-  Then in some $M_i$ there exists incomparable pair $(a,b)$. Consider $\phi_{ij}(a)$ and $\phi_{ij}(b)$ for all $j > i$. Suppose that for $j_2 > j_1$ that $\phi_{ij_1}(a) > \phi_{ij_1}(b)$ and $\phi_{ij_2}(a) < \phi_{ij_2}(b)$. Then the map $\phi_{j_1j_2}$ cannot be defined. Hence for any $j$, the relation between images of $a$ and $b$ has the same sign if exists. If there exists such $j$ that relation between $\phi_{ij}(a)$ and $\phi_{ij}(b)$ exists we define relation between $a$ and $b$ accordingly. Otherwise, we define it arbitrarily. We can propagate the extension to the right by order preservation and to the left --- all preimages of $a$ and $b$ were incomparable and can be equipped with compatible orders.\\
+  Then in some $M_i$, there exists incomparable pair $(a,b)$. Consider $\phi_{ij}(a)$ and $\phi_{ij}(b)$ for all $j > i$. Suppose that for $j_2 > j_1$ that $\phi_{ij_1}(a) > \phi_{ij_1}(b)$ and $\phi_{ij_2}(a) < \phi_{ij_2}(b)$. Then the map $\phi_{j_1j_2}$ cannot be defined. Hence for any $j$, the relation between images of $a$ and $b$ has the same sign if exists. If there exists such $j$ that relation between $\phi_{ij}(a)$ and $\phi_{ij}(b)$ exists we define relation between $a$ and $b$ accordingly. Otherwise, we define it arbitrarily. We can propagate the extension to the right by order preservation and to the left --- all preimages of $a$ and $b$ were incomparable and can be equipped with compatible orders.\\
 
   We have constructed a proper extension of $M$. By contradiction, $M$ must be a linear extension of $(X,\phi)$.
 \end{pf}
 
 \subsection{Approximation distances}
 
-We can infer some stability results on persistence modules, using notions transferred from the category of graded modules. During this subsection we assume conditions of Theorem 1 or Theorem 2 to be satisfied.\\
+We can infer some stability results on persistence modules, using notions transferred from the category of graded modules. During this subsection, we assume conditions of Theorem 1 or Theorem 2 to be satisfied.\\
 
 \begin{proposition} ~ \par
   \label{prop:sum}
@@ -630,7 +630,7 @@ We can infer some stability results on persistence modules, using notions transf
 \end{proposition}
 
 \begin{pf}
-  Recall that an index shift maps to a multiplication by $m$ in a category of graded modules. We have $mA \oplus mB = m(A \oplus B)$ by definition of a direct sum. The result follows by Proposition $\ref{epstriv}$ via Theorems~1 and~2.
+  Recall that an index shift maps to multiplication by $m$ in a category of graded modules. We have $mA \oplus mB = m(A \oplus B)$ by definition of a direct sum. The result follows by Proposition $\ref{epstriv}$ via Theorems~1 and~2.
 \end{pf}
 
 \begin{proposition} ~ \par
@@ -639,7 +639,7 @@ We can infer some stability results on persistence modules, using notions transf
 \end{proposition}
 
 \begin{pf}
-  The result follows from bilinearity of the tensor product and Theorems~1 and~2.
+  The result follows from the bilinearity of the tensor product and Theorems~1 and~2.
 \end{pf}
 
 \begin{proposition}
@@ -648,7 +648,7 @@ We can infer some stability results on persistence modules, using notions transf
 \end{proposition}
 
 \begin{pf}
-  Assume $d_i$ is a differential in a complex. We know that $0 \to \operatorname{im}{d_{i+1}} \to \ker{d_{i}} \to H_i(P) \to 0$ is exact and that $0 \to \ker{d_i} \to P_i \to P_{i-1} \to 0$ is exact. The result follows by the application of Lemma 1 twice.
+  Assume $d_i$ is a differential in a complex. We know that $0 \to \operatorname{im}{d_{i+1}} \to \ker{d_{i}} \to H_i(P) \to 0$ is exact and that $0 \to \ker{d_i} \to P_i \to P_{i-1} \to 0$ is exact. The result follows from the application of Lemma 1 twice.
 \end{pf}\\
 
 \begin{proposition}
@@ -667,7 +667,7 @@ Since we have enough projectives, we can compute derived functors. We need the f
 \end{proposition}
 
 \begin{pf}
-  Since $R$ is commutative, $\operatorname{Tor}_i^R(A,B) = \operatorname{Tor}_i^R(B,A)$. Without loss of generality assume $B \stackrel{\varepsilon}{\sim} 0$. Let $P$ be the projective resolution of $A$. By Proposition \ref{prop:tensor}, after taking the tensor product we obtain sequence of modules, $\varepsilon$-interleaved with $0$. The proposition follows by Proposition \ref{prop:hominter}.
+  Since $R$ is commutative, $\operatorname{Tor}_i^R(A,B) = \operatorname{Tor}_i^R(B,A)$. Without loss of generality assume $B \stackrel{\varepsilon}{\sim} 0$. Let $P$ be the projective resolution of $A$. By Proposition \ref{prop:tensor}, after taking the tensor product we obtain a sequence of modules, $\varepsilon$-interleaved with $0$. The proposition follows by Proposition \ref{prop:hominter}.
 \end{pf}\\
 
 We can also derive the result about exact sequences.\\
@@ -693,7 +693,7 @@ We can also derive the result about exact sequences.\\
 \begin{pf}
   All $\operatorname{Tor}$-functors from Proposition \ref{prop:kunneth} are $\varepsilon$-interleaved with $0$ by Proposition \ref{prop:tor}. Hence by Proposition \ref{prop:sum} the right hand side of expression of Proposition \ref{prop:kunneth} is $\varepsilon$-equivalent to $0$.\\
   
-  Note that on the left hand side we operate a component-wise join. The Proposition \ref{prop:kunneth} is true component-wise and is true as a statement about persistence modules by gluing over structure maps. These structure maps are not assumed to be known, in particular, for persistent $\operatorname{Tor}_1^R(...)$.
+  Note that on the left-hand side we operate a component-wise join. The Proposition \ref{prop:kunneth} is true component-wise and is true as a statement about persistence modules by gluing over structure maps. These structure maps are not assumed to be known, in particular, for persistent $\operatorname{Tor}_1^R(...)$.
 \end{pf}\\
 
 \begin{proposition}
@@ -722,7 +722,7 @@ We can also derive the result about exact sequences.\\
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
 
 \begin{theorem} \textbf{Approximate Quillen-McCord theorem}\\
-  Assume $X, Y$ are persistence posets of finite type indexed by very good monoid $I$, $f : X \to Y$ is an order-preserving map. Let $m$ be the number of elements of $Y$ and $R$ is a PID. Assume that the persistence topological space $\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$ for any $y=(\ldots,y_i,\ldots) \in Y$. Then $BX$ and $BY$ are $4m\varepsilon$-interleaved over $R$.\\
+  Assume $X, Y$ are persistence posets of finite type indexed by very good monoid $I$, $f : X \to Y$ is an order-preserving map. Let $m$ be the number of elements of $Y$ and $R$ be a PID. Assume that the persistence topological space $\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$ for any $y=(\ldots,y_i,\ldots) \in Y$. Then $BX$ and $BY$ are $4m\varepsilon$-interleaved over $R$.\\
 \end{theorem}
 
 \begin{pf}
@@ -732,7 +732,7 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. The persistence space $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone with apex $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is a component-wise homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration, the map $\mathcal{B}(i_Y) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is a component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
 
-  Then consider a linear extension of $Y$ with the enumeration of elements and $X^r \subset M_i(f)$ constructed analogously. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. The classifying space of the latter is $\varepsilon$-acyclic over $\mathbb{F}$ by assumption of the theorem. Hence homology modules of $\mathcal{B}(X^{r})$ and $\mathcal{B}(X^{r-1})$ are $4\varepsilon$-interleaved. By transitivity of $\varepsilon$-equivalence homology of $BX$ and $M(f)$ are $4m\varepsilon$-interleaved.\\
+  Then consider a linear extension of $Y$ with the enumeration of elements and $X^r \subset M_i(f)$ constructed analogously. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. The classifying space of the latter is $\varepsilon$-acyclic over $\mathbb{F}$ by the assumption of the theorem. Hence homology modules of $\mathcal{B}(X^{r})$ and $\mathcal{B}(X^{r-1})$ are $4\varepsilon$-interleaved. By transitivity of $\varepsilon$-equivalence homology of $BX$ and $M(f)$ are $4m\varepsilon$-interleaved.\\
 
   We have that $H_i(BX) \stackrel{4m\varepsilon}{\sim} H_i(M(f))$ and $H_i(M(f)) \stackrel{0}{\sim} H_i(BY)$ for all $i$. Hence $H_i(BX) \stackrel{4m\varepsilon}{\sim} H_i(BY)$.
 \end{pf}\\
