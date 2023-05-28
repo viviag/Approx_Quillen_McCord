@@ -91,7 +91,7 @@ Moscow 2023
 %%
 
 \begin{abstract}
-Quillen-McCord theorem gives a sufficient condition on a map between classifying spaces of posetal categories to be a homotopy equivalence. Jonathan Ariel Barmak in his paper [J. Comb. Theory Ser. A 118, 8 (November 2011), 2445–2453.] gives an elementary topological proof and proves a homological version of the theorem.
+The Quillen-McCord theorem gives a sufficient condition on a map between classifying spaces of posetal categories to be a homotopy equivalence. Jonathan Ariel Barmak in his paper [J. Comb. Theory Ser. A 118, 8 (November 2011), 2445–2453.] gives an elementary topological proof and proves a homological version of the theorem.
 
 We formulate and prove the homological Quillen-McCord theorem in the setting of persistent homology using the technique of interleaving distances and the generalized persistence theorem. To establish the technique we introduce persistence objects as objects in appropriate functor categories and prove several results, e.g. order extension principle for objects in Fun(I, Pos) and approximate triviality of left derived functors of approximately trivial objects in Fun(I, R-Mod).
 
@@ -302,7 +302,7 @@ Proposition \ref{mult} allows to generalise the lemma by changing $t^{\varepsilo
 
 By equivalence of categories, the lemma holds for persistence modules over rings with unity indexed by very good monoids.
 
-\subsection{Quillen-McCord theorem}
+\subsection{the Quillen-McCord theorem}
 
 \begin{definition}
   Let $X$ be a set and $\mathcal{P}(X)$ be its powerset. Then a set $S \subset \mathcal{P}(X)$ is called a simplicial complex if $W \in S$ for any $V \in S$ and $W \subset V$. An element of a simplicial complex of cardinality $n$ is called $n$-simplex.
@@ -389,7 +389,7 @@ This proposition allows us to operate simplicial complexes instead of simplicial
 
 Application of Quillen's A theorem to posets yields the following theorem (we identify poset with its posetal category).
 
-\begin{theorem} \textbf{Quillen-McCord theorem}\\
+\begin{theorem} \textbf{the Quillen-McCord theorem}\\
   Assume $X, Y$ are finite posets, $f : X \to Y$ is an order-preserving map.\\
   If $\forall y \in Y\;\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is contractible, then $\mathcal{B}f$ is a homotopy equivalence between $BX$ and $BY$.\\
 \end{theorem}
@@ -401,7 +401,7 @@ Application of Quillen's A theorem to posets yields the following theorem (we id
 
 Proofs of both theorems are used in our arguments and we recall them in brief.
 
-\subsubsection{Barmak's proof of Quillen-McCord theorem}
+\subsubsection{Barmak's proof of the Quillen-McCord theorem}
 
 \begin{proposition} {Variation of \cite[Lemma 2.2]{Bar11}}
   \label{prop:comparison}
@@ -435,7 +435,7 @@ For this paper, this lemma is the most important part of the proof of the theore
   We call this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i_X : X \to M(f)$ and $i_Y : Y \to M(f)$.
 \end{definition}
 
-\begin{pf} \textbf{Quillen-McCord theorem}\\
+\begin{pf} \textbf{the Quillen-McCord theorem}\\
   Let $X, Y$ be finite posets with an order-preserving map $f : X \to Y$.\\
 
   Every poset has a linear extension. Let $x_1, x_2, \ldots, x_n$ be the enumeration of $X$ in an arbitrary linear extension and $Y^r = \{x_1,\ldots,x_r\} \cup Y \subset M(f)$ for any $r$.\\
@@ -447,7 +447,7 @@ For this paper, this lemma is the most important part of the proof of the theore
   Note that $i(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} the space $\mathcal{B}(i_X)$ is homotopic to the space $\mathcal{B}(i_Y \circ f) = \mathcal{B}(i_Y) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}
 
-\subsubsection{Barmak's proof of homological Quillen-McCord theorem}
+\subsubsection{Barmak's proof of the homological Quillen-McCord theorem}
 
 \begin{proposition} {\cite[Lemma 2.1]{Milnor56}}
   \label{prop:kunneth}
@@ -467,7 +467,7 @@ For this paper, this lemma is the most important part of the proof of the theore
 
 Proof of the theorem is similar to the proof at the end of the previous subsection. We write it here to highlight differences. Changed parts are written in italic.\\
 
-\begin{pf} \textbf{Homological Quillen-McCord theorem}\\
+\begin{pf} \textbf{the homological Quillen-McCord theorem}\\
 Let $X, Y$ be finite posets with an order-preserving map $f : X \to Y$.\\
 
 Every poset has a linear extension. Let $x_1, x_2, \ldots, x_n$ be the enumeration of $X$ in a fixed linear extension and $Y^r = \{x_1,\ldots,x_r\} \cup Y \subset M(f)$ for any $r$.\\
@@ -721,7 +721,7 @@ We can also derive the result about exact sequences.\\
 
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
 
-\begin{theorem} \textbf{Approximate Quillen-McCord theorem}\\
+\begin{theorem} \textbf{the approximate Quillen-McCord theorem}\\
   Assume $X, Y$ are persistence posets of finite type indexed by very good monoid $I$, $f : X \to Y$ is an order-preserving map. Let $m$ be the number of elements of $Y$ and $R$ be a PID. Assume that the persistence topological space $\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$ for any $y=(\ldots,y_i,\ldots) \in Y$. Then $BX$ and $BY$ are $4m\varepsilon$-interleaved over $R$.\\
 \end{theorem}
 
