@@ -427,23 +427,36 @@ This lemma is a most important part of the proof for this paper and we recall a 
 \begin{definition} {Variation of \cite[Proposition 2.1]{Bar11}}
   Let $f : X \to Y$ be an order-preserving map between posets. Denote orders ($\leq$) on $X$ and $Y$ as $R_X$ and $R_Y$. Then we define poset $M(f) = X \coprod_f Y$ with $R = R_X \cup R_Y \cup R_{f}$ where $(x,y) \in R_f$ if and only if $(f(x),y) \in R_Y$.\\
 
-  We shall by analogy denote this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i_X : X \to M(f)$ and $i_Y : Y \to M(f)$.
+  We call this poset a \define{mapping cylinder} of $f$. There are also defined canonical inсlusions $i_X : X \to M(f)$ and $i_Y : Y \to M(f)$.
 \end{definition}
 
+For comparison, we can consider a more standard construction.
+
 \begin{proposition}
-  The square
+  \label{pushout}
+  Denote by $\sim$ the equivalence relation $x \sim f(x)$ and set $\widetilde{M(f)} = M(f)/\sim$. The square
   \begin{equation}
   \begin{tikzcd}
-  M(f) & X\arrow{l}{i_X} \\
+  \widetilde{M(f)} & X\arrow{l}{\widetilde{i_X} = i_X/\sim} \\
   Y\arrow{u}{i_Y} & X\arrow{l}{f}\arrow{u}{\operatorname{Id}}\
   \end{tikzcd}
   \end{equation}
-  is cocartesian.
+  is cocartesian in $Pos$.
 \end{proposition}
 
 \begin{pf}
-%FIXME
+  Consider arbitrary $Z$ such that the following diagram commutes.
+  \begin{equation}
+  \begin{tikzcd}
+  Z & X\arrow{l}{\widetilde{i_X}} \\
+  Y\arrow{u}{i_Y} & X\arrow{l}{f}\arrow{u}{\operatorname{Id}}\
+  \end{tikzcd}
+  \end{equation}
+  
+  Maps $\widetilde{i_X}$ and $i_Y$ preserve order, thus orders $R_X$ and $R_Y$ are embedded to $R_Z$. The order relation $R_{\widetilde{M(f)}}$ is a union of $R_X$ and $R_Y$ because $R_f$ is trivialized by the quotient. Hence $R_{\widetilde{M(f)}} \subset R_Z$ and there exists an unique morphism $\widetilde{M(f)} \to Z$. This morphism is an embedding into an extension.
 \end{pf}
+
+\vspace{0.3cm}
 
 \begin{pf} \textbf{Quillen-McCord theorem}\\
   Let $X, Y$ be finite posets with an order-preserving map $f : X \to Y$.\\
@@ -452,10 +465,12 @@ This lemma is a most important part of the proof for this paper and we recall a 
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. The space $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is a homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is homotopy equivalence between $BY$ and $M(f)$.\\
 
-  Then consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. The latter space is contractible by the assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is a homotopy equivalence and by transitivity $\mathcal{B}(i_X)$ is a homotopy equivalence between $X$ and $M(f)$.\\
+  Then consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. The classifying space of the latter is contractible by the assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is a homotopy equivalence and by transitivity $\mathcal{B}(i_X)$ is a homotopy equivalence between $X$ and $M(f)$.\\
 
   Note that $i(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} the space $\mathcal{B}(i_X)$ is homotopic to the space $\mathcal{B}(i_Y \circ f) = \mathcal{B}(i_Y) \circ \mathcal{B}(f)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}
+
+Note that the standard construction of a cocartesian square cannot be used instead of the mapping cylinder.
 
 \subsubsection{Barmak's proof of homological Quillen-McCord theorem}
 
@@ -484,7 +499,7 @@ Every poset has a linear extension. Let $x_1, x_2, \ldots, x_n$ be the enumerati
 
 Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. The space $\mathcal{B}(Y_{\geq f(x_r)})$ is a cone over $\mathcal{B}(f(x_r))$. It is contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is a homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration, the map $\mathcal{B}(j) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is a homotopy equivalence between $BY$ and $M(f)$.\\
 
-Now consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. \textit{The latter space is acyclic over $R$ by assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by the functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
+Now consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. \textit{The classifying space of the latter is acyclic over $R$ by assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by the functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
 
 Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce the same maps on homology, $j$ is a homotopy equivalence and induces isomorphisms. Hence $\mathcal{B}(f)$ induces isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
 \end{pf}\\
@@ -528,7 +543,7 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 \end{definition}
 
 \begin{remark}
-  The definition of a persistence poset has a foundational issue --- since there are no maps to an empty set, structure maps are in general not defined. In particular, this issue is unavoidable in the case of posets of finite type. We prefer to resolve this issue by adjoining a contradiction symbol $\bot$ to a class of functions. If there is no candidate for a function $\phi_{ij}$ in $Pos$, we set $\phi_{ij} = \bot$ and ignore these functions in reasonings similar to <<something is defined by all images of $x$ under the structure maps>>.
+  The definition of a persistence poset has a foundational issue --- since there are no maps to an empty set, structure maps are in general not defined. In particular, this issue is unavoidable in the case of posets of finite type. We prefer to resolve this issue by adjoining a contradiction symbol $\bot$ to a class of functions. If there is no candidate for a function $\phi_{ij}$ in $Pos$, we set $\phi_{ij} = \bot$ and ignore these functions in reasonings similar to ``something is defined by all images of $x$ under the structure maps''.
 \end{remark}
 
 \begin{proposition}
@@ -541,21 +556,25 @@ Consider $\mathcal{F}$ --- a functor from $\mathcal{C}$ to $\mathcal{D}$. It nat
 
 If some limit or colimit exists in $C$, it can be constructed component-wise in $Fun(I,C)$. We are indirectly using this fact while speaking about homology modules of persistence simplicial sets. We can examine the component-wise construction of colimits by example.\\
 
-\begin{definition}
-  Let $f = (\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then mapping cylinders $M(f_j)$ form a persistence poset $M(f)$ with structure maps arising from the universal property of cocartesian squares and structure maps of $X$ and $Y$.\\
+\begin{example}
+  Let $f = (\ldots,f_n,\ldots)$ be a map of persistence posets $(X, \phi)$ and $(Y, \psi)$. Then contracted mapping cylinders $\widetilde{M(f_j)}$ form a persistence poset $\widetilde{M(f)}$ with structure maps arising from the universal property of cocartesian squares and structure maps of $X$ and $Y$.\\
 
-  To be explicit, consider the following diagram in $Pos$ with $i_X$, $j_Y$ being series of canonical inclusions.\\
+  To be explicit, consider the following diagram in $Pos$ with $\widetilde{i_X}$, $j_Y$ taken from Proposition \ref{pushout}.\\
   \begin{equation}
   \begin{tikzcd}
-  X_{j}\arrow{r}{{i_X}_j}\arrow{d}{\phi_{i_X}}\arrow[bend left=17,swap]{rr}{f_j} & X_j \coprod_{f_j} Y_j\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{i_Y}} \\
-  X_{j+1}\arrow{r}{{i_X}_{j+1}}\arrow[bend left=17,swap]{rr}{f_{j+1}} & X_{j+1} \coprod_{f_{j+1}} Y_{j+1} & Y_{j+1}\arrow{l}{{i_Y}_{j+1}} \\
+  X_{j}\arrow{r}{{\widetilde{i_X}}_j}\arrow{d}{\phi_{i_X}}\arrow[bend left=30,swap]{rr}{f_j} & \widetilde{M(f_j)}\arrow{d}{\zeta_j} & Y_{j}\arrow{l}{{i_Y}_j}\arrow{d}{\psi_{i_Y}} \\
+  X_{j+1}\arrow{r}{{i_X}_{j+1}}\arrow[bend right=30,swap]{rr}{f_{j+1}} & \widetilde{M(f_{j+1})} & Y_{j+1}\arrow{l}{{i_Y}_{j+1}} \\
   \end{tikzcd}
   \end{equation}\\
 
-  The existence of order-preserving maps $\zeta_j$ is guaranteed by the universal property of cocartesian squares, they are set to be structure maps of $M(f)$. The persistence poset $(M(f), \zeta_j)$ is a \define{mapping cylinder of a map of persistence posets}.\\
+  The existence of order-preserving maps $\zeta_j$ is guaranteed by the universal property of cocartesian squares, they are set to be structure maps of $\widetilde{M(f)}$.\\
+\end{example}  
 
-  We also have canonical inclusions $i_X$ and $i_Y$ arising from the same diagram.
+\begin{definition}
+  Consider the series of mapping cylinders of posets $M(f_i)$. We can define the structure maps $\chi$ on this series as $\phi$ on $X$ and $\psi$ on $Y$. They preserve orders $R_{f_i}$ by definition of structure maps. The persistence poset $(M(f), \chi_j)$ is a \define{mapping cylinder of a map of persistence posets}. We also have canonical inclusions $i_X$ and $i_Y$ arising from the same diagram.
 \end{definition}
+
+Note that the mapping cylinder is not a colimit.\\
 
 We can also define a subobject in $Fun(I, Pos)$.
 
@@ -756,7 +775,7 @@ We are now ready to adapt known proof to Quillen-McCord theorem for persistence 
 
   Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. The persistence space $\mathcal{B}(Y_{\geq f(x_r)})$ is a component-wise cone with apex $\mathcal{B}(f(x_r))$. It is component-wise contractible, therefore $\mathcal{B}(Y^{r-1}) \hookrightarrow \mathcal{B}(Y^{r})$ is a component-wise homotopy equivalence by Lemma \ref{lem:homotopy}. By iteration, the map $\mathcal{B}(i_Y) : \mathcal{B}(Y^{0}) = \mathcal{B}(Y) \hookrightarrow \mathcal{B}(M(f)) = \mathcal{B}(Y^n)$ is a component-wise homotopy equivalence between $BY$ and $M(f)$. Note that persistence structure is not used here.\\
 
-  Then consider a linear extension of $Y$ with the enumeration of elements and $X^r \subset M_i(f)$ constructed analogously. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. The latter is $\varepsilon$-acyclic over $\mathbb{F}$ by assumption of the theorem. Hence homology modules of $\mathcal{B}(X^{r})$ and $\mathcal{B}(X^{r-1})$ are $4\varepsilon$-interleaved. By transitivity of $\varepsilon$-equivalence homology of $BX$ and $M(f)$ are $4m\varepsilon$-interleaved.\\
+  Then consider a linear extension of $Y$ with the enumeration of elements and $X^r \subset M_i(f)$ constructed analogously. We have $X^{r-1}_{\leq y_r} = f^{-1}(Y_{\leqslant y_r})$. The classifying space of the latter is $\varepsilon$-acyclic over $\mathbb{F}$ by assumption of the theorem. Hence homology modules of $\mathcal{B}(X^{r})$ and $\mathcal{B}(X^{r-1})$ are $4\varepsilon$-interleaved. By transitivity of $\varepsilon$-equivalence homology of $BX$ and $M(f)$ are $4m\varepsilon$-interleaved.\\
 
   We have that $H_i(BX) \stackrel{4m\varepsilon}{\sim} H_i(M(f))$ and $H_i(M(f)) \stackrel{0}{\sim} H_i(BY)$ for all $i$. Hence $H_i(BX) \stackrel{4m\varepsilon}{\sim} H_i(BY)$.
 \end{pf}\\
