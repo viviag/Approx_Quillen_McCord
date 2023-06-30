@@ -40,7 +40,7 @@
 \title{Persistent homological Quillen-McCord theorem}
 
 \author{Vitalii Guzeev}
-\address{Faculty of mathematics, National Research University Higher School of Economics, Russian Federation}
+\address{Faculty of Mathematics, National Research University Higher School of Economics, Russian Federation}
 \email{viviag@yandex.ru}
 
 \date{\today}
@@ -225,7 +225,7 @@ This example can be generalized as follows.
 
 \begin{proposition} \cite[Following the Equation 4]{Corbet18}
   \label{mult}
-  Let $M$ be an $R[G]$-module. The $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon} : M \to M$ is a multiplication on a fixed element $m \in R[G]^{\varepsilon}$, where grading on $R[G]$ is given by $G$.
+  Let $M$ be an $R[G]$-module. The $\varepsilon$-morphism $\operatorname{Id}_{\varepsilon} : M \to M$ is a multiplication by a fixed element $m \in R[G]^{\varepsilon}$, where grading on $R[G]$ is given by $G$.
 \end{proposition}
 
 \begin{proposition} {\cite[Proposition 2.13]{GS16}}
@@ -360,7 +360,7 @@ Application of Quillen's A theorem to posets yields the following theorem (we id
 
 \begin{theorem} \textbf{Homological Quillen-McCord theorem} \cite[Corollary 5.5]{Bar11}\\
   Assume $X, Y$ are finite posets, $f : X \to Y$ is an order-preserving map, $R$ is a PID.\\
-  If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups with coefficients in $R$ on $BX$ and $BY$.\\
+  If $\forall y \in Y\;H_i(\mathcal{B}(f^{-1}(Y_{\leqslant y})),R) = 0$ for any $i$, $\mathcal{B}f$ induces isomorphisms of all homology groups of $BX$ and $BY$ with coefficients in $R$.\\
 \end{theorem}
 
 Proofs of both theorems are used in our arguments and we recall them in brief.
@@ -408,7 +408,7 @@ For this paper, this lemma is the most important part of the proof of the theore
 
   Then consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_m\} \subset M(f)$. We have $X^{r-1}_{< y_r} = f^{-1}(Y_{\leqslant y_r})$. The classifying space of the latter is contractible by the assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ is a homotopy equivalence and by transitivity $\mathcal{B}(i_X)$ is a homotopy equivalence between $X$ and $M(f)$.\\
 
-  Note that $i(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} the space $\mathcal{B}(i_X)(X)$ is homotopic to the space $\mathcal{B}(i_Y \circ f)(X) = (\mathcal{B}(i_Y) \circ \mathcal{B}(f))(X)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
+  Note that $i(x) \leqslant (i_Y \circ f)(x)$. By Proposition \ref{prop:comparison} the space $\mathcal{B}(i_X)(X)$ is homotopy-equivalent to the space $\mathcal{B}(i_Y \circ f)(X) = (\mathcal{B}(i_Y) \circ \mathcal{B}(f))(X)$. Hence $\mathcal{B}(f)$ is the homotopy equivalence between $BX$ and $BY$.
 \end{pf}
 
 \subsubsection{Barmak's proof of the homological Quillen-McCord theorem}
@@ -425,7 +425,7 @@ For this paper, this lemma is the most important part of the proof of the theore
 \end{lemma}
 
 \begin{pf} ~ \par
-  By Proposition \ref{prop:kunneth} $H_i(\left|\operatorname{lk}(\mathcal{N}(x))\right|) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$.
+  By Proposition \ref{prop:kunneth}, $H_i(\left|\operatorname{lk}(\mathcal{N}(x))\right|) = H_i(\mathcal{B}(X_{>x}) \star \mathcal{B}(X_{<x}))$ are trivial for all indices $i$.
   Application of Mayer-Vietoris long exact sequence to covering introduced in equation \eqref{covering} yields the lemma.
 \end{pf}\\
 
@@ -440,7 +440,7 @@ Consider $Y^r_{>x_r} = Y_{\geq f(x_r)}$. The space $\mathcal{B}(Y_{\geq f(x_r)})
 
 Now consider a linear extension of $Y$ with enumeration $y_1,\ldots,y_m$ and $X^r = X \cup \{y_{r+1},\ldots,y_n\} \subset M(f)$. We have $X^{r-1}_{< y_r} = f^{-1}(Y_{\leqslant y_r})$. \textit{The classifying space of the latter is acyclic over $R$ by the assumption of the theorem. Hence $\mathcal{B}(X^{r}) \hookrightarrow \mathcal{B}(X^{r-1})$ induces isomorphisms of all homology groups and by the functoriality of homology $\mathcal{B}(i)$ induces isomorphisms of all homology groups between $X$ and $M(f)$.}\\
 
-Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce the same maps on homology, $j$ is a homotopy equivalence and induces isomorphisms. Hence $\mathcal{B}(f)$ induces isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
+Note that $i(x) \leqslant (j \circ f)(x)$. By Proposition \ref{prop:comparison} $\mathcal{B}(i)$ is homotopic to $\mathcal{B}(j \circ f) = \mathcal{B}(j) \circ \mathcal{B}(f)$. \textit{Homotopic maps induce the same maps of homology modules, $j$ is a homotopy equivalence and induces isomorphisms. Hence $\mathcal{B}(f)$ induces isomorphisms between $H_i(BX,R)$ and $H_i(BY,R)$.}
 \end{pf}\\
 
 We see two updates. The first one is essential, it requires Lemma \ref{lem:trivialties} and operates some equivalence propagating in a chain of length equal to the cardinality of $Y$. The second follows automatically from the functoriality of all used constructions.
@@ -685,7 +685,7 @@ We can also derive the result about exact sequences.\\
 
 We are now ready to adapt known proof to Quillen-McCord theorem for persistence posets.
 
-\begin{theorem} \textbf{The approximate Quillen-McCord theorem}\\
+\begin{theorem} \textbf{The persistent homological Quillen-McCord theorem}\\
   Assume $X, Y$ are persistence posets of finite type indexed by very good monoid $I$, $f : X \to Y$ is an order-preserving map. Let $m$ be the number of elements of $Y$ and $R$ be a PID. Assume that the persistence topological space $\mathcal{B}(f^{-1}(Y_{\leqslant y}))$ is $\varepsilon$-acyclic over $R$ for any $y=(\ldots,y_i,\ldots) \in Y$. Then $BX$ and $BY$ are $4m\varepsilon$-interleaved over $R$.\\
 \end{theorem}
 
